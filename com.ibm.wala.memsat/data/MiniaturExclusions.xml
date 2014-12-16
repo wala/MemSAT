@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="ASCII"?>
+<com.ibm.wala.common:EContainer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:com.ibm.wala.common="http:///com/ibm/wala/wala.ecore.common" xmlns:com.ibm.wala.regex="http:///com/ibm/wala/wala.ecore.regex">
+<contents xsi:type="com.ibm.wala.regex:EPattern" pattern="com\/ddtek\/.*"/>
+<contents xsi:type="com.ibm.wala.regex:EPattern" pattern="com\/ibm\/.*"/>
+<contents xsi:type="com.ibm.wala.regex:EPattern" pattern="com\/merant\/.*"/>
+<contents xsi:type="com.ibm.wala.regex:EPattern" pattern="com\/oroinc\/.*"/>
+<contents xsi:type="com.ibm.wala.regex:EPattern" pattern="com\/tivoli\/.*"/>
+<contents xsi:type="com.ibm.wala.regex:EPattern" pattern="com\/RSA\/.*"/>
+<contents xsi:type="com.ibm.wala.regex:EPattern" pattern="COM\/rsa\/.*"/>
+
+<contents xsi:type="com.ibm.wala.regex:EPattern" pattern="com\/sun\/.*"/>
+<contents xsi:type="com.ibm.wala.regex:EPattern" pattern="count\/.*"/>
+
+<contents xsi:type="com.ibm.wala.regex:EPattern" pattern="java\/awt\/.*"/>
+<contents xsi:type="com.ibm.wala.regex:EPattern" pattern="java\/beans\/.*"/>
+<contents xsi:type="com.ibm.wala.regex:EPattern" pattern="java\/io\/ObjectInputStream$1\/.*"/>
+<contents xsi:type="com.ibm.wala.regex:EPattern" pattern="java\/io\/ObjectOutputStream$1\/.*"/>
+<contents xsi:type="com.ibm.wala.regex:EPattern" pattern="java\/io\/ObjectStreamClass$2\/.*"/>
+<contents xsi:type="com.ibm.wala.regex:EPattern" pattern="java\/io\/ObjectStreamClass$3\/.*"/>
+<contents xsi:type="com.ibm.wala.regex:EPattern" pattern="java\/lang\/Class$1\/.*"/>
+<contents xsi:type="com.ibm.wala.regex:EPattern" pattern="java\/lang\/Class$2\/.*"/>
+<contents xsi:type="com.ibm.wala.regex:EPattern" pattern="java\/lang\/Class$3\/.*"/>
+<contents xsi:type="com.ibm.wala.regex:EPattern" pattern="java\/lang\/ClassLoader$3\/.*"/>
+<contents xsi:type="com.ibm.wala.regex:EPattern" pattern="java\/lang\/System$1\/.*"/>
+<contents xsi:type="com.ibm.wala.regex:EPattern" pattern="java\/lang\/Terminator\/.*"/>
+<contents xsi:type="com.ibm.wala.regex:EPattern" pattern="java\/lang\/ref\/Finalizer\/.*"/>
+<contents xsi:type="com.ibm.wala.regex:EPattern" pattern="java\/lang\/reflect\/ReflectAccess\/.*"/>
+<contents xsi:type="com.ibm.wala.regex:EPattern" pattern="java\/lang\/Package$1\/.*"/>
+<contents xsi:type="com.ibm.wala.regex:EPattern" pattern="java\/lang\/StringCoding\/.*"/>
+<contents xsi:type="com.ibm.wala.regex:EPattern" pattern="java\/lang\/SystemClassLoaderAction\/.*"/>
+<contents xsi:type="com.ibm.wala.regex:EPattern" pattern="java\/net\/InetAddress$1\/.*"/>
+<contents xsi:type="com.ibm.wala.regex:EPattern" pattern="java\/net\/InetAddress$2\/.*"/>
+<contents xsi:type="com.ibm.wala.regex:EPattern" pattern="java\/net\/Socket$\/.*"/>
+<contents xsi:type="com.ibm.wala.regex:EPattern" pattern="java\/net\/URLClassLoader$2\/.*"/>
+<contents xsi:type="com.ibm.wala.regex:EPattern" pattern="java\/net\/URLClassLoader$3\/.*"/>
+<contents xsi:type="com.ibm.wala.regex:EPattern" pattern="java\/net\/URLClassLoader$6\/.*"/>
+<contents xsi:type="com.ibm.wala.regex:EPattern" pattern="java\/net\/URLClassLoader$7\/.*"/>
+<contents xsi:type="com.ibm.wala.regex:EPattern" pattern="java\/net\/URLClassLoader$ClassFinder\/.*"/>
+<contents xsi:type="com.ibm.wala.regex:EPattern" pattern="java\/net\/SocksSocketImpl$1\/.*"/>
+<contents xsi:type="com.ibm.wala.regex:EPattern" pattern="java\/net\/SocksSocketImpl$5\/.*"/>
+<contents xsi:type="com.ibm.wala.regex:EPattern" pattern="java\/net\/SocksSocketImplFactory$1\/.*"/>
+<contents xsi:type="com.ibm.wala.regex:EPattern" pattern="java\/nio\/channels\/spi\/SelectorProvider$1\/.*"/>
+<contents xsi:type="com.ibm.wala.regex:EPattern" pattern="java\/rmi\.*"/>
+<contents xsi:type="com.ibm.wala.regex:EPattern" pattern="java\/security\/ProtectionDomain$1\/.*"/>
+<contents xsi:type="com.ibm.wala.regex:EPattern" pattern="java\/security\/Security$1\/.*"/>
+<contents xsi:type="com.ibm.wala.regex:EPattern" pattern="java\/security\/cert\/CertPathValidator$2\/.*"/>
+<contents xsi:type="com.ibm.wala.regex:EPattern" pattern="java\/security\/cert\/CertStore$1\/.*"/>
+<contents xsi:type="com.ibm.wala.regex:EPattern" pattern="java\/security\/cert\/X509CertSelector\/.*"/>
+<contents xsi:type="com.ibm.wala.regex:EPattern" pattern="java\/security\/cert\/X509CRLSelector\/.*"/>
+<contents xsi:type="com.ibm.wala.regex:EPattern" pattern="java\/text\/DateFormat$Field\/.*"/>
+<contents xsi:type="com.ibm.wala.regex:EPattern" pattern="java\/text\/NumberFormat$Field\/.*"/>
+<contents xsi:type="com.ibm.wala.regex:EPattern" pattern="java\/util\/Calendar$1\/.*"/>
+<contents xsi:type="com.ibm.wala.regex:EPattern" pattern="java\/util\/jar\/JarVerifier\/.*"/>
+<contents xsi:type="com.ibm.wala.regex:EPattern" pattern="java\/util\/logging\/LogManager$3\/.*"/>
+<contents xsi:type="com.ibm.wala.regex:EPattern" pattern="java\/util\/prefs\/.*"/>
+
+<contents xsi:type="com.ibm.wala.regex:EPattern" pattern="javax\/.*"/>
+<contents xsi:type="com.ibm.wala.regex:EPattern" pattern="org\/apache\/jasper\/.*"/>
+<contents xsi:type="com.ibm.wala.regex:EPattern" pattern="org\/apache\/soap\/server\/.*"/>
+<contents xsi:type="com.ibm.wala.regex:EPattern" pattern="org\/apache\/tools\/.*"/>
+<contents xsi:type="com.ibm.wala.regex:EPattern" pattern="org\/apache\/wsif\/.*"/>
+<contents xsi:type="com.ibm.wala.regex:EPattern" pattern="org\/apache\/xalan\/xsltc\/.*"/>
+<contents xsi:type="com.ibm.wala.regex:EPattern" pattern="org\/apache\/xerces\/impl\/.*"/>
+<contents xsi:type="com.ibm.wala.regex:EPattern" pattern="org\/eclipse\/.*"/>
+<contents xsi:type="com.ibm.wala.regex:EPattern" pattern="org\/ietf\/.*"/>
+<contents xsi:type="com.ibm.wala.regex:EPattern" pattern="org\/jdom\/.*"/>
+<contents xsi:type="com.ibm.wala.regex:EPattern" pattern="org\/mozilla\/.*"/>
+<contents xsi:type="com.ibm.wala.regex:EPattern" pattern="org\/omg\/.*"/>
+<contents xsi:type="com.ibm.wala.regex:EPattern" pattern="org\/python\/.*"/>
+<contents xsi:type="com.ibm.wala.regex:EPattern" pattern="org\/xmlsoap\/.*"/>
+<contents xsi:type="com.ibm.wala.regex:EPattern" pattern="org\/uddi\/.*"/>
+
+<contents xsi:type="com.ibm.wala.regex:EPattern" pattern="parser\/latin\/.*"/>
+
+<contents xsi:type="com.ibm.wala.regex:EPattern" pattern="sax\/.*"/>
+
+<contents xsi:type="com.ibm.wala.regex:EPattern" pattern="sun\/.*"/>
+<contents xsi:type="com.ibm.wala.regex:EPattern" pattern="tcl\/lang\/.*"/>
+<contents xsi:type="com.ibm.wala.regex:EPattern" pattern="trace\/sax\/.*"/>
+<contents xsi:type="com.ibm.wala.regex:EPattern" pattern="JawBridge\/.*"/>
+<contents xsi:type="com.ibm.wala.regex:EPattern" pattern="check\/DocumentCheckerBase\/.*"/>
+<contents xsi:type="com.ibm.wala.regex:EPattern" pattern="check\/latin\/LatinWFCDocumentChecker\/.*"/>
+<contents xsi:type="com.ibm.wala.regex:EPattern" pattern="count\/DoctypeCounterBase\/.*"/>
+<contents xsi:type="com.ibm.wala.regex:EPattern" pattern="count\/DocumentCounterBase\/.*"/>
+<contents xsi:type="com.ibm.wala.regex:EPattern" pattern="count\/level0\/L0DocumentCounter\/.*"/>
+<contents xsi:type="com.ibm.wala.regex:EPattern" pattern="count\/level0\/L0StandaloneCounter\/.*"/>
+<contents xsi:type="com.ibm.wala.regex:EPattern" pattern="jaxp\/SAXParserFactory\/.*"/>
+</com.ibm.wala.common:EContainer>

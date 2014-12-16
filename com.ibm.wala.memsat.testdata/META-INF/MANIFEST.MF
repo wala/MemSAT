@@ -1,0 +1,19 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Miniatur Test Data
+Bundle-SymbolicName: com.ibm.wala.memsat.testdata;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: com.ibm.wala.memsat.testdata.Activator
+Bundle-Vendor: IBM
+Require-Bundle: org.eclipse.core.runtime
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-ActivationPolicy: lazy
+Export-Package: com.ibm.wala.memsat.testdata,
+ data.angelic,
+ data.causality,
+ data.concurrent,
+ data.linearizability,
+ data.little,
+ data.nemos,
+ data.refactoring,
+ data.transforms

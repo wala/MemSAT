@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<launchConfiguration type="org.eclipse.jdt.junit.launchconfig">
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
+<listEntry value="/com.ibm.wala.memsat.test/src/test/linearizability/LinearizabilityTests.java"/>
+</listAttribute>
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES">
+<listEntry value="1"/>
+</listAttribute>
+<stringAttribute key="org.eclipse.debug.ui.ATTR_CAPTURE_IN_FILE" value="/tmp/miniatur-linearizability.txt"/>
+<stringAttribute key="org.eclipse.jdt.junit.CONTAINER" value=""/>
+<booleanAttribute key="org.eclipse.jdt.junit.KEEPRUNNING_ATTR" value="false"/>
+<stringAttribute key="org.eclipse.jdt.junit.TESTNAME" value=""/>
+<stringAttribute key="org.eclipse.jdt.junit.TEST_KIND" value="org.eclipse.jdt.junit.loader.junit4"/>
+<stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="test.linearizability.LinearizabilityTests"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="com.ibm.wala.memsat.test"/>
+<stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-Xmx2G -ea -Dcom.ibm.miniatur.exclusions=${project_loc:com.ibm.miniatur2}/data/MiniaturExclusions.txt -Dcom.ibm.wala.tracefile=/tmp/miniatur-wala-trace.txt -Djava.library.path=${project_loc:com.ibm.miniatur2}/jni/x86-mac"/>
+<stringAttribute key="org.eclipse.jdt.launching.WORKING_DIRECTORY" value="${workspace_loc:com.ibm.miniatur2.testdata}"/>
+</launchConfiguration>
