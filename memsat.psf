@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<psf version="2.0">
+<provider id="org.eclipse.egit.core.GitProvider">
+<project reference="1.0,https://github.com/wala/WALA,master,com.ibm.wala-feature"/>
+<project reference="1.0,https://github.com/wala/WALA,master,com.ibm.wala.cast"/>
+<project reference="1.0,https://github.com/wala/WALA,master,com.ibm.wala.cast.java"/>
+<project reference="1.0,https://github.com/wala/WALA,master,com.ibm.wala.cast.java.polyglot"/>
+<project reference="1.0,https://github.com/wala/WALA,master,com.ibm.wala.cast.java.polyglot.test"/>
+<project reference="1.0,https://github.com/wala/WALA,master,com.ibm.wala.cast.java.test"/>
+<project reference="1.0,https://github.com/wala/WALA,master,com.ibm.wala.cast.java.test.data"/>
+<project reference="1.0,https://github.com/wala/WALA,master,com.ibm.wala.cast.js"/>
+<project reference="1.0,https://github.com/wala/WALA,master,com.ibm.wala.cast.js.html.nu_validator"/>
+<project reference="1.0,https://github.com/wala/WALA,master,com.ibm.wala.cast.js.rhino"/>
+<project reference="1.0,https://github.com/wala/WALA,master,com.ibm.wala.cast.js.rhino.test"/>
+<project reference="1.0,https://github.com/wala/WALA,master,com.ibm.wala.cast.js.test"/>
+<project reference="1.0,https://github.com/wala/WALA,master,com.ibm.wala.cast.js.test.data"/>
+<project reference="1.0,https://github.com/wala/WALA,master,com.ibm.wala.cast.test"/>
+<project reference="1.0,https://github.com/wala/WALA,master,com.ibm.wala.core"/>
+<project reference="1.0,https://github.com/wala/WALA,master,com.ibm.wala.core.testdata"/>
+<project reference="1.0,https://github.com/wala/WALA,master,com.ibm.wala.core.tests"/>
+<project reference="1.0,https://github.com/wala/WALA,master,com.ibm.wala.ide"/>
+<project reference="1.0,https://github.com/wala/WALA,master,com.ibm.wala.ide-feature"/>
+<project reference="1.0,https://github.com/wala/WALA,master,com.ibm.wala.ide.jdt"/>
+<project reference="1.0,https://github.com/wala/WALA,master,com.ibm.wala.ide.jdt.test"/>
+<project reference="1.0,https://github.com/wala/WALA,master,com.ibm.wala.ide.tests"/>
+<project reference="1.0,https://github.com/wala/MemSAT,master,com.ibm.wala.memsat"/>
+<project reference="1.0,https://github.com/wala/MemSAT,master,com.ibm.wala.memsat.jdt.test"/>
+<project reference="1.0,https://github.com/wala/MemSAT,master,com.ibm.wala.memsat.test"/>
+<project reference="1.0,https://github.com/wala/MemSAT,master,com.ibm.wala.memsat.testdata"/>
+<project reference="1.0,https://github.com/wala/WALA,master,com.ibm.wala.shrike"/>
+<project reference="1.0,https://github.com/wala/WALA,master,com.ibm.wala.tests-feature"/>
+<project reference="1.0,https://github.com/wala/WALA,master,com.ibm.wala.tests.ide-feature"/>
+<project reference="1.0,https://github.com/wala/WALA,master,com.ibm.wala.util"/>
+</provider>
+</psf>
