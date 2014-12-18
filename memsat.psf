@@ -9,7 +9,6 @@
 <project reference="1.0,https://github.com/wala/WALA,master,com.ibm.wala.cast.java.test"/>
 <project reference="1.0,https://github.com/wala/WALA,master,com.ibm.wala.cast.java.test.data"/>
 <project reference="1.0,https://github.com/wala/WALA,master,com.ibm.wala.cast.js"/>
-<project reference="1.0,https://github.com/wala/WALA,master,com.ibm.wala.cast.js.html.nu_validator"/>
 <project reference="1.0,https://github.com/wala/WALA,master,com.ibm.wala.cast.js.rhino"/>
 <project reference="1.0,https://github.com/wala/WALA,master,com.ibm.wala.cast.js.rhino.test"/>
 <project reference="1.0,https://github.com/wala/WALA,master,com.ibm.wala.cast.js.test"/>
