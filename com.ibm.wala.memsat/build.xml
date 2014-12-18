@@ -57,8 +57,10 @@
     <delete dir="${temp.folder}"/>
     <mkdir dir="${temp.folder}"/>
 
+    <mkdir dir="${plugin.destination}/lib" />
     <get src="http://alloy.mit.edu/kodkod/release/kodkod.jar" dest="${plugin.destination}/lib/kodkod.jar" />
 
+    <mkdir dir="${plugin.destination}/jni" />
     <get src="http://alloy.mit.edu/kodkod/release/${platform.solvers}.zip" dest="${temp.folder}/platform.zip" />
     <unzip src="${temp.folder}/platform.zip" dest="${plugin.destination}/jni/"/>
 
