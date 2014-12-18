@@ -23,15 +23,14 @@
 	<property name="src" value="src" />
 	<property name="build" value="build" />
 	<property name="build.result" value="${basedir}" />
-	<property name="build.tests" value="build/tests" />
-	<property name="build.javadocs" value="${build}/javadocs" />
-	<property name="publish.javadocs" value="javadocs/com.ibm.wala.cast" />
-	<property name="dist" value="dist" />
-	<property name="etc" value="etc" />
-	<property name="docs" value="docs" />
-	<property name="lib" value="lib" />
-	<property name="mainlib" value="../mainlib" />
-	<property name="sharedlib" value="../sharedlib" />
+
+	<condition property="platform.solvers" value="darwin_x86_64">
+	  <os family="mac" />
+	</condition>
+
+	<condition property="platform.solvers" value="linux_x86_64">
+ 	  <os family="unix" />
+	</condition>
 
   <target name="properties" if="eclipse.running">
     <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
@@ -55,7 +54,15 @@
   </target>
 
   <target name="fetchKodkod" depends="KodkodPresent" unless="kodkod.present">
+    <delete dir="${temp.folder}"/>
+    <mkdir dir="${temp.folder}"/>
+
     <get src="http://alloy.mit.edu/kodkod/release/kodkod.jar" dest="${plugin.destination}/lib/kodkod.jar" />
+
+    <get src="http://alloy.mit.edu/kodkod/release/${platform.solvers}.zip" dest="${temp.folder}/platform.zip" />
+    <unzip src="${temp.folder}/platform.zip" dest="${plugin.destination}/jni/"/>
+
+     <delete dir="${temp.folder}"/>
   </target>
 
   <target name="getJars" depends="fetchKodkod" />
