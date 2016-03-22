@@ -29,6 +29,7 @@ import com.ibm.wala.cast.tree.rewrite.AstLoopUnwinder;
 import com.ibm.wala.classLoader.ClassLoaderFactory;
 import com.ibm.wala.classLoader.IClassLoader;
 import com.ibm.wala.ide.util.EclipseFileProvider;
+import com.ibm.wala.ide.util.JdtPosition;
 import com.ibm.wala.ipa.callgraph.AnalysisOptions;
 import com.ibm.wala.ipa.callgraph.CallGraphBuilder;
 import com.ibm.wala.ipa.callgraph.Entrypoint;
@@ -69,13 +70,18 @@ public class MiniaturJDTJavaAnalysisEngine
 					protected SourceModuleTranslator getTranslator() {
 						return new JDTSourceModuleTranslator(cha.getScope(), this) {
 							@Override
-							protected JDTJava2CAstTranslator makeCAstTranslator(CompilationUnit astRoot, IFile sourceFile, String fullPath) {
-								return new JDTJava2CAstTranslator(sourceLoader, astRoot, sourceFile, fullPath, true) { 
+							protected JDTJava2CAstTranslator makeCAstTranslator(CompilationUnit astRoot, final IFile sourceFile, String fullPath) {
+								return new JDTJava2CAstTranslator(sourceLoader, astRoot, fullPath, true) { 
 									@Override
 									public CAstEntity translateToCAst() {
 										CAstEntity ast = super.translateToCAst();
 										AstLoopUnwinder unwind = new AstLoopUnwinder(new CAstImpl(), true, unrollDepth);
 										return unwind.translate(ast);
+									}
+									
+									@Override
+									public JdtPosition makePosition(int start, int end) {
+										return new JdtPosition(start, end, this.cu.getLineNumber(start), this.cu.getLineNumber(end), sourceFile, this.fullPath);
 									}
 								};
 							}
