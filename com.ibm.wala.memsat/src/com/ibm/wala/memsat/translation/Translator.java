@@ -13,7 +13,6 @@
  */
 package com.ibm.wala.memsat.translation;
 
-import static com.ibm.wala.memsat.util.Strings.prettyPrint;
 import static com.ibm.wala.memsat.util.Strings.repeat;
 
 import java.util.ArrayList;
@@ -31,19 +30,17 @@ import kodkod.ast.IntExpression;
 import kodkod.util.ints.IndexedEntry;
 
 import com.ibm.wala.cast.ir.ssa.AstAssertInstruction;
-import com.ibm.wala.cast.ir.ssa.AstConstants;
 import com.ibm.wala.cast.ir.ssa.AstEchoInstruction;
 import com.ibm.wala.cast.ir.ssa.AstGlobalRead;
 import com.ibm.wala.cast.ir.ssa.AstGlobalWrite;
+import com.ibm.wala.cast.ir.ssa.AstLexicalAccess.Access;
 import com.ibm.wala.cast.ir.ssa.AstLexicalRead;
 import com.ibm.wala.cast.ir.ssa.AstLexicalWrite;
-import com.ibm.wala.cast.ir.ssa.AstIRFactory.AstIR;
-import com.ibm.wala.cast.ir.ssa.AstLexicalAccess.Access;
+import com.ibm.wala.cast.ir.ssa.CAstBinaryOp;
 import com.ibm.wala.cast.java.ipa.callgraph.AstJavaSSAPropagationCallGraphBuilder.EnclosingObjectReferenceKey;
 import com.ibm.wala.cast.java.ssa.EnclosingObjectReference;
 import com.ibm.wala.cast.js.ipa.summaries.JavaScriptSummarizedFunction;
 import com.ibm.wala.cast.loader.AstMethod;
-import com.ibm.wala.cast.loader.AstMethod.LexicalInformation;
 import com.ibm.wala.cfg.IBasicBlock;
 import com.ibm.wala.classLoader.IClass;
 import com.ibm.wala.classLoader.IMethod;
@@ -65,7 +62,6 @@ import com.ibm.wala.memsat.util.Nodes;
 import com.ibm.wala.shrikeBT.BinaryOpInstruction;
 import com.ibm.wala.shrikeBT.ShiftInstruction;
 import com.ibm.wala.shrikeBT.UnaryOpInstruction;
-import com.ibm.wala.ssa.DefUse;
 import com.ibm.wala.ssa.SSAAbstractInvokeInstruction;
 import com.ibm.wala.ssa.SSAArrayLengthInstruction;
 import com.ibm.wala.ssa.SSAArrayLoadInstruction;
@@ -91,7 +87,6 @@ import com.ibm.wala.ssa.SSAThrowInstruction;
 import com.ibm.wala.ssa.SSAUnaryOpInstruction;
 import com.ibm.wala.types.MethodReference;
 import com.ibm.wala.types.TypeReference;
-import com.ibm.wala.util.collections.Pair;
 
 /**
  * Provides access to a general translator that can be applied to any method.
@@ -743,7 +738,7 @@ public final class Translator implements MethodTranslator {
 		private void visitBinaryComparisonOp(SSABinaryOpInstruction inst) {
 			final int def = inst.getDef(), use0 = inst.getUse(0), use1 = inst.getUse(1);
 			final IRType type = callInfo.typeOf(use0);
-			final AstConstants.BinaryOp op = (AstConstants.BinaryOp)inst.getOperator();
+			final CAstBinaryOp op = (CAstBinaryOp)inst.getOperator();
 			
 			switch(type) { 	
 			case OBJECT : 
@@ -792,7 +787,7 @@ public final class Translator implements MethodTranslator {
 		 **/
 		public final void visitBinaryOp(SSABinaryOpInstruction inst) {
 			final BinaryOpInstruction.IOperator op = inst.getOperator();
-			if (op instanceof AstConstants.BinaryOp) 
+			if (op instanceof CAstBinaryOp) 
 				visitBinaryComparisonOp(inst);
 			else if (op instanceof BinaryOpInstruction.Operator)
 				visitBinaryArithmeticOp(inst);
