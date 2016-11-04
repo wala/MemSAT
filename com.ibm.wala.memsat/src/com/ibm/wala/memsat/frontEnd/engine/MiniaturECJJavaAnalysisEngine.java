@@ -10,40 +10,40 @@
  *****************************************************************************/
 package com.ibm.wala.memsat.frontEnd.engine;
 
+import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.List;
 
-import org.eclipse.core.resources.IFile;
-import org.eclipse.core.runtime.CoreException;
 import org.eclipse.jdt.core.dom.CompilationUnit;
 
-import com.ibm.wala.cast.java.client.JDTJavaSourceAnalysisEngine;
+import com.ibm.wala.cast.java.client.ECJJavaSourceAnalysisEngine;
 import com.ibm.wala.cast.java.translator.SourceModuleTranslator;
-import com.ibm.wala.cast.java.translator.jdt.JDTClassLoaderFactory;
 import com.ibm.wala.cast.java.translator.jdt.JDTJava2CAstTranslator;
-import com.ibm.wala.cast.java.translator.jdt.JDTSourceLoaderImpl;
-import com.ibm.wala.cast.java.translator.jdt.JDTSourceModuleTranslator;
+import com.ibm.wala.cast.java.translator.jdt.ecj.ECJClassLoaderFactory;
+import com.ibm.wala.cast.java.translator.jdt.ecj.ECJSourceLoaderImpl;
+import com.ibm.wala.cast.java.translator.jdt.ecj.ECJSourceModuleTranslator;
 import com.ibm.wala.cast.tree.CAstEntity;
+import com.ibm.wala.cast.tree.CAstSourcePositionMap.Position;
 import com.ibm.wala.cast.tree.impl.CAstImpl;
+import com.ibm.wala.cast.tree.impl.RangePosition;
 import com.ibm.wala.cast.tree.rewrite.AstLoopUnwinder;
 import com.ibm.wala.classLoader.ClassLoaderFactory;
 import com.ibm.wala.classLoader.IClassLoader;
-import com.ibm.wala.ide.util.EclipseFileProvider;
-import com.ibm.wala.ide.util.JdtPosition;
+import com.ibm.wala.classLoader.SourceDirectoryTreeModule;
 import com.ibm.wala.ipa.callgraph.AnalysisOptions;
 import com.ibm.wala.ipa.callgraph.CallGraphBuilder;
 import com.ibm.wala.ipa.callgraph.Entrypoint;
-import com.ibm.wala.ipa.callgraph.propagation.InstanceKey;
 import com.ibm.wala.ipa.callgraph.propagation.PointerAnalysis;
 import com.ibm.wala.ipa.cha.IClassHierarchy;
-import com.ibm.wala.memsat.MiniaturPlugin;
 import com.ibm.wala.types.ClassLoaderReference;
 import com.ibm.wala.types.MethodReference;
 import com.ibm.wala.util.MonitorUtil.IProgressMonitor;
 import com.ibm.wala.util.config.SetOfClasses;
 
-public class MiniaturJDTJavaAnalysisEngine
-	extends JDTJavaSourceAnalysisEngine<InstanceKey>
+public class MiniaturECJJavaAnalysisEngine
+	extends ECJJavaSourceAnalysisEngine
 	implements MiniaturAnalysisEngine
 {
 	// private final static int defaultLoopUnrollDepth = 3;
@@ -52,37 +52,40 @@ public class MiniaturJDTJavaAnalysisEngine
 
 	private List<MethodReference> methods;
 
-	public MiniaturJDTJavaAnalysisEngine(String project, int unrollDepth, List<MethodReference> methods) throws IOException, CoreException {
-		super(project);
+	public MiniaturECJJavaAnalysisEngine(int unrollDepth, List<MethodReference> methods) {
+		super();
 		this.unrollDepth = unrollDepth;
 		this.methods = methods;
-		setExclusionsFile(
-			(new EclipseFileProvider()).getFileFromPlugin(MiniaturPlugin.getDefault(), "data/MiniaturExclusions.txt").getAbsolutePath());
 	}
 
 	@Override
-	protected ClassLoaderFactory makeClassLoaderFactory(SetOfClasses exclusions) {
-		return new JDTClassLoaderFactory(exclusions) {
+	protected ClassLoaderFactory getClassLoaderFactory(SetOfClasses exclusions) {
+		return new ECJClassLoaderFactory(exclusions) {
 			@Override
-			protected JDTSourceLoaderImpl makeSourceLoader(ClassLoaderReference classLoaderReference, IClassHierarchy cha, IClassLoader parent) throws IOException {
-				return new JDTSourceLoaderImpl(classLoaderReference, parent, getExclusions(), cha) {
+			protected ECJSourceLoaderImpl makeSourceLoader(ClassLoaderReference classLoaderReference, IClassHierarchy cha, IClassLoader parent) throws IOException {
+				return new ECJSourceLoaderImpl(classLoaderReference, parent, getExclusions(), cha) {
 					@Override
 					protected SourceModuleTranslator getTranslator() {
-						return new JDTSourceModuleTranslator(cha.getScope(), this) {
+						return new ECJSourceModuleTranslator(cha.getScope(), this) {
 							@Override
-							protected JDTJava2CAstTranslator makeCAstTranslator(CompilationUnit astRoot, final IFile sourceFile, String fullPath) {
-								return new JDTJava2CAstTranslator(sourceLoader, astRoot, fullPath, true) { 
+							protected JDTJava2CAstTranslator makeCAstTranslator(CompilationUnit astRoot, String fullPath) {
+								return new JDTJava2CAstTranslator<Position>(sourceLoader, astRoot, fullPath, true) { 
 									@Override
 									public CAstEntity translateToCAst() {
 										CAstEntity ast = super.translateToCAst();
 										AstLoopUnwinder unwind = new AstLoopUnwinder(new CAstImpl(), true, unrollDepth);
 										return unwind.translate(ast);
 									}
-									
+
 									@Override
-									public JdtPosition makePosition(int start, int end) {
-										return new JdtPosition(start, end, this.cu.getLineNumber(start), this.cu.getLineNumber(end), sourceFile, this.fullPath);
-									}
+								      public Position makePosition(int start, int end) {
+								        try {
+								          return new RangePosition(new URL("file://" + fullPath), this.cu.getLineNumber(start), start, end);
+								        } catch (MalformedURLException e) {
+								          throw new RuntimeException("bad file: " + fullPath, e);
+								        }
+								      }
+									
 								};
 							}
 						};
@@ -90,6 +93,10 @@ public class MiniaturJDTJavaAnalysisEngine
 				};
 			}
 		};
+	}
+
+	public void buildAnalysisScope() throws IOException {
+		super.buildAnalysisScope();
 	}
 
 	public CallGraphBuilder buildCallGraph(IClassHierarchy cha, AnalysisOptions options, boolean savePointerAnalysis, IProgressMonitor monitor) throws com.ibm.wala.util.CancelException {
@@ -104,11 +111,22 @@ public class MiniaturJDTJavaAnalysisEngine
 		return super.getClassHierarchy();
 	}
 
-	public PointerAnalysis<InstanceKey> getPointerAnalysis() {
+	public PointerAnalysis getPointerAnalysis() {
 		return super.getPointerAnalysis();
 	}
 
 	public Iterable<Entrypoint> getEntrypoints() {
 		return new MiniaturJavaEntrypoints(methods, getClassHierarchy());
+	}
+
+	public void addSourceModule(String relativeName) {
+		String testSourceDirName  = 
+			System.getProperty("user.dir") + File.separator + 
+			relativeName;
+
+		File srcFile = new File(testSourceDirName);
+			
+		assert srcFile.exists() : "cannot find " + srcFile;
+		addSourceModule(new SourceDirectoryTreeModule( srcFile ));
 	}
 }

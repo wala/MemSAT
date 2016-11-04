@@ -44,6 +44,7 @@ import com.ibm.wala.util.collections.FilterIterator;
 import com.ibm.wala.util.collections.MapIterator;
 import com.ibm.wala.util.collections.ObjectArrayMapping;
 import com.ibm.wala.util.functions.Function;
+import com.ibm.wala.util.graph.Acyclic;
 import com.ibm.wala.util.graph.Graph;
 
 public class PartialSlice extends AstJavaSlicer {
@@ -159,8 +160,10 @@ public class PartialSlice extends AstJavaSlicer {
     final ObjectArrayMapping<SSAInstruction> instructionIndices = 
       new ObjectArrayMapping<SSAInstruction>(ir.getInstructions());
        
-    List<ISSABasicBlock> order = new ArrayList<ISSABasicBlock>(ir.getControlFlowGraph().getNumberOfNodes());
-    order(ir.getControlFlowGraph(), ir.getExitBlock(), order);
+    SSACFG cfg = ir.getControlFlowGraph();
+	List<ISSABasicBlock> order = new ArrayList<ISSABasicBlock>(cfg.getNumberOfNodes());
+    assert Acyclic.isAcyclic(cfg, cfg.entry());
+    order(cfg, ir.getExitBlock(), order);
     
     return 
       new ComposedIterator(order.iterator()) {

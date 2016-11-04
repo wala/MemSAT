@@ -30,7 +30,7 @@ import com.ibm.wala.memsat.Options;
 import com.ibm.wala.memsat.frontEnd.core.WalaInformationImpl;
 import com.ibm.wala.memsat.frontEnd.engine.MiniaturAnalysisEngine;
 import com.ibm.wala.memsat.frontEnd.engine.MiniaturJDTJavaAnalysisEngine;
-import com.ibm.wala.memsat.frontEnd.engine.MiniaturPolyglotJavaAnalysisEngine;
+import com.ibm.wala.memsat.frontEnd.engine.MiniaturECJJavaAnalysisEngine;
 import com.ibm.wala.types.MethodReference;
 import com.ibm.wala.util.collections.Iterator2Collection;
 import com.ibm.wala.util.graph.Graph;
@@ -134,7 +134,7 @@ public final class WalaEngine {
 		MiniaturAnalysisEngine engine = null;
 		
 		if (options.getEclipseProjectName() == null) {
-			MiniaturPolyglotJavaAnalysisEngine e = new MiniaturPolyglotJavaAnalysisEngine(
+			MiniaturECJJavaAnalysisEngine e = new MiniaturECJJavaAnalysisEngine(
 				options.loopUnrollDepth(),
 				Iterator2Collection.toList(methods.iterator()));
 			

@@ -162,7 +162,7 @@ final class SequentialStringVisualizer extends StringVisualizer<SequentialTransl
 						final Object defaultValue = defaultValue(fieldTransl.valueInterpreter(),eval);
 						str.append(toArray(((ArrayExpression<?>)fieldTransl).evaluate(instance, eval), length, defaultValue));
 					} else {
-						str.append(((FieldExpression<?>)fieldTransl).evaluate(instance, eval));
+						str.append(""+((FieldExpression<?>)fieldTransl).evaluate(instance, eval));
 					}
 				}
 			}
@@ -192,7 +192,7 @@ final class SequentialStringVisualizer extends StringVisualizer<SequentialTransl
 						final Object defaultValue = defaultValue(fieldTransl.valueInterpreter(),eval);
 						str.append(toArray(((ArrayExpression<?>)fieldTransl).evaluate(instance, eval), length, defaultValue));
 					} else {
-						str.append(((FieldExpression<?>)fieldTransl).evaluate(instance, eval));
+						str.append(""+((FieldExpression<?>)fieldTransl).evaluate(instance, eval));
 					}
 				}
 			}

@@ -10,13 +10,9 @@
  *****************************************************************************/
 package com.ibm.wala.memsat.frontEnd.engine;
 
-import java.io.File;
-import java.util.Collections;
-
-import com.ibm.wala.cast.js.client.JavaScriptAnalysisEngine;
+import com.ibm.wala.cast.js.client.JavaScriptAnalysisEngine.PropagationJavaScriptAnalysisEngine;
 import com.ibm.wala.cast.js.ipa.callgraph.JavaScriptEntryPoints;
 import com.ibm.wala.cast.js.translator.CAstRhinoLoopUnwindingTranslatorFactory;
-import com.ibm.wala.classLoader.SourceFileModule;
 import com.ibm.wala.ipa.callgraph.AnalysisOptions;
 import com.ibm.wala.ipa.callgraph.CallGraphBuilder;
 import com.ibm.wala.ipa.callgraph.Entrypoint;
@@ -25,7 +21,7 @@ import com.ibm.wala.ipa.cha.IClassHierarchy;
 import com.ibm.wala.util.MonitorUtil.IProgressMonitor;
 
 public class MiniaturJavaScriptAnalysisEngine 
-  extends JavaScriptAnalysisEngine 
+  extends PropagationJavaScriptAnalysisEngine
   implements MiniaturAnalysisEngine
 {
 
