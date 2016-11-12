@@ -13,7 +13,7 @@ package com.ibm.wala.memsat.jdt.test;
 public class JdtTestUtil {
 
 	public static final String PROJECT_ZIP = "miniatur_testdata_project.zip";
-	public static final String PROJECT_NAME = "com.ibm.miniatur2.testdata";
+	public static final String PROJECT_NAME = "com.ibm.wala.memsat.testdata";
 
 	public JdtTestUtil() {
 		// TODO Auto-generated constructor stub
