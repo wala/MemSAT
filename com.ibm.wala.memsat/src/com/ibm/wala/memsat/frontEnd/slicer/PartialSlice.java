@@ -17,8 +17,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import kodkod.util.ints.IndexedEntry;
-
 import com.ibm.wala.cast.java.ipa.modref.AstJavaModRef;
 import com.ibm.wala.cast.java.ipa.slicer.AstJavaSlicer;
 import com.ibm.wala.ipa.callgraph.CGNode;
@@ -46,6 +44,8 @@ import com.ibm.wala.util.collections.ObjectArrayMapping;
 import com.ibm.wala.util.functions.Function;
 import com.ibm.wala.util.graph.Acyclic;
 import com.ibm.wala.util.graph.Graph;
+
+import kodkod.util.ints.IndexedEntry;
 
 public class PartialSlice extends AstJavaSlicer {
 

@@ -27,17 +27,17 @@ import java.util.EnumSet;
 import java.util.Iterator;
 import java.util.Set;
 
-import kodkod.ast.Relation;
-import kodkod.instance.Bounds;
-import kodkod.instance.TupleFactory;
-import kodkod.instance.TupleSet;
-
 import com.ibm.wala.memsat.concurrent.Execution;
 import com.ibm.wala.memsat.concurrent.Program.BoundsBuilder;
 import com.ibm.wala.memsat.frontEnd.InlinedInstruction;
 import com.ibm.wala.memsat.frontEnd.WalaInformation;
 import com.ibm.wala.ssa.SSAFieldAccessInstruction;
 import com.ibm.wala.util.graph.Graph;
+
+import kodkod.ast.Relation;
+import kodkod.instance.Bounds;
+import kodkod.instance.TupleFactory;
+import kodkod.instance.TupleSet;
 
 /**
  * Implementation of the {@linkplain BoundsBuilder} interface based on the

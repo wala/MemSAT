@@ -21,9 +21,9 @@ import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.Set;
 
-import kodkod.util.collections.Containers;
-
 import com.ibm.wala.util.graph.Graph;
+
+import kodkod.util.collections.Containers;
 
 /**
  * A simple graph implementation based on a linked hash map.

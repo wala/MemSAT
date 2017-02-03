@@ -29,10 +29,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import kodkod.ast.Expression;
-import kodkod.ast.Formula;
-import kodkod.ast.IntExpression;
-
 import com.ibm.wala.cast.java.ipa.callgraph.JavaSourceAnalysisScope;
 import com.ibm.wala.classLoader.IClass;
 import com.ibm.wala.classLoader.IField;
@@ -55,6 +51,10 @@ import com.ibm.wala.types.MethodReference;
 import com.ibm.wala.types.TypeName;
 import com.ibm.wala.types.TypeReference;
 import com.ibm.wala.util.strings.Atom;
+
+import kodkod.ast.Expression;
+import kodkod.ast.Formula;
+import kodkod.ast.IntExpression;
 
 /**
  * Provides access to specialized translators that translate methods according to 

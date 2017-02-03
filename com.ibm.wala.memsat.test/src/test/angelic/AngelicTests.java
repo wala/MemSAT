@@ -23,6 +23,17 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.junit.Assert;
+import org.junit.Test;
+
+import com.ibm.wala.memsat.Miniatur;
+import com.ibm.wala.memsat.Options;
+import com.ibm.wala.memsat.Results;
+import com.ibm.wala.memsat.translation.sequential.SequentialTranslation;
+import com.ibm.wala.util.CancelException;
+
+import data.angelic.Angelic;
+import data.angelic.TokenizerClient;
 import kodkod.ast.BinaryExpression;
 import kodkod.ast.Expression;
 import kodkod.ast.Formula;
@@ -36,18 +47,6 @@ import kodkod.engine.ucore.RCEStrategy;
 import kodkod.instance.Bounds;
 import kodkod.instance.TupleSet;
 import kodkod.util.ints.IntIterator;
-
-import org.junit.Assert;
-import org.junit.Test;
-
-import com.ibm.wala.memsat.Miniatur;
-import com.ibm.wala.memsat.Options;
-import com.ibm.wala.memsat.Results;
-import com.ibm.wala.memsat.translation.sequential.SequentialTranslation;
-import com.ibm.wala.util.CancelException;
-
-import data.angelic.Angelic;
-import data.angelic.TokenizerClient;
 
 /**
  * @author etorlak

@@ -10,12 +10,13 @@
  *****************************************************************************/
 package com.ibm.wala.memsat.frontEnd.types;
 
-import com.ibm.wala.cast.js.loader.*;
-import com.ibm.wala.classLoader.*;
-import com.ibm.wala.ipa.callgraph.*;
-import com.ibm.wala.ipa.callgraph.propagation.*;
-import com.ibm.wala.ipa.cha.*;
-import com.ibm.wala.util.debug.*;
+import com.ibm.wala.cast.js.loader.JavaScriptLoader;
+import com.ibm.wala.classLoader.Language;
+import com.ibm.wala.ipa.callgraph.CGNode;
+import com.ibm.wala.ipa.callgraph.propagation.InstanceKey;
+import com.ibm.wala.ipa.callgraph.propagation.PointerAnalysis;
+import com.ibm.wala.ipa.cha.IClassHierarchy;
+import com.ibm.wala.util.debug.Assertions;
 
 public class MiniaturTypeDataFactory {
   

@@ -13,8 +13,6 @@
  */
 package com.ibm.wala.memsat.frontEnd;
 
-import kodkod.util.collections.Stack;
-
 import com.ibm.wala.ipa.callgraph.CGNode;
 import com.ibm.wala.ipa.callgraph.CallGraph;
 import com.ibm.wala.ipa.callgraph.propagation.rta.CallSite;
@@ -26,6 +24,8 @@ import com.ibm.wala.ssa.SSAGetInstruction;
 import com.ibm.wala.ssa.SSAInstruction;
 import com.ibm.wala.ssa.SSAMonitorInstruction;
 import com.ibm.wala.ssa.SSAPutInstruction;
+
+import kodkod.util.collections.Stack;
 
 /**
  * Specifies the position that an {@linkplain SSAInstruction}

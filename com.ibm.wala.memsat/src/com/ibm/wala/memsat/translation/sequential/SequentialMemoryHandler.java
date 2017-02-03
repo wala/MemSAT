@@ -13,10 +13,6 @@
  */
 package com.ibm.wala.memsat.translation.sequential;
 
-import kodkod.ast.Expression;
-import kodkod.ast.Formula;
-import kodkod.ast.IntExpression;
-
 import com.ibm.wala.memsat.frontEnd.IRType;
 import com.ibm.wala.memsat.representation.ArrayExpression;
 import com.ibm.wala.memsat.representation.FieldExpression;
@@ -30,6 +26,10 @@ import com.ibm.wala.ssa.SSAGetInstruction;
 import com.ibm.wala.ssa.SSAMonitorInstruction;
 import com.ibm.wala.ssa.SSAPutInstruction;
 import com.ibm.wala.util.debug.Assertions;
+
+import kodkod.ast.Expression;
+import kodkod.ast.Formula;
+import kodkod.ast.IntExpression;
 
 /**
  * Handles memory accesses in a sequential translation.

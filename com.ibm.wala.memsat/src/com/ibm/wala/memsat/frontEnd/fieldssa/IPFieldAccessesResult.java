@@ -10,7 +10,7 @@
  *****************************************************************************/
 package com.ibm.wala.memsat.frontEnd.fieldssa;
 
-import com.ibm.wala.ipa.callgraph.*;
+import com.ibm.wala.ipa.callgraph.CGNode;
 
 public interface IPFieldAccessesResult {
       

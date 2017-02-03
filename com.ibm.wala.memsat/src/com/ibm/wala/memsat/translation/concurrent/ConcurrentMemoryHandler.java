@@ -14,13 +14,6 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import kodkod.ast.Expression;
-import kodkod.ast.Formula;
-import kodkod.ast.IntExpression;
-import kodkod.ast.Relation;
-import kodkod.util.collections.CacheSet;
-import kodkod.util.collections.Stack;
-
 import com.ibm.wala.ipa.callgraph.CGNode;
 import com.ibm.wala.ipa.callgraph.propagation.rta.CallSite;
 import com.ibm.wala.memsat.Options;
@@ -40,6 +33,13 @@ import com.ibm.wala.ssa.SSAArrayStoreInstruction;
 import com.ibm.wala.ssa.SSAGetInstruction;
 import com.ibm.wala.ssa.SSAMonitorInstruction;
 import com.ibm.wala.ssa.SSAPutInstruction;
+
+import kodkod.ast.Expression;
+import kodkod.ast.Formula;
+import kodkod.ast.IntExpression;
+import kodkod.ast.Relation;
+import kodkod.util.collections.CacheSet;
+import kodkod.util.collections.Stack;
 
 /**
  * Handles memory acesses in a concurrent translation.

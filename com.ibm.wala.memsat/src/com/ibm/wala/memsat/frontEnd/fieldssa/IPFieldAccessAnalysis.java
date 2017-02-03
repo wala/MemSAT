@@ -10,23 +10,39 @@
  *****************************************************************************/
 package com.ibm.wala.memsat.frontEnd.fieldssa;
 
-import com.ibm.wala.dataflow.graph.*;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
+
+import com.ibm.wala.classLoader.CallSiteReference;
+import com.ibm.wala.dataflow.graph.AbstractMeetOperator;
+import com.ibm.wala.dataflow.graph.DataflowSolver;
+import com.ibm.wala.dataflow.graph.IKilldallFramework;
+import com.ibm.wala.dataflow.graph.ITransferFunctionProvider;
+import com.ibm.wala.fixpoint.IVariable;
+import com.ibm.wala.fixpoint.UnaryOperator;
+import com.ibm.wala.ipa.callgraph.CGNode;
+import com.ibm.wala.ipa.callgraph.CallGraph;
+import com.ibm.wala.ipa.callgraph.propagation.PointerKey;
+import com.ibm.wala.ssa.IR;
+import com.ibm.wala.ssa.SSAAbstractInvokeInstruction;
+import com.ibm.wala.ssa.SSAInstruction;
 import com.ibm.wala.util.CancelException;
+import com.ibm.wala.util.Predicate;
+import com.ibm.wala.util.collections.ComposedIterator;
+import com.ibm.wala.util.collections.FilterIterator;
+import com.ibm.wala.util.collections.IteratorPlusOne;
+import com.ibm.wala.util.collections.IteratorUtil;
+import com.ibm.wala.util.collections.MapIterator;
+import com.ibm.wala.util.collections.NonNullSingletonIterator;
+import com.ibm.wala.util.collections.Pair;
 import com.ibm.wala.util.debug.Assertions;
-import com.ibm.wala.util.collections.*;
-import com.ibm.wala.fixpoint.*;
-import com.ibm.wala.fixedpoint.impl.*;
 import com.ibm.wala.util.functions.Function;
-import com.ibm.wala.util.graph.*;
-
-import com.ibm.wala.classLoader.*;
-import com.ibm.wala.ipa.callgraph.*;
-import com.ibm.wala.ipa.callgraph.propagation.*;
-import com.ibm.wala.ssa.*;
-import com.ibm.wala.util.*;
-import com.ibm.wala.types.*;
-
-import java.util.*;
+import com.ibm.wala.util.graph.AbstractGraph;
+import com.ibm.wala.util.graph.EdgeManager;
+import com.ibm.wala.util.graph.Graph;
+import com.ibm.wala.util.graph.NodeManager;
 
 public class IPFieldAccessAnalysis implements IKilldallFramework {
 

@@ -29,16 +29,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import kodkod.ast.Expression;
-import kodkod.ast.Formula;
-import kodkod.ast.Relation;
-import kodkod.ast.Variable;
-
 import com.ibm.wala.memsat.concurrent.Execution;
 import com.ibm.wala.memsat.concurrent.Program;
 import com.ibm.wala.memsat.concurrent.memory.AbstractExecution;
 import com.ibm.wala.memsat.util.Graphs;
 import com.ibm.wala.memsat.util.Nodes;
+
+import kodkod.ast.Expression;
+import kodkod.ast.Formula;
+import kodkod.ast.Relation;
+import kodkod.ast.Variable;
 
 /**
  * A base implementation of the {@linkplain Execution} interface, 

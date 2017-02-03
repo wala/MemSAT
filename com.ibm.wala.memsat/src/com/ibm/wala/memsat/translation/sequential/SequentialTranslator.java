@@ -13,10 +13,6 @@
  */
 package com.ibm.wala.memsat.translation.sequential;
 
-import kodkod.ast.Formula;
-import kodkod.instance.Bounds;
-import kodkod.instance.Universe;
-
 import com.ibm.wala.memsat.Options;
 import com.ibm.wala.memsat.frontEnd.WalaInformation;
 import com.ibm.wala.memsat.representation.ExpressionFactory;
@@ -24,6 +20,10 @@ import com.ibm.wala.memsat.translation.Environment;
 import com.ibm.wala.memsat.translation.MethodTranslation;
 import com.ibm.wala.memsat.translation.Translator;
 import com.ibm.wala.memsat.util.Nodes;
+
+import kodkod.ast.Formula;
+import kodkod.instance.Bounds;
+import kodkod.instance.Universe;
 
 /**
  * A translator for sequential Wala programs.

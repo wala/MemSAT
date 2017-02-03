@@ -33,12 +33,6 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
-import kodkod.ast.Expression;
-import kodkod.ast.Formula;
-import kodkod.ast.Relation;
-import kodkod.ast.Variable;
-import kodkod.instance.Bounds;
-
 import com.ibm.wala.memsat.concurrent.Execution;
 import com.ibm.wala.memsat.concurrent.Justification;
 import com.ibm.wala.memsat.concurrent.MemoryModel;
@@ -48,6 +42,12 @@ import com.ibm.wala.memsat.frontEnd.InlinedInstruction;
 import com.ibm.wala.memsat.frontEnd.WalaInformation;
 import com.ibm.wala.types.MethodReference;
 import com.ibm.wala.util.graph.Graph;
+
+import kodkod.ast.Expression;
+import kodkod.ast.Formula;
+import kodkod.ast.Relation;
+import kodkod.ast.Variable;
+import kodkod.instance.Bounds;
 /**
  * A base implementation of the Java Memory Model.
  * Subclasses can override implementations of 

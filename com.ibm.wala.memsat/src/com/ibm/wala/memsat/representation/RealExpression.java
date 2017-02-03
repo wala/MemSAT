@@ -17,6 +17,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import com.ibm.wala.memsat.frontEnd.IRType;
+
 import kodkod.ast.Expression;
 import kodkod.ast.Formula;
 import kodkod.ast.IntConstant;
@@ -24,8 +26,6 @@ import kodkod.ast.IntExpression;
 import kodkod.engine.Evaluator;
 import kodkod.instance.Bounds;
 import kodkod.instance.TupleSet;
-
-import com.ibm.wala.memsat.frontEnd.IRType;
 
 
 /**

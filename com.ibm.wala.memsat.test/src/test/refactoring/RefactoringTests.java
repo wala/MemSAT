@@ -20,19 +20,17 @@ import java.io.File;
 
 import org.junit.Test;
 
-import test.ConcurrentTests;
-import test.TestUtil;
-
 import com.ibm.wala.memsat.Miniatur;
 import com.ibm.wala.types.MethodReference;
 import com.ibm.wala.util.graph.Graph;
 
 import data.refactoring.Bug10;
-import data.refactoring.Bug10R;
 import data.refactoring.Bug11;
 import data.refactoring.Bug11R;
 import data.refactoring.BugInlineLocal;
 import data.refactoring.BugInlineLocalR;
+import test.ConcurrentTests;
+import test.TestUtil;
 
 /**
  * Runs the refactoring tests.

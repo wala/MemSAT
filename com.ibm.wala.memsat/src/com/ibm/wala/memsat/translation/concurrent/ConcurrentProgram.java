@@ -24,6 +24,18 @@ import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Set;
 
+import com.ibm.wala.ipa.callgraph.CGNode;
+import com.ibm.wala.memsat.concurrent.Execution;
+import com.ibm.wala.memsat.concurrent.Program;
+import com.ibm.wala.memsat.frontEnd.InlinedInstruction;
+import com.ibm.wala.memsat.frontEnd.InlinedInstruction.Action;
+import com.ibm.wala.memsat.frontEnd.WalaConcurrentInformation;
+import com.ibm.wala.memsat.frontEnd.WalaInformation;
+import com.ibm.wala.memsat.translation.MethodTranslation;
+import com.ibm.wala.memsat.util.Nodes;
+import com.ibm.wala.util.graph.Graph;
+import com.ibm.wala.util.graph.traverse.DFS;
+
 import kodkod.ast.Expression;
 import kodkod.ast.Formula;
 import kodkod.ast.Relation;
@@ -31,18 +43,6 @@ import kodkod.instance.Bounds;
 import kodkod.instance.TupleFactory;
 import kodkod.instance.TupleSet;
 import kodkod.instance.Universe;
-
-import com.ibm.wala.ipa.callgraph.CGNode;
-import com.ibm.wala.memsat.concurrent.Execution;
-import com.ibm.wala.memsat.concurrent.Program;
-import com.ibm.wala.memsat.frontEnd.InlinedInstruction;
-import com.ibm.wala.memsat.frontEnd.WalaConcurrentInformation;
-import com.ibm.wala.memsat.frontEnd.WalaInformation;
-import com.ibm.wala.memsat.frontEnd.InlinedInstruction.Action;
-import com.ibm.wala.memsat.translation.MethodTranslation;
-import com.ibm.wala.memsat.util.Nodes;
-import com.ibm.wala.util.graph.Graph;
-import com.ibm.wala.util.graph.traverse.DFS;
 
 /**
  * Implementation of the {@linkplain Program} interface based on the

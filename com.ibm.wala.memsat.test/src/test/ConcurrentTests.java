@@ -23,15 +23,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import kodkod.ast.Expression;
-import kodkod.ast.Relation;
-import kodkod.engine.Solution;
-import kodkod.engine.Solution.Outcome;
-import kodkod.engine.satlab.SATFactory;
-import kodkod.engine.ucore.RCEStrategy;
-import kodkod.instance.Bounds;
-import kodkod.instance.TupleSet;
-
 import com.ibm.wala.memsat.Miniatur;
 import com.ibm.wala.memsat.Options;
 import com.ibm.wala.memsat.Results;
@@ -43,6 +34,15 @@ import com.ibm.wala.memsat.util.Strings;
 import com.ibm.wala.types.MethodReference;
 import com.ibm.wala.util.CancelException;
 import com.ibm.wala.util.graph.Graph;
+
+import kodkod.ast.Expression;
+import kodkod.ast.Relation;
+import kodkod.engine.Solution;
+import kodkod.engine.Solution.Outcome;
+import kodkod.engine.satlab.SATFactory;
+import kodkod.engine.ucore.RCEStrategy;
+import kodkod.instance.Bounds;
+import kodkod.instance.TupleSet;
 
 
 /**

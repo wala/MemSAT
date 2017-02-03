@@ -15,16 +15,16 @@ package com.ibm.wala.memsat.concurrent;
 
 import java.util.Set;
 
+import com.ibm.wala.ipa.callgraph.CGNode;
+import com.ibm.wala.memsat.frontEnd.InlinedInstruction;
+import com.ibm.wala.memsat.frontEnd.InlinedInstruction.Action;
+import com.ibm.wala.memsat.frontEnd.WalaInformation;
+import com.ibm.wala.util.graph.Graph;
+
 import kodkod.ast.Expression;
 import kodkod.ast.Formula;
 import kodkod.ast.Relation;
 import kodkod.instance.Bounds;
-
-import com.ibm.wala.ipa.callgraph.CGNode;
-import com.ibm.wala.memsat.frontEnd.InlinedInstruction;
-import com.ibm.wala.memsat.frontEnd.WalaInformation;
-import com.ibm.wala.memsat.frontEnd.InlinedInstruction.Action;
-import com.ibm.wala.util.graph.Graph;
 
 /**
  * A relational model of a concurrent program.  A program

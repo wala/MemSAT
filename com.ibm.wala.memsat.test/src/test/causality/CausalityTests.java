@@ -22,9 +22,6 @@ import java.io.File;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import test.ConcurrentTests;
-import test.TestUtil;
-
 import com.ibm.wala.memsat.Miniatur;
 import com.ibm.wala.types.MethodReference;
 import com.ibm.wala.util.graph.Graph;
@@ -59,6 +56,8 @@ import data.causality.Test23;
 import data.causality.Test24;
 import data.causality.Test25;
 import data.causality.Test26;
+import test.ConcurrentTests;
+import test.TestUtil;
 
 /**
  * Runs the causality tests.

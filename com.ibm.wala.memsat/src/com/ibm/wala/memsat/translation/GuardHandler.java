@@ -20,12 +20,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import kodkod.ast.Expression;
-import kodkod.ast.Formula;
-import kodkod.ast.IntConstant;
-import kodkod.ast.IntExpression;
-import kodkod.ast.NotFormula;
-
 import com.ibm.wala.cast.ir.ssa.AstEchoInstruction;
 import com.ibm.wala.cfg.ControlFlowGraph;
 import com.ibm.wala.cfg.IBasicBlock;
@@ -52,6 +46,12 @@ import com.ibm.wala.ssa.SSASwitchInstruction;
 import com.ibm.wala.types.TypeReference;
 import com.ibm.wala.util.debug.Assertions;
 import com.ibm.wala.util.intset.IntIterator;
+
+import kodkod.ast.Expression;
+import kodkod.ast.Formula;
+import kodkod.ast.IntConstant;
+import kodkod.ast.IntExpression;
+import kodkod.ast.NotFormula;
 
 /**
  * Handles the caching and computation of guards during

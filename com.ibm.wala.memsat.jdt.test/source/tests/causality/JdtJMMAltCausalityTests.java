@@ -16,13 +16,13 @@ import org.eclipse.core.runtime.NullProgressMonitor;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 
-import test.causality.JMMAltCausalityTests;
-
 import com.ibm.wala.ide.tests.util.EclipseTestUtil;
 import com.ibm.wala.memsat.Options;
 import com.ibm.wala.memsat.jdt.test.JdtTestUtil;
 import com.ibm.wala.memsat.tests.MiniaturTestsPlugin;
 import com.ibm.wala.types.MethodReference;
+
+import test.causality.JMMAltCausalityTests;
 
 public class JdtJMMAltCausalityTests extends JMMAltCausalityTests {
 

@@ -24,11 +24,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import kodkod.ast.Expression;
-import kodkod.ast.Formula;
-import kodkod.ast.IntExpression;
-import kodkod.util.ints.IndexedEntry;
-
 import com.ibm.wala.cast.ir.ssa.AstAssertInstruction;
 import com.ibm.wala.cast.ir.ssa.AstEchoInstruction;
 import com.ibm.wala.cast.ir.ssa.AstGlobalRead;
@@ -87,6 +82,11 @@ import com.ibm.wala.ssa.SSAThrowInstruction;
 import com.ibm.wala.ssa.SSAUnaryOpInstruction;
 import com.ibm.wala.types.MethodReference;
 import com.ibm.wala.types.TypeReference;
+
+import kodkod.ast.Expression;
+import kodkod.ast.Formula;
+import kodkod.ast.IntExpression;
+import kodkod.util.ints.IndexedEntry;
 
 /**
  * Provides access to a general translator that can be applied to any method.

@@ -20,12 +20,12 @@ import static com.ibm.wala.memsat.util.Strings.instructionNames;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import kodkod.ast.Expression;
-import kodkod.ast.Relation;
-
 import com.ibm.wala.memsat.concurrent.Execution;
 import com.ibm.wala.memsat.concurrent.Program;
 import com.ibm.wala.memsat.frontEnd.InlinedInstruction;
+
+import kodkod.ast.Expression;
+import kodkod.ast.Relation;
 
 /**
  * A base implementation of the {@linkplain Execution} interface

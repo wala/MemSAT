@@ -10,14 +10,14 @@
  *****************************************************************************/
 package com.ibm.wala.memsat.frontEnd.engine;
 
+import java.io.IOException;
+
 import com.ibm.wala.ipa.callgraph.AnalysisOptions;
 import com.ibm.wala.ipa.callgraph.AnalysisOptions.ReflectionOptions;
 import com.ibm.wala.ipa.callgraph.CallGraph;
 import com.ibm.wala.ipa.callgraph.Entrypoint;
 import com.ibm.wala.ipa.callgraph.propagation.PropagationCallGraphBuilder;
 import com.ibm.wala.ipa.cha.IClassHierarchy;
-
-import java.io.*;
 
 public class CallGraphCreation {
   private final MiniaturAnalysisEngine engine;

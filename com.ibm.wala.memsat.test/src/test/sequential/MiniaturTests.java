@@ -17,12 +17,6 @@ import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
 
-import kodkod.ast.Relation;
-import kodkod.engine.Evaluator;
-import kodkod.engine.Solution;
-import kodkod.engine.Solution.Outcome;
-import kodkod.instance.Instance;
-
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -34,6 +28,11 @@ import com.ibm.wala.memsat.translation.sequential.SequentialTranslation;
 import com.ibm.wala.util.CancelException;
 
 import data.little.Little;
+import kodkod.ast.Relation;
+import kodkod.engine.Evaluator;
+import kodkod.engine.Solution;
+import kodkod.engine.Solution.Outcome;
+import kodkod.instance.Instance;
 
 public class MiniaturTests {
 	private static final File SRC_DATA_LITTLE = new File("source/data/little");

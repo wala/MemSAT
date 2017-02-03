@@ -22,12 +22,12 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 
+import com.ibm.wala.memsat.concurrent.Program;
+import com.ibm.wala.types.MethodReference;
+
 import kodkod.ast.Expression;
 import kodkod.ast.Formula;
 import kodkod.ast.Variable;
-
-import com.ibm.wala.memsat.concurrent.Program;
-import com.ibm.wala.types.MethodReference;
 
 /**
  * Implements the alternative definition of the JMM, given by

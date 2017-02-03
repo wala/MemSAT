@@ -10,15 +10,19 @@
  *****************************************************************************/
 package com.ibm.wala.memsat.frontEnd.types;
 
-import com.ibm.wala.cast.js.types.*;
-import com.ibm.wala.ipa.callgraph.*;
-import com.ibm.wala.ipa.callgraph.propagation.*;
-import com.ibm.wala.memsat.frontEnd.*;
-import com.ibm.wala.ssa.*;
-import com.ibm.wala.util.intset.*;
-import com.ibm.wala.types.*;
+import java.util.Iterator;
 
-import java.util.*;
+import com.ibm.wala.cast.js.types.JavaScriptTypes;
+import com.ibm.wala.ipa.callgraph.CGNode;
+import com.ibm.wala.ipa.callgraph.propagation.InstanceKey;
+import com.ibm.wala.ipa.callgraph.propagation.LocalPointerKey;
+import com.ibm.wala.ipa.callgraph.propagation.PointerAnalysis;
+import com.ibm.wala.ipa.callgraph.propagation.PointerKey;
+import com.ibm.wala.memsat.frontEnd.IRType;
+import com.ibm.wala.ssa.IR;
+import com.ibm.wala.ssa.SymbolTable;
+import com.ibm.wala.types.TypeReference;
+import com.ibm.wala.util.intset.OrdinalSet;
 
 class MiniaturJavaScriptTypeData implements MiniaturTypeData {
 

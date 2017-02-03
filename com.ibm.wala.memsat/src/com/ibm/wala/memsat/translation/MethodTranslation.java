@@ -12,10 +12,10 @@ package com.ibm.wala.memsat.translation;
 
 import java.util.Set;
 
+import com.ibm.wala.memsat.translation.Environment.Frame;
+
 import kodkod.ast.Expression;
 import kodkod.ast.Formula;
-
-import com.ibm.wala.memsat.translation.Environment.Frame;
 
 /**
  * Result of translating a Wala method in a given environment.

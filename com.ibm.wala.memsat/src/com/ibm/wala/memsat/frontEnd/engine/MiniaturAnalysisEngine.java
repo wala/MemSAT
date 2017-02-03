@@ -10,13 +10,15 @@
  *****************************************************************************/
 package com.ibm.wala.memsat.frontEnd.engine;
 
-import com.ibm.wala.client.*;
-import com.ibm.wala.ipa.callgraph.*;
-import com.ibm.wala.ipa.callgraph.propagation.*;
+import java.io.IOException;
+
+import com.ibm.wala.client.AnalysisEngine;
+import com.ibm.wala.ipa.callgraph.AnalysisOptions;
+import com.ibm.wala.ipa.callgraph.CallGraphBuilder;
+import com.ibm.wala.ipa.callgraph.Entrypoint;
+import com.ibm.wala.ipa.callgraph.propagation.PointerAnalysis;
 import com.ibm.wala.ipa.cha.IClassHierarchy;
 import com.ibm.wala.util.MonitorUtil.IProgressMonitor;
-
-import java.io.*;
 
 public interface MiniaturAnalysisEngine extends AnalysisEngine {
   

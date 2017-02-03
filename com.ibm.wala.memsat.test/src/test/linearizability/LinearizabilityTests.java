@@ -22,9 +22,6 @@ import java.util.Set;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import test.ConcurrentTests;
-import test.TestUtil;
-
 import com.ibm.wala.memsat.Miniatur;
 import com.ibm.wala.memsat.concurrent.MemoryModel;
 import com.ibm.wala.memsat.concurrent.memory.simple.SequentialConsistency;
@@ -32,6 +29,8 @@ import com.ibm.wala.types.MethodReference;
 import com.ibm.wala.util.graph.Graph;
 
 import data.linearizability.TreiberClient00;
+import test.ConcurrentTests;
+import test.TestUtil;
 
 /**
  * Executes linearizability tests using the {@linkplain SequentialConsistency} memory model.

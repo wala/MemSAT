@@ -10,7 +10,7 @@
  *****************************************************************************/
 package com.ibm.wala.memsat.frontEnd.types;
 
-import com.ibm.wala.memsat.frontEnd.*;
+import com.ibm.wala.memsat.frontEnd.IRType;
 
 public interface MiniaturTypeData {
 

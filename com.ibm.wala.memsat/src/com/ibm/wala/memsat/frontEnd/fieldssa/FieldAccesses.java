@@ -10,8 +10,8 @@
  *****************************************************************************/
 package com.ibm.wala.memsat.frontEnd.fieldssa;
 
-import com.ibm.wala.ipa.callgraph.propagation.*;
-import com.ibm.wala.ssa.*;
+import com.ibm.wala.ipa.callgraph.propagation.PointerKey;
+import com.ibm.wala.ssa.SSAInstruction;
 
 public interface FieldAccesses {
 

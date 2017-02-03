@@ -22,11 +22,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import kodkod.ast.Expression;
-import kodkod.engine.Evaluator;
-import kodkod.engine.Solution;
-import kodkod.util.ints.SparseSequence;
-
 import com.ibm.wala.ipa.callgraph.CGNode;
 import com.ibm.wala.ipa.callgraph.propagation.AbstractFieldPointerKey;
 import com.ibm.wala.ipa.callgraph.propagation.InstanceKey;
@@ -43,6 +38,11 @@ import com.ibm.wala.memsat.representation.HeapExpression;
 import com.ibm.wala.memsat.representation.Interpreter;
 import com.ibm.wala.memsat.translation.Environment.Frame;
 import com.ibm.wala.memsat.translation.sequential.SequentialTranslation;
+
+import kodkod.ast.Expression;
+import kodkod.engine.Evaluator;
+import kodkod.engine.Solution;
+import kodkod.util.ints.SparseSequence;
 
 /**
  * Visualizes the results of a sequential translation as a string.

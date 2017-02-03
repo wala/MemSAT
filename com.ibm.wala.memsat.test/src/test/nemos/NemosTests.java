@@ -21,9 +21,6 @@ import java.util.Set;
 
 import org.junit.Test;
 
-import test.ConcurrentTests;
-import test.TestUtil;
-
 import com.ibm.wala.memsat.Miniatur;
 
 import data.nemos.Test01;
@@ -41,6 +38,8 @@ import data.nemos.Test12;
 import data.nemos.Test13;
 import data.nemos.Test14;
 import data.nemos.Test15;
+import test.ConcurrentTests;
+import test.TestUtil;
 
 /**
  * Runs the nemos tests.

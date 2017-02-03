@@ -16,13 +16,13 @@ package com.ibm.wala.memsat.translation.concurrent;
 import java.util.Collections;
 import java.util.Set;
 
-import kodkod.ast.Formula;
-import kodkod.instance.Bounds;
-
 import com.ibm.wala.memsat.concurrent.Justification;
 import com.ibm.wala.memsat.representation.ExpressionFactory;
 import com.ibm.wala.memsat.translation.Translation;
 import com.ibm.wala.memsat.translation.TranslationWarning;
+
+import kodkod.ast.Formula;
+import kodkod.instance.Bounds;
 
 /**
  * Stores the translation of a graph of concurrently executing Wala methods to Kodkod data structures.

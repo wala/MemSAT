@@ -15,11 +15,11 @@ package com.ibm.wala.memsat.representation;
 
 import java.util.Collection;
 
+import com.ibm.wala.memsat.frontEnd.IRType;
+
 import kodkod.ast.Expression;
 import kodkod.ast.Formula;
 import kodkod.engine.Evaluator;
-
-import com.ibm.wala.memsat.frontEnd.IRType;
 
 /**
  * Converts between various Kodkod representations of 

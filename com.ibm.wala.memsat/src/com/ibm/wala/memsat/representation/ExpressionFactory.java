@@ -24,18 +24,8 @@ import java.util.EnumMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.Map.Entry;
-
-import kodkod.ast.Expression;
-import kodkod.ast.Formula;
-import kodkod.ast.IntConstant;
-import kodkod.ast.IntExpression;
-import kodkod.ast.Relation;
-import kodkod.ast.Variable;
-import kodkod.instance.Bounds;
-import kodkod.instance.TupleFactory;
-import kodkod.instance.TupleSet;
+import java.util.Set;
 
 import com.ibm.wala.cast.java.ipa.callgraph.AstJavaSSAPropagationCallGraphBuilder.EnclosingObjectReferenceKey;
 import com.ibm.wala.ipa.callgraph.CGNode;
@@ -52,6 +42,16 @@ import com.ibm.wala.memsat.frontEnd.WalaCGNodeInformation;
 import com.ibm.wala.memsat.frontEnd.WalaInformation;
 import com.ibm.wala.memsat.util.Strings;
 import com.ibm.wala.types.TypeReference;
+
+import kodkod.ast.Expression;
+import kodkod.ast.Formula;
+import kodkod.ast.IntConstant;
+import kodkod.ast.IntExpression;
+import kodkod.ast.Relation;
+import kodkod.ast.Variable;
+import kodkod.instance.Bounds;
+import kodkod.instance.TupleFactory;
+import kodkod.instance.TupleSet;
 /**
  * A factory for generating Kodkod Expressions that 
  * represent Wala values, fields, and arrays.  These

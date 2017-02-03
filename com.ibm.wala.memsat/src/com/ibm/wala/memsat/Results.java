@@ -13,10 +13,10 @@
  */
 package com.ibm.wala.memsat;
 
-import kodkod.engine.Solution;
-
 import com.ibm.wala.memsat.translation.Translation;
 import com.ibm.wala.memsat.viz.Visualizer;
+
+import kodkod.engine.Solution;
 
 /**
  * Contains the results of a Miniatur analysis, consisting

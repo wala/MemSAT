@@ -13,12 +13,12 @@
  */
 package com.ibm.wala.memsat.translation.sequential;
 
-import kodkod.ast.Formula;
-import kodkod.instance.Bounds;
-
 import com.ibm.wala.memsat.representation.ExpressionFactory;
 import com.ibm.wala.memsat.translation.MethodTranslation;
 import com.ibm.wala.memsat.translation.Translation;
+
+import kodkod.ast.Formula;
+import kodkod.instance.Bounds;
 
 /**
  * Stores the translation of a single Wala method to Kodkod data structures.

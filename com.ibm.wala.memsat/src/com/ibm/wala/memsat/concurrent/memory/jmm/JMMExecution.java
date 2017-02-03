@@ -27,11 +27,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import kodkod.ast.Expression;
-import kodkod.ast.Formula;
-import kodkod.ast.Relation;
-import kodkod.ast.Variable;
-
 import com.ibm.wala.ipa.callgraph.CGNode;
 import com.ibm.wala.memsat.concurrent.Program;
 import com.ibm.wala.memsat.concurrent.memory.AbstractExecution;
@@ -42,6 +37,11 @@ import com.ibm.wala.memsat.util.Graphs;
 import com.ibm.wala.memsat.util.Nodes;
 import com.ibm.wala.util.graph.Graph;
 import com.ibm.wala.util.graph.traverse.DFS;
+
+import kodkod.ast.Expression;
+import kodkod.ast.Formula;
+import kodkod.ast.Relation;
+import kodkod.ast.Variable;
 /**
  * An execution specific to the JMM, based on 
  * <ol>

@@ -26,9 +26,6 @@ import java.util.Set;
 
 import org.junit.Test;
 
-import test.ConcurrentTests;
-import test.TestUtil;
-
 import com.ibm.wala.memsat.Miniatur;
 import com.ibm.wala.types.MethodReference;
 
@@ -37,6 +34,8 @@ import data.transforms.RedundantReadAfterReadElimination;
 import data.transforms.RedundantWriteAfterReadElimination;
 import data.transforms.ReorderingWithExternalActions;
 import data.transforms.RoachMotelSemantics;
+import test.ConcurrentTests;
+import test.TestUtil;
 
 /**
  * Runs the transformation tests.

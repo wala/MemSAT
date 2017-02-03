@@ -17,6 +17,8 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
+import com.ibm.wala.util.debug.Assertions;
+
 import kodkod.ast.BinaryExpression;
 import kodkod.ast.BinaryFormula;
 import kodkod.ast.BinaryIntExpression;
@@ -44,8 +46,6 @@ import kodkod.ast.operator.IntOperator;
 import kodkod.ast.visitor.AbstractReplacer;
 import kodkod.util.ints.SparseSequence;
 import kodkod.util.ints.TreeSequence;
-
-import com.ibm.wala.util.debug.Assertions;
 
 /**
  * Provides helper methods for performing common simplifications on Kodkod nodes.

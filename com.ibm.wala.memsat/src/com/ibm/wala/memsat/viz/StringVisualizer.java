@@ -15,14 +15,14 @@ package com.ibm.wala.memsat.viz;
 
 import java.util.Set;
 
-import kodkod.engine.Evaluator;
-import kodkod.engine.Solution;
-
 import com.ibm.wala.memsat.translation.Translation;
 import com.ibm.wala.memsat.translation.TranslationWarning;
 import com.ibm.wala.memsat.translation.concurrent.ConcurrentTranslation;
 import com.ibm.wala.memsat.translation.sequential.SequentialTranslation;
 import com.ibm.wala.util.warnings.Warning;
+
+import kodkod.engine.Evaluator;
+import kodkod.engine.Solution;
 
 /**
  * Displays the results of a Miniatur analysis as a human-readable string.

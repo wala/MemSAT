@@ -12,10 +12,10 @@ package com.ibm.wala.memsat.concurrent;
 
 import java.util.Map;
 
+import com.ibm.wala.memsat.frontEnd.InlinedInstruction;
+
 import kodkod.ast.Expression;
 import kodkod.ast.Relation;
-
-import com.ibm.wala.memsat.frontEnd.InlinedInstruction;
 
 
 

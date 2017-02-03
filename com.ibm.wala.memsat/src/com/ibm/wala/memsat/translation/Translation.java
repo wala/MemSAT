@@ -13,10 +13,10 @@
  */
 package com.ibm.wala.memsat.translation;
 
+import com.ibm.wala.memsat.representation.ExpressionFactory;
+
 import kodkod.ast.Formula;
 import kodkod.instance.Bounds;
-
-import com.ibm.wala.memsat.representation.ExpressionFactory;
 
 
 /**

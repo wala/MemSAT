@@ -10,11 +10,13 @@
  *****************************************************************************/
 package com.ibm.wala.memsat.frontEnd.types;
 
-import com.ibm.wala.analysis.typeInference.*;
-import com.ibm.wala.cast.java.analysis.typeInference.*;
-import com.ibm.wala.ipa.callgraph.*;
-import com.ibm.wala.ipa.cha.*;
-import com.ibm.wala.memsat.frontEnd.*;
+import com.ibm.wala.analysis.typeInference.JavaPrimitiveType;
+import com.ibm.wala.analysis.typeInference.PrimitiveType;
+import com.ibm.wala.analysis.typeInference.TypeInference;
+import com.ibm.wala.cast.java.analysis.typeInference.AstJavaTypeInference;
+import com.ibm.wala.ipa.callgraph.CGNode;
+import com.ibm.wala.ipa.cha.IClassHierarchy;
+import com.ibm.wala.memsat.frontEnd.IRType;
 
 class MiniaturJavaTypeData implements MiniaturTypeData {
   

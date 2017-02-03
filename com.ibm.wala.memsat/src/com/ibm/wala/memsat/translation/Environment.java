@@ -22,12 +22,6 @@ import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.Set;
 
-import kodkod.ast.Expression;
-import kodkod.ast.Formula;
-import kodkod.ast.IntExpression;
-import kodkod.util.collections.ArrayStack;
-import kodkod.util.collections.Stack;
-
 import com.ibm.wala.cast.ir.ssa.AstLexicalAccess.Access;
 import com.ibm.wala.ipa.callgraph.CGNode;
 import com.ibm.wala.ipa.callgraph.propagation.InstanceKey;
@@ -44,6 +38,12 @@ import com.ibm.wala.memsat.representation.RealExpression;
 import com.ibm.wala.ssa.SSAAbstractInvokeInstruction;
 import com.ibm.wala.ssa.SymbolTable;
 import com.ibm.wala.util.collections.Iterator2Collection;
+
+import kodkod.ast.Expression;
+import kodkod.ast.Formula;
+import kodkod.ast.IntExpression;
+import kodkod.util.collections.ArrayStack;
+import kodkod.util.collections.Stack;
 /**
  * Stores and manages the state of a symbolic execution 
  * performed by an instance of the {@linkplain Translator Miniatur translator}.

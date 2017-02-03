@@ -23,8 +23,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import kodkod.ast.Node;
-
 import com.ibm.wala.cast.java.ipa.callgraph.AstJavaSSAPropagationCallGraphBuilder.EnclosingObjectReferenceKey;
 import com.ibm.wala.cast.loader.AstMethod;
 import com.ibm.wala.cast.tree.CAstSourcePositionMap.Position;
@@ -45,6 +43,8 @@ import com.ibm.wala.ssa.IR;
 import com.ibm.wala.types.TypeName;
 import com.ibm.wala.util.collections.Pair;
 import com.ibm.wala.util.graph.Graph;
+
+import kodkod.ast.Node;
 
 /**
  * A set of utility functions for string manipulation and pretty printing of Kodkod nodes,

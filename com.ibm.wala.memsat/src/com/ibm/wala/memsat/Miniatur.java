@@ -16,9 +16,6 @@ package com.ibm.wala.memsat;
 import java.io.File;
 import java.util.List;
 
-import kodkod.engine.Solution;
-import kodkod.engine.Solver;
-
 import com.ibm.wala.memsat.frontEnd.WalaEngine;
 import com.ibm.wala.memsat.frontEnd.WalaInformation;
 import com.ibm.wala.memsat.translation.concurrent.ConcurrentTranslation;
@@ -29,6 +26,9 @@ import com.ibm.wala.memsat.util.Graphs;
 import com.ibm.wala.memsat.viz.StringVisualizer;
 import com.ibm.wala.types.MethodReference;
 import com.ibm.wala.util.graph.Graph;
+
+import kodkod.engine.Solution;
+import kodkod.engine.Solver;
 
 /**
  * Provides a simple interface to the Miniatur analysis engine.

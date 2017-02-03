@@ -16,10 +16,10 @@ package com.ibm.wala.memsat;
 import java.util.HashSet;
 import java.util.Set;
 
-import kodkod.engine.satlab.SATFactory;
-
 import com.ibm.wala.memsat.concurrent.MemoryModel;
 import com.ibm.wala.types.TypeReference;
+
+import kodkod.engine.satlab.SATFactory;
 
 
 /**

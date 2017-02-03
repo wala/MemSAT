@@ -20,10 +20,6 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
-import kodkod.util.collections.LinkedStack;
-import kodkod.util.collections.Stack;
-import kodkod.util.ints.IndexedEntry;
-
 import com.ibm.wala.analysis.pointers.HeapGraph;
 import com.ibm.wala.cast.ipa.callgraph.CAstCallGraphUtil;
 import com.ibm.wala.cfg.cdg.ControlDependenceGraph;
@@ -56,10 +52,10 @@ import com.ibm.wala.memsat.frontEnd.DependenceGraph;
 import com.ibm.wala.memsat.frontEnd.FieldSSATable;
 import com.ibm.wala.memsat.frontEnd.IRType;
 import com.ibm.wala.memsat.frontEnd.InlinedInstruction;
+import com.ibm.wala.memsat.frontEnd.InlinedInstruction.Action;
 import com.ibm.wala.memsat.frontEnd.WalaCGNodeInformation;
 import com.ibm.wala.memsat.frontEnd.WalaConcurrentInformation;
 import com.ibm.wala.memsat.frontEnd.WalaInformation;
-import com.ibm.wala.memsat.frontEnd.InlinedInstruction.Action;
 import com.ibm.wala.memsat.frontEnd.engine.CallGraphCreation;
 import com.ibm.wala.memsat.frontEnd.engine.MiniaturAnalysisEngine;
 import com.ibm.wala.memsat.frontEnd.fieldssa.FieldAccesses;
@@ -102,6 +98,10 @@ import com.ibm.wala.util.graph.impl.SlowSparseNumberedGraph;
 import com.ibm.wala.util.graph.traverse.DFS;
 import com.ibm.wala.util.graph.traverse.SlowDFSFinishTimeIterator;
 import com.ibm.wala.util.intset.OrdinalSet;
+
+import kodkod.util.collections.LinkedStack;
+import kodkod.util.collections.Stack;
+import kodkod.util.ints.IndexedEntry;
 
 public class WalaInformationImpl implements WalaInformation {
 

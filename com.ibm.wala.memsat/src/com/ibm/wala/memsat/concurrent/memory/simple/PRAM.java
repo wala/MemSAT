@@ -19,12 +19,12 @@ import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import com.ibm.wala.ipa.callgraph.CGNode;
+import com.ibm.wala.memsat.concurrent.Program;
+
 import kodkod.ast.Expression;
 import kodkod.ast.Formula;
 import kodkod.ast.Relation;
-
-import com.ibm.wala.ipa.callgraph.CGNode;
-import com.ibm.wala.memsat.concurrent.Program;
 
 /**
  * Implements the PRAM specification from [1]

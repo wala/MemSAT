@@ -33,23 +33,15 @@ import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Set;
 
-import kodkod.ast.Expression;
-import kodkod.ast.Formula;
-import kodkod.ast.Relation;
-import kodkod.instance.Bounds;
-import kodkod.instance.TupleFactory;
-import kodkod.instance.TupleSet;
-import kodkod.util.collections.Containers;
-
 import com.ibm.wala.classLoader.IField;
 import com.ibm.wala.ipa.callgraph.CGNode;
 import com.ibm.wala.ipa.callgraph.propagation.InstanceKey;
 import com.ibm.wala.ipa.cha.IClassHierarchy;
 import com.ibm.wala.memsat.frontEnd.IRType;
 import com.ibm.wala.memsat.frontEnd.InlinedInstruction;
+import com.ibm.wala.memsat.frontEnd.InlinedInstruction.Action;
 import com.ibm.wala.memsat.frontEnd.WalaConcurrentInformation;
 import com.ibm.wala.memsat.frontEnd.WalaInformation;
-import com.ibm.wala.memsat.frontEnd.InlinedInstruction.Action;
 import com.ibm.wala.memsat.representation.ConstantFactory;
 import com.ibm.wala.memsat.representation.ExpressionFactory;
 import com.ibm.wala.ssa.SSAAbstractInvokeInstruction;
@@ -58,6 +50,14 @@ import com.ibm.wala.ssa.SSAFieldAccessInstruction;
 import com.ibm.wala.ssa.SSAInstruction;
 import com.ibm.wala.util.graph.Graph;
 import com.ibm.wala.util.graph.traverse.DFS;
+
+import kodkod.ast.Expression;
+import kodkod.ast.Formula;
+import kodkod.ast.Relation;
+import kodkod.instance.Bounds;
+import kodkod.instance.TupleFactory;
+import kodkod.instance.TupleSet;
+import kodkod.util.collections.Containers;
 
 /**
  * A factory for generating atoms that represent actions that may be

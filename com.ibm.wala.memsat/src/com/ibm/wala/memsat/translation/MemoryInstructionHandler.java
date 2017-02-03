@@ -13,14 +13,14 @@
  */
 package com.ibm.wala.memsat.translation;
 
-import kodkod.ast.Formula;
-
 import com.ibm.wala.ssa.SSAAbstractInvokeInstruction;
 import com.ibm.wala.ssa.SSAArrayLoadInstruction;
 import com.ibm.wala.ssa.SSAArrayStoreInstruction;
 import com.ibm.wala.ssa.SSAGetInstruction;
 import com.ibm.wala.ssa.SSAMonitorInstruction;
 import com.ibm.wala.ssa.SSAPutInstruction;
+
+import kodkod.ast.Formula;
 
 /**
  * A translator for memory instructions.

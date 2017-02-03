@@ -15,12 +15,12 @@ package com.ibm.wala.memsat.frontEnd;
 
 import java.util.Iterator;
 
-import kodkod.util.ints.IndexedEntry;
-
 import com.ibm.wala.ipa.callgraph.CGNode;
 import com.ibm.wala.ipa.callgraph.propagation.PointerKey;
 import com.ibm.wala.ssa.SSACFG;
 import com.ibm.wala.ssa.SSAInstruction;
+
+import kodkod.util.ints.IndexedEntry;
 
 /**
  * Stores the control flow, field ssa conversion, type data, etc., 

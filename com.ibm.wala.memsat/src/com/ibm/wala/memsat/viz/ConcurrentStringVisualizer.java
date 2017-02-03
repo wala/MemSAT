@@ -24,11 +24,6 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import kodkod.ast.Expression;
-import kodkod.engine.Solution;
-import kodkod.instance.Tuple;
-import kodkod.instance.TupleSet;
-
 import com.ibm.wala.cast.loader.AstMethod;
 import com.ibm.wala.cast.tree.CAstSourcePositionMap.Position;
 import com.ibm.wala.classLoader.IField;
@@ -40,9 +35,9 @@ import com.ibm.wala.memsat.concurrent.Justification;
 import com.ibm.wala.memsat.concurrent.Program;
 import com.ibm.wala.memsat.frontEnd.IRType;
 import com.ibm.wala.memsat.frontEnd.InlinedInstruction;
+import com.ibm.wala.memsat.frontEnd.InlinedInstruction.Action;
 import com.ibm.wala.memsat.frontEnd.WalaConcurrentInformation;
 import com.ibm.wala.memsat.frontEnd.WalaInformation;
-import com.ibm.wala.memsat.frontEnd.InlinedInstruction.Action;
 import com.ibm.wala.memsat.representation.ConstantFactory;
 import com.ibm.wala.memsat.representation.Interpreter;
 import com.ibm.wala.memsat.translation.concurrent.ConcurrentTranslation;
@@ -51,6 +46,11 @@ import com.ibm.wala.ssa.SSAAbstractInvokeInstruction;
 import com.ibm.wala.ssa.SSAArrayReferenceInstruction;
 import com.ibm.wala.ssa.SSAFieldAccessInstruction;
 import com.ibm.wala.types.TypeReference;
+
+import kodkod.ast.Expression;
+import kodkod.engine.Solution;
+import kodkod.instance.Tuple;
+import kodkod.instance.TupleSet;
 
 /**
  * Visualizes the results of a concurrent translation.

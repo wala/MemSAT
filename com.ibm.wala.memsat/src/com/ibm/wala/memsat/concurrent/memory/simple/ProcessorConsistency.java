@@ -22,15 +22,15 @@ import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import kodkod.ast.Expression;
-import kodkod.ast.Formula;
-import kodkod.ast.Relation;
-import kodkod.ast.Variable;
-
 import com.ibm.wala.ipa.callgraph.CGNode;
 import com.ibm.wala.memsat.concurrent.Program;
 import com.ibm.wala.memsat.frontEnd.WalaInformation;
 import com.ibm.wala.memsat.util.Graphs;
+
+import kodkod.ast.Expression;
+import kodkod.ast.Formula;
+import kodkod.ast.Relation;
+import kodkod.ast.Variable;
 
 /**
  * Implements the processor consistency specification from [1]

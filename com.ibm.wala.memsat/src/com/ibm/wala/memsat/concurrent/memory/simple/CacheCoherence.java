@@ -23,16 +23,16 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Set;
 
-import kodkod.ast.Expression;
-import kodkod.ast.Formula;
-import kodkod.ast.Relation;
-
 import com.ibm.wala.ipa.callgraph.CGNode;
 import com.ibm.wala.memsat.concurrent.Program;
 import com.ibm.wala.memsat.frontEnd.InlinedInstruction;
 import com.ibm.wala.memsat.frontEnd.InlinedInstruction.Action;
 import com.ibm.wala.memsat.util.Graphs;
 import com.ibm.wala.memsat.util.Programs;
+
+import kodkod.ast.Expression;
+import kodkod.ast.Formula;
+import kodkod.ast.Relation;
 
 /**
  * Implements the cache coherence specification from [1]

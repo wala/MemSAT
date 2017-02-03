@@ -15,11 +15,11 @@ package com.ibm.wala.memsat.concurrent.memory.simple;
 
 import java.util.Collections;
 
+import com.ibm.wala.memsat.concurrent.Program;
+
 import kodkod.ast.Expression;
 import kodkod.ast.Formula;
 import kodkod.ast.Relation;
-
-import com.ibm.wala.memsat.concurrent.Program;
 
 /**
  * Implements the sequential consistency specification from [1]

@@ -20,6 +20,8 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
+import com.ibm.wala.memsat.util.Nodes;
+
 import kodkod.ast.Expression;
 import kodkod.ast.Formula;
 import kodkod.ast.IntExpression;
@@ -27,8 +29,6 @@ import kodkod.ast.Relation;
 import kodkod.engine.Evaluator;
 import kodkod.util.ints.SparseSequence;
 import kodkod.util.ints.TreeSequence;
-
-import com.ibm.wala.memsat.util.Nodes;
 
 
 /**

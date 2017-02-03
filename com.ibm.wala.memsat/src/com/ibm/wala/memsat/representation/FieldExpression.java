@@ -18,12 +18,12 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
+import com.ibm.wala.memsat.util.Nodes;
+
 import kodkod.ast.Expression;
 import kodkod.ast.Formula;
 import kodkod.ast.Relation;
 import kodkod.engine.Evaluator;
-
-import com.ibm.wala.memsat.util.Nodes;
 
 /**
  * Wraps a Kodkod expression that represents the contents of a given field.
