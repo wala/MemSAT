@@ -82,7 +82,7 @@ final class ConcurrentFactory {
 	private final Map<IField, Relation> fieldExprs;
 	private final Map<Action, Relation> actExprs;
 	
-	private static final boolean DEBUG = true;
+	private static final boolean DEBUG = false;
 	
 	/**
 	 * Constructs a new action factory using the given base expression factory.
@@ -179,8 +179,8 @@ final class ConcurrentFactory {
 	
 	/** @effects prints debug info to standard out */
 	private void print(WalaConcurrentInformation tInfo, Map<InlinedInstruction, Effects> effects, Map<Effects, Set<InlinedInstruction>> maxEffects) { 
-		System.out.println("\n*****WALA REPRESENTATION OF " + tInfo.root().getMethod().getSignature() + "*****");
-		System.out.println(tInfo);
+		if (DEBUG) System.out.println("\n*****WALA REPRESENTATION OF " + tInfo.root().getMethod().getSignature() + "*****");
+		if (DEBUG) System.out.println(tInfo);
 		final Map<Effects,Set<InlinedInstruction>> equivalences = new LinkedHashMap<Effects, Set<InlinedInstruction>>();
 		for(Map.Entry<InlinedInstruction, Effects> entry : effects.entrySet()) { 
 			Set<InlinedInstruction> insts = equivalences.get(entry.getValue());
@@ -190,13 +190,14 @@ final class ConcurrentFactory {
 			}
 			insts.add(entry.getKey());
 		}
-		System.out.println("\n*****EQUIVALENCE CLASSES OF " + tInfo.root().getMethod().getSignature() + "*****");
-		for(Map.Entry<Effects, Set<InlinedInstruction>> eq : equivalences.entrySet()) { 
-			System.out.println(" CLASS =");
-			System.out.println("    members: " + eq.getValue());
-			System.out.println("    maximal path: " + maxEffects.get(eq.getKey()));
+		if (DEBUG) {
+		  System.out.println("\n*****EQUIVALENCE CLASSES OF " + tInfo.root().getMethod().getSignature() + "*****");
+		  for(Map.Entry<Effects, Set<InlinedInstruction>> eq : equivalences.entrySet()) { 
+		    System.out.println(" CLASS =");
+		    System.out.println("    members: " + eq.getValue());
+		    System.out.println("    maximal path: " + maxEffects.get(eq.getKey()));
+		  }
 		}
-		
 	}
 	
 	/**
