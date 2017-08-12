@@ -23,7 +23,7 @@ class MiniaturJavaTypeData implements MiniaturTypeData {
   private final TypeInference TI;
 
   MiniaturJavaTypeData(CGNode node, IClassHierarchy cha) {
-    TI =  new AstJavaTypeInference(node.getIR(), cha, true);
+    TI =  new AstJavaTypeInference(node.getIR(), true);
     TI.solve();
   }
 

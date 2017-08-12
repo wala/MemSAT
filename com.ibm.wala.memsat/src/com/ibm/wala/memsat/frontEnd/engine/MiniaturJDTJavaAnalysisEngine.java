@@ -64,8 +64,8 @@ public class MiniaturJDTJavaAnalysisEngine
 	protected ClassLoaderFactory makeClassLoaderFactory(SetOfClasses exclusions) {
 		return new JDTClassLoaderFactory(exclusions) {
 			@Override
-			protected JDTSourceLoaderImpl makeSourceLoader(ClassLoaderReference classLoaderReference, IClassHierarchy cha, IClassLoader parent) throws IOException {
-				return new JDTSourceLoaderImpl(classLoaderReference, parent, getExclusions(), cha) {
+			protected JDTSourceLoaderImpl makeSourceLoader(ClassLoaderReference classLoaderReference, IClassHierarchy cha, IClassLoader parent) {
+				return new JDTSourceLoaderImpl(classLoaderReference, parent, cha) {
 					@Override
 					protected SourceModuleTranslator getTranslator() {
 						return new JDTSourceModuleTranslator(cha.getScope(), this) {

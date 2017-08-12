@@ -1,0 +1,14 @@
+language: java
+jdk: oraclejdk8
+before_install:
+ - git clone --depth=50 https://github.com/wala/WALA /tmp/WALA
+install:
+ - pushd /tmp/WALA
+ - mvn clean install -DskipTests -B -q
+ - popd
+script:
+ - mvn clean install
+sudo: false
+cache:
+  directories:
+    - $HOME/.m2

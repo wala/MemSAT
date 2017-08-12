@@ -10,6 +10,8 @@
  *****************************************************************************/
 package test.sequential;
 
+import java.io.IOException;
+
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
@@ -29,7 +31,7 @@ public class JdtMiniaturTests extends MiniaturTests {
 	}
 
 	@BeforeClass
-	public static void beforeClass() {
+	public static void beforeClass() throws IOException {
 		EclipseTestUtil.importZippedProject(MiniaturTestsPlugin.getDefault(), JdtTestUtil.PROJECT_NAME, JdtTestUtil.PROJECT_ZIP, new NullProgressMonitor());
 	}
 

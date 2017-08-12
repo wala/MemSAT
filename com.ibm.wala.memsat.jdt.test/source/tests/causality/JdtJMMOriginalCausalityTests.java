@@ -10,6 +10,7 @@
  *****************************************************************************/
 package tests.causality;
 
+import java.io.IOException;
 import java.util.Set;
 
 import org.eclipse.core.runtime.NullProgressMonitor;
@@ -34,7 +35,7 @@ public class JdtJMMOriginalCausalityTests extends JMMOriginalCausalityTests {
 	}
 
 	@BeforeClass
-	public static void beforeClass() {
+	public static void beforeClass() throws IOException {
 		EclipseTestUtil.importZippedProject(MiniaturTestsPlugin.getDefault(), JdtTestUtil.PROJECT_NAME, JdtTestUtil.PROJECT_ZIP, new NullProgressMonitor());
 	}
 

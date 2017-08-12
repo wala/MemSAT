@@ -62,8 +62,8 @@ public class MiniaturECJJavaAnalysisEngine
 	protected ClassLoaderFactory getClassLoaderFactory(SetOfClasses exclusions) {
 		return new ECJClassLoaderFactory(exclusions) {
 			@Override
-			protected ECJSourceLoaderImpl makeSourceLoader(ClassLoaderReference classLoaderReference, IClassHierarchy cha, IClassLoader parent) throws IOException {
-				return new ECJSourceLoaderImpl(classLoaderReference, parent, getExclusions(), cha) {
+			protected ECJSourceLoaderImpl makeSourceLoader(ClassLoaderReference classLoaderReference, IClassHierarchy cha, IClassLoader parent) {
+				return new ECJSourceLoaderImpl(classLoaderReference, parent, cha) {
 					@Override
 					protected SourceModuleTranslator getTranslator() {
 						return new ECJSourceModuleTranslator(cha.getScope(), this) {

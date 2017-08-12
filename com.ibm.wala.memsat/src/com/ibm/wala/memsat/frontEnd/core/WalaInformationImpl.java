@@ -21,7 +21,6 @@ import java.util.Map;
 import java.util.Set;
 
 import com.ibm.wala.analysis.pointers.HeapGraph;
-import com.ibm.wala.cast.ipa.callgraph.CAstCallGraphUtil;
 import com.ibm.wala.cfg.cdg.ControlDependenceGraph;
 import com.ibm.wala.classLoader.CallSiteReference;
 import com.ibm.wala.classLoader.IClass;
@@ -175,9 +174,7 @@ public class WalaInformationImpl implements WalaInformation {
 			}
 		}
 
-		CAstCallGraphUtil.dumpCG(engine.getPointerAnalysis(), fullCG);
-		
-		Pair<Collection<Statement>, SDG> sliceData = PartialSlice
+		Pair<Collection<Statement>, SDG<InstanceKey>> sliceData = PartialSlice
 				.computeAssertionSlice(fullCG, engine.getPointerAnalysis(),
 						Iterator2Collection.toList(threadRoots.iterator()),
 						threadRoots.getNumberOfNodes() > 1);

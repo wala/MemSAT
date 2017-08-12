@@ -1,23 +1,27 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <parent>
-    <artifactId>WALA</artifactId>
-    <groupId>com.ibm.wala</groupId>
-    <version>1.3.10-SNAPSHOT</version>
-  </parent>
+  <groupId>com.ibm.wala</groupId>
   <artifactId>com.ibm.wala.memsat</artifactId>
-  <packaging>eclipse-plugin</packaging>
-  <version>1.0.0-SNAPSHOT</version>
+  <version>0.0.1-SNAPSHOT</version>
   <name>com.ibm.wala.memsat</name>
-  <description>MemSAT and Miniatur core</description>
+  <description>MemSAT core</description>
   <build>
+    <sourceDirectory>src</sourceDirectory>
+    <resources>
+      <resource>
+        <directory>data</directory>
+      </resource>
+      <resource>
+        <directory>jni</directory>
+      </resource>
+    </resources>
     <plugins>
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
         <version>3.1</version>
         <configuration>
-          <source>1.7</source>
-          <target>1.7</target>
+          <source>1.8</source>
+          <target>1.8</target>
         </configuration>
       </plugin>
       <plugin>
@@ -27,7 +31,7 @@
         <executions>
           <execution>
             <id>getJars</id>
-            <phase>generate-sources</phase>
+            <phase>generate-resources</phase>
             <configuration>
               <target>
                 <property name="compile_classpath" refid="maven.compile.classpath"/>
@@ -71,8 +75,87 @@
     					</pluginExecutions>
     				</lifecycleMappingMetadata>
     			</configuration>
-		</plugin>
+    		</plugin>
     	</plugins>
     </pluginManagement>
   </build>
+  <dependencies>
+    <dependency>
+      <groupId>kodkod</groupId>
+    <artifactId>kodkod</artifactId>
+    <version>2.0</version>
+    <scope>system</scope>
+    <systemPath>${project.basedir}/lib/kodkod.jar</systemPath>
+</dependency>
+<dependency>
+      <groupId>com.ibm.wala</groupId>
+      <artifactId>com.ibm.wala.cast.js.rhino</artifactId>
+      <version>1.4.4-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+      <groupId>com.ibm.wala</groupId>
+      <artifactId>com.ibm.wala.cast.java.ecj</artifactId>
+      <version>1.4.4-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+      <groupId>com.ibm.wala</groupId>
+      <artifactId>com.ibm.wala.cast.java</artifactId>
+      <version>1.4.4-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+      <groupId>com.ibm.wala</groupId>
+      <artifactId>com.ibm.wala.ide</artifactId>
+      <version>1.4.4-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+      <groupId>com.ibm.wala</groupId>
+      <artifactId>com.ibm.wala.ide.jdt</artifactId>
+      <version>1.4.4-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+      <groupId>com.ibm.wala</groupId>
+      <artifactId>com.ibm.wala.cast.js</artifactId>
+      <version>1.4.4-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+      <groupId>com.ibm.wala</groupId>
+      <artifactId>com.ibm.wala.cast</artifactId>
+      <version>1.4.4-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+      <groupId>com.ibm.wala</groupId>
+      <artifactId>com.ibm.wala.core</artifactId>
+      <version>1.4.4-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+      <groupId>com.ibm.wala</groupId>
+      <artifactId>com.ibm.wala.shrike</artifactId>
+      <version>1.4.4-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+      <groupId>com.ibm.wala</groupId>
+      <artifactId>com.ibm.wala.util</artifactId>
+      <version>1.4.4-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+      <groupId>com.ibm.wala</groupId>
+      <artifactId>com.ibm.wala.cast.test</artifactId>
+      <version>1.4.4-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+      <groupId>com.ibm.wala</groupId>
+      <artifactId>com.ibm.wala.core.tests</artifactId>
+      <version>1.4.4-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+      <groupId>org.eclipse.core</groupId>
+      <artifactId>org.eclipse.core.resources</artifactId>
+      <version>3.7.100</version>
+    </dependency>
+    <dependency>
+      <groupId>org.eclipse.jdt</groupId>
+      <artifactId>org.eclipse.jdt.core</artifactId>
+      <version>3.12.3</version>
+    </dependency>
+  </dependencies>
 </project>
