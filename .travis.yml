@@ -1,6 +1,9 @@
 language: java
 jdk: oraclejdk8
 before_install:
+ - pushd com.ibm.wala.memsat
+ - ant getJars
+ - popd
  - git clone --depth=50 https://github.com/wala/WALA /tmp/WALA
 install:
  - pushd /tmp/WALA
