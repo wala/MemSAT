@@ -61,7 +61,7 @@
     <get src="https://github.com/emina/kodkod/releases/download/v2.1/kodkod.jar" dest="${plugin.destination}/lib/kodkod.jar" />
 
     <mkdir dir="${plugin.destination}/jni" />
-    <get src="http://alloy.mit.edu/kodkod/release/${platform.solvers}.zip" dest="${temp.folder}/platform.zip" />
+    <get src="https://github.com/emina/kodkod/releases/download/v2.1/${platform.solvers}.zip" dest="${temp.folder}/platform.zip" />
     <unzip src="${temp.folder}/platform.zip" dest="${plugin.destination}/jni/"/>
 
      <delete dir="${temp.folder}"/>
