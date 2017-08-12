@@ -126,12 +126,14 @@ public abstract class ConcurrentTests {
 				core = 0;
 				System.out.println("Outcome: "+solution.outcome());
 				System.out.println(solution.stats());
+				/*
 				for(Relation r : solution.instance().relations()) { 
 					System.out.println(r + " = " + solution.instance().tuples(r));
 				}
 				System.out.println("\n****************");
 				System.out.println(solution.instance().universe());
 				System.out.println(results);
+				*/
 			}
 //			System.out.println(results);
 			

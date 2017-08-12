@@ -114,10 +114,10 @@ public class AngelicTests {
 			final Solution solution = results.solution();
 			final boolean actual = (solution.instance()!=null); 
 			
-			System.out.println("FORMULA: ");
+//			System.out.println("FORMULA: ");
 //			System.out.println(Strings.prettyPrint(makeReadable(results.translation().formula()), 2, 200, Collections.EMPTY_MAP));
 			
-			System.out.println("BOUNDS: ");
+/*			System.out.println("BOUNDS: ");
 			final Bounds bounds = results.translation().bounds();
 			for(Relation r : bounds.relations()) { 
 				final TupleSet lower = bounds.lowerBound(r);
@@ -131,9 +131,9 @@ public class AngelicTests {
 				final int i = itr.next();
 				System.out.println(i + " = " + bounds.exactBound(i));
 			}
+*/			
 			
-			
-			System.out.println(results.toString());
+//			System.out.println(results.toString());
 			if (!actual) { // get the core
 				final long corestart = System.currentTimeMillis();
 				solution.proof().minimize(new RCEStrategy(solution.proof().log()));

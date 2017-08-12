@@ -223,7 +223,7 @@ public final class Translator implements MethodTranslator {
 			
 			for(Iterator<? extends IndexedEntry<SSAInstruction>> itr = callInfo.relevantInstructions(); itr.hasNext(); ) { 
 				IndexedEntry<SSAInstruction> inst = itr.next();
-				System.out.println(indent+"TRANSLATING "+inst.index() + ":: "+inst.value());
+//				System.out.println(indent+"TRANSLATING "+inst.index() + ":: "+inst.value());
 				this.instIdx = inst.index();
 				inst.value().visit(this);
 			}
