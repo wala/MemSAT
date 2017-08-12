@@ -8,7 +8,8 @@ WALA MemSAT
  After the import finishes, you will need to run the various build scripts provided to fetch needed libraries that are not shipped with WALA MemSAT.  Specifically, run 'ant' in the root directory or each of the following projects:
 
 com.ibm.wala.cast
-com.ibm.wala.cast.java.polyglot
+com.ibm.wala.cast.java 
+com.ibm.wala.cast.java .ecj
 com.ibm.wala.cast.js
 com.ibm.wala.cast.js.rhino
 com.ibm.wala.memsat
