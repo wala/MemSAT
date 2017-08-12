@@ -81,6 +81,7 @@ public abstract class ConcurrentTests {
 		for(int i = 0, max = just.speculations().size(); i < max; i++) { 
 			addDisplayStrings(just.speculations().get(i), String.valueOf(i), display);
 		}
+		/*
 		System.out.println(Strings.prettyPrint(transl.formula(),2,200,display));
 		System.out.println("BOUNDS: ");
 		final Bounds bounds = transl.bounds();
@@ -92,6 +93,7 @@ public abstract class ConcurrentTests {
 			else
 				System.out.println(r + " : [" + lower  + ", "+ upper +"]");
 		}
+		*/
 		return display;
 	}
 

@@ -61,10 +61,12 @@ public final class ConcurrentTranslator {
 	 */
 	public static ConcurrentTranslation translate(final WalaInformation info, final Options options) { 
 		
+	  /*
 		System.out.println("RELEVANT CLASSES: " + info.relevantClasses());
 		System.out.println("RELEVANT FIELDS: " + info.relevantFields());
 		System.out.println("THREADS: " + info.threads());
-		
+		*/
+	  
 		final ConcurrentMemoryHandler handler = new ConcurrentMemoryHandler(info,options);
 		final Map<CGNode, MethodTranslation> transls = translate(handler);
 //		System.out.println(handler);

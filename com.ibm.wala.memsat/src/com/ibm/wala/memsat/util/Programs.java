@@ -318,9 +318,9 @@ public final class Programs {
 			final WalaConcurrentInformation cinfo = info.concurrentInformation(n);
 			for(InlinedInstruction inst : cinfo.actions()) { 
 				if (inst.action()==Action.NORMAL_READ || inst.action()==Action.VOLATILE_READ) { 
-					System.out.println("VISIBLE WRITES FOR " + inst + ":");
+					//System.out.println("VISIBLE WRITES FOR " + inst + ":");
 					for(InlinedInstruction write : cinfo.visibleWrites(inst)) { 
-						System.out.println(" " + write.action() + " " + write);
+						//System.out.println(" " + write.action() + " " + write);
 						ret.addEdge(inst, write);
 					}
 				}
