@@ -27,7 +27,7 @@
         <version>2.20</version>
         <configuration>
           <forkMode>once</forkMode>
-          <argLine>-Djava.library.path=${basedir}/../com.ibm.wala.memsat/jni/darwin_x86_64: ${basedir}/../com.ibm.wala.memsat/jni/linux_x86_64</argLine>
+          <argLine>-Djava.library.path=${basedir}/../com.ibm.wala.memsat/jni/darwin_x86_64:${basedir}/../com.ibm.wala.memsat/jni/linux_x86_64</argLine>
 	  <workingDirectory>${basedir}/../com.ibm.wala.memsat.testdata</workingDirectory>
           <includes>
             <include>**/*Tests.java</include>
