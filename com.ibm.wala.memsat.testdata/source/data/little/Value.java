@@ -9,7 +9,7 @@
  *     IBM Corporation - initial API and implementation
  *****************************************************************************/
 package data.little;
-public class Value implements Comparable {
+public class Value implements Comparable<Value> {
   final int myVal;
   final int herVal;
 	
@@ -28,11 +28,11 @@ public class Value implements Comparable {
     return myVal + (5*herVal); 
   }
 
-  public int compareTo(Object o){
-    if (myVal != ((Value)o).myVal) {
-      return myVal - ((Value)o).myVal;
+  public int compareTo(Value o){
+    if (myVal != o.myVal) {
+      return myVal - o.myVal;
     } else {
-      return herVal - ((Value)o).herVal;
+      return herVal - o.herVal;
     }
   }
 }
