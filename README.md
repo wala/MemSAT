@@ -1,4 +1,4 @@
-WALA MemSAT [![Build Status](https://travis-ci.org/wala/MemSAT.svg?branch=master)](https://travis-ci.org/uber/your-project)
+WALA MemSAT [![Build Status](https://travis-ci.org/wala/MemSAT.svg?branch=master)](https://travis-ci.org/wala/MemSAT)
 ===========
 
  This is the code for the memory model checker MemSAT published at PLDI 10, and also for the Miniatur Java code checker published in FSE 07.  The code comes with the tests reported in the PLDI paper and some additional sequential tests to illustrate Miniatur functionality.
