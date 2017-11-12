@@ -16,6 +16,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.function.Function;
+import java.util.function.Predicate;
 
 import com.ibm.wala.cast.java.ipa.modref.AstJavaModRef;
 import com.ibm.wala.cast.java.ipa.slicer.AstJavaSlicer;
@@ -35,13 +37,11 @@ import com.ibm.wala.ssa.IR;
 import com.ibm.wala.ssa.ISSABasicBlock;
 import com.ibm.wala.ssa.SSACFG;
 import com.ibm.wala.ssa.SSAInstruction;
-import com.ibm.wala.util.Predicate;
 import com.ibm.wala.util.collections.ComposedIterator;
 import com.ibm.wala.util.collections.CompoundIterator;
 import com.ibm.wala.util.collections.FilterIterator;
 import com.ibm.wala.util.collections.MapIterator;
 import com.ibm.wala.util.collections.ObjectArrayMapping;
-import com.ibm.wala.util.functions.Function;
 import com.ibm.wala.util.graph.Acyclic;
 import com.ibm.wala.util.graph.Graph;
 

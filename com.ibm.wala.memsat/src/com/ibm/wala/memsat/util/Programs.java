@@ -26,6 +26,7 @@ import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Set;
+import java.util.function.Predicate;
 
 import com.ibm.wala.classLoader.IField;
 import com.ibm.wala.ipa.callgraph.CGNode;
@@ -44,7 +45,6 @@ import com.ibm.wala.ssa.SSAGetInstruction;
 import com.ibm.wala.ssa.SSAInstruction;
 import com.ibm.wala.ssa.SSAMonitorInstruction;
 import com.ibm.wala.ssa.SSAPutInstruction;
-import com.ibm.wala.util.Predicate;
 import com.ibm.wala.util.graph.Graph;
 import com.ibm.wala.util.graph.traverse.DFS;
 
@@ -231,7 +231,8 @@ public final class Programs {
 	public static final Predicate<InlinedInstruction> filter(final Action act, final Action...acts) { 
 		return new Predicate<InlinedInstruction>() {
 			final Set<Action> accepted = EnumSet.of(act, acts);
-			public boolean test(InlinedInstruction o) { 
+			@Override
+      public boolean test(InlinedInstruction o) { 
 				return accepted.contains(o.action()); 
 			}
 		};
