@@ -3,7 +3,10 @@ android:
   components:
     - build-tools-26.0.2
 jdk: oraclejdk8
-install: ant deps
+addons:
+  apt:
+    packages:
+    - ant
 before_install:
  - pushd com.ibm.wala.memsat
  - ant getJars
