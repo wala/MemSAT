@@ -48,7 +48,7 @@ public class IRCreation {
 	                    || 
 	     clr.equals(ClassLoaderReference.Extension)))
       {		
-	for (Iterator<IMethod> ms = cls.getDeclaredMethods().iterator(); 
+	for (Iterator<? extends IMethod> ms = cls.getDeclaredMethods().iterator(); 
 	     ms.hasNext(); ) 
 	{
 	  IMethod m = ms.next();
