@@ -331,7 +331,7 @@ public final class Environment {
 		top = frames.push(new Frame(call, callInfo));
 		
 		// get args 
-		final Object[] args = new Object[call.getNumberOfParameters()];
+		final Object[] args = new Object[call.getNumberOfPositionalParameters()];
 		for(int i = 0; i < args.length; i++) { 
 			args[i] = caller.localUse(call.getUse(i));
 		}
