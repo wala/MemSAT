@@ -23,6 +23,7 @@ import java.util.function.Function;
 import java.util.function.Predicate;
 
 import com.ibm.wala.analysis.pointers.HeapGraph;
+import com.ibm.wala.cast.java.ipa.slicer.AstJavaSlicer;
 import com.ibm.wala.cfg.cdg.ControlDependenceGraph;
 import com.ibm.wala.classLoader.CallSiteReference;
 import com.ibm.wala.classLoader.IClass;
@@ -174,7 +175,7 @@ public class WalaInformationImpl implements WalaInformation {
 			}
 		}
 
-		Pair<Collection<Statement>, SDG<InstanceKey>> sliceData = PartialSlice
+		Pair<Collection<Statement>, SDG<? extends InstanceKey>> sliceData = AstJavaSlicer
 				.computeAssertionSlice(fullCG, engine.getPointerAnalysis(),
 						Iterator2Collection.toList(threadRoots.iterator()),
 						threadRoots.getNumberOfNodes() > 1);

@@ -104,7 +104,7 @@ public class MiniaturJDTJavaAnalysisEngine
 		return super.getClassHierarchy();
 	}
 
-	public PointerAnalysis<InstanceKey> getPointerAnalysis() {
+	public PointerAnalysis<? super InstanceKey> getPointerAnalysis() {
 		return super.getPointerAnalysis();
 	}
 
