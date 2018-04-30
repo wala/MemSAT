@@ -20,6 +20,8 @@ import com.ibm.wala.cast.ir.ssa.AstGlobalWrite;
 import com.ibm.wala.cast.ir.ssa.AstIsDefinedInstruction;
 import com.ibm.wala.cast.ir.ssa.AstLexicalRead;
 import com.ibm.wala.cast.ir.ssa.AstLexicalWrite;
+import com.ibm.wala.cast.ir.ssa.AstPropertyRead;
+import com.ibm.wala.cast.ir.ssa.AstPropertyWrite;
 import com.ibm.wala.cast.ir.ssa.EachElementGetInstruction;
 import com.ibm.wala.cast.ir.ssa.EachElementHasNextInstruction;
 import com.ibm.wala.cast.java.ssa.AstJavaInstructionVisitor;
@@ -29,8 +31,6 @@ import com.ibm.wala.cast.js.ssa.JSInstructionVisitor;
 import com.ibm.wala.cast.js.ssa.JavaScriptCheckReference;
 import com.ibm.wala.cast.js.ssa.JavaScriptInstanceOf;
 import com.ibm.wala.cast.js.ssa.JavaScriptInvoke;
-import com.ibm.wala.cast.js.ssa.JavaScriptPropertyRead;
-import com.ibm.wala.cast.js.ssa.JavaScriptPropertyWrite;
 import com.ibm.wala.cast.js.ssa.JavaScriptTypeOfInstruction;
 import com.ibm.wala.cast.js.ssa.JavaScriptWithRegion;
 import com.ibm.wala.cast.js.ssa.PrototypeLookup;
@@ -96,11 +96,11 @@ abstract class AbstractInstructionVisitor<T> implements JSInstructionVisitor, As
 		visitAbstractInvoke(instruction); }	
 	
 	/** Calls {@linkplain #visitInstruction(SSAInstruction)}. */
-	public void visitJavaScriptPropertyRead(JavaScriptPropertyRead instruction) {
+	public void visitPropertyRead(AstPropertyRead instruction) {
 		visitInstruction(instruction); }	
 	
 	/** Calls {@linkplain #visitInstruction(SSAInstruction)}. */
-	public void visitJavaScriptPropertyWrite(JavaScriptPropertyWrite instruction) {
+	public void visitPropertyWrite(AstPropertyWrite instruction) {
 		visitInstruction(instruction); }	
 	
 	/** Calls {@linkplain #visitInstruction(SSAInstruction)}. */
