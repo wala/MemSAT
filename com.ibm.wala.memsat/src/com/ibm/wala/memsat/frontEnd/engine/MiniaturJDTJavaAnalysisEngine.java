@@ -43,7 +43,7 @@ import com.ibm.wala.util.MonitorUtil.IProgressMonitor;
 import com.ibm.wala.util.config.SetOfClasses;
 
 public class MiniaturJDTJavaAnalysisEngine
-	extends JDTJavaSourceAnalysisEngine<InstanceKey>
+	extends JDTJavaSourceAnalysisEngine
 	implements MiniaturAnalysisEngine
 {
 	// private final static int defaultLoopUnrollDepth = 3;
