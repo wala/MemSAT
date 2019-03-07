@@ -20,6 +20,8 @@ import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.Set;
+import java.util.stream.Stream;
+import java.util.stream.StreamSupport;
 
 import com.ibm.wala.util.graph.Graph;
 
@@ -74,7 +76,16 @@ public final class LinkedHashGraph<T> implements Graph<T> {
 		return edges.size();
 	}
 
-	/** {@inheritDoc}
+  public Stream stream() {
+    Iterable iterable = new Iterable() {
+       public Iterator iterator() {
+        return Collections.unmodifiableSet(edges.keySet()).iterator();
+      }
+    };
+    return StreamSupport.stream(iterable.spliterator(), false);
+  }
+
+  /** {@inheritDoc}
 	 * @see com.ibm.wala.util.graph.NodeManager#iterator()
 	 */
 	public Iterator<T> iterator() {
