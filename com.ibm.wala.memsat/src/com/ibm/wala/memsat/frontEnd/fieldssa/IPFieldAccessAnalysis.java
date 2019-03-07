@@ -16,6 +16,8 @@ import java.util.Iterator;
 import java.util.Set;
 import java.util.function.Function;
 import java.util.function.Predicate;
+import java.util.stream.Stream;
+import java.util.stream.StreamSupport;
 
 import com.ibm.wala.classLoader.CallSiteReference;
 import com.ibm.wala.dataflow.graph.AbstractMeetOperator;
@@ -310,6 +312,16 @@ public class IPFieldAccessAnalysis implements IKilldallFramework {
   public Graph getFlowGraph() {
     return new AbstractGraph() {
       private final NodeManager nodeManager = new NodeManager() {
+
+        public Stream stream() {
+          Iterable iterable = new Iterable() {
+             public Iterator iterator() {
+              return nodeManager.iterator();
+            }
+          };
+          return StreamSupport.stream(iterable.spliterator(), false);
+        }
+
         public Iterator iterator() {
 	  return new ComposedIterator(IPFieldAccessAnalysis.this.iterateNodes()) {
 	    public Iterator makeInner(Object outer) {
