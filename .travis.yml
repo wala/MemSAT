@@ -3,6 +3,7 @@ language: android
 android:
   components:
     - build-tools-26.0.2
+    - android-26
 jdk: oraclejdk8
 addons:
   apt:
@@ -15,7 +16,7 @@ before_install:
  - git clone --depth=50 https://github.com/wala/WALA /tmp/WALA
 install:
  - pushd /tmp/WALA
- - ./gradlew install -x test
+ - mvn clean install -B -q -DskipTests
  - popd
 script:
  - mvn clean install -B -q
