@@ -13,7 +13,7 @@ before_install:
  - git clone --depth=50 https://github.com/wala/WALA /tmp/WALA
 install:
  - pushd /tmp/WALA
- - mvn clean install -B -q -DskipTests
+ - ./gradlew build install -x test
  - popd
 script:
  - mvn clean install -B -q
