@@ -56,7 +56,8 @@ public class MiniaturTests {
 			Results<SequentialTranslation> results = miniatur.analyze(method(klass, methodname), srcpath);
 			Solution solution = results.solution();
 			
-			System.out.println(results.toString());		
+//			System.out.println(results.translation().toString());		
+			System.out.println(solution.toString());		
 			
 			if (sat) {
 				assert solution.outcome().equals(Outcome.SATISFIABLE) ||
@@ -74,6 +75,43 @@ public class MiniaturTests {
 		return null;
 	}
 		
+	@Test
+	public void testFloats(){
+		test(miniatur, SRC_DATA_LITTLE, Little.class, "testFloats", true);
+	}
+
+	@Test
+	public void testFloats2(){
+		test(miniatur, SRC_DATA_LITTLE, Little.class, "testFloats2", true);
+	}
+
+	@Test
+	public void testFloatsRound(){
+		test(miniatur, SRC_DATA_LITTLE, Little.class, "testFloatsRound", true);
+	}
+
+	@Test
+	public void testIntsRound(){
+		test(miniatur, SRC_DATA_LITTLE, Little.class, "testIntsRound", false);
+	}
+
+	@Test
+	public void testFloatsNot(){
+		test(miniatur, SRC_DATA_LITTLE, Little.class, "testFloatsNot", false);
+	}
+
+	@Test
+	public void testFloatBox(){
+		miniatur.options().kodkodOptions().setBitwidth(32);
+		test(miniatur, SRC_DATA_LITTLE, Little.class, "testFloatBox", true);
+	}
+
+	@Test
+	public void testFloatBoxNot(){
+		miniatur.options().kodkodOptions().setBitwidth(32);
+		test(miniatur, SRC_DATA_LITTLE, Little.class, "testFloatBoxNot", false);
+	}
+
 	@Test
 	public void testFieldAccess(){
 		test(miniatur, SRC_DATA_LITTLE, Little.class, "testFieldAccess", true);

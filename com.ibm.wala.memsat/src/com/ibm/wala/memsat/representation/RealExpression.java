@@ -18,6 +18,7 @@ import java.util.Collection;
 import java.util.List;
 
 import com.ibm.wala.memsat.frontEnd.IRType;
+import com.ibm.wala.memsat.math.FloatingPoint;
 
 import kodkod.ast.Expression;
 import kodkod.ast.Formula;
@@ -42,7 +43,7 @@ public final class RealExpression  {
 	 * integer and represents it using an IntExpression.  
 	 */
 	RealExpression(float real) { 
-		value = IntConstant.constant((int)Math.round(real));
+		value = IntConstant.constant(Float.floatToIntBits(real));
 	}
 	
 	/**
@@ -52,7 +53,6 @@ public final class RealExpression  {
 		this.value = expr;
 	}
 	
-
 	/**
 	 * Returns a number interpreter for real expressions, based on the given
 	 * interpreter for the int expressions.
@@ -61,24 +61,34 @@ public final class RealExpression  {
 	 */
 	static Interpreter<RealExpression> interpreter(final Interpreter<IntExpression> intInterpreter) { 
 		return new Interpreter<RealExpression>() {
-			final RealExpression zero = new RealExpression(intInterpreter.defaultValue());
+			final RealExpression zero = new RealExpression(0f);
 		
-			public IRType type() { return IRType.REAL; }
-			public Expression toObj(RealExpression t) { return intInterpreter.toObj(t.value); }
-			public RealExpression fromObj(Expression e) { return new RealExpression(intInterpreter.fromObj(e)); }
-			public Expression defaultObj() { return intInterpreter.defaultObj(); }
-			public RealExpression guardedValue(Formula guard, RealExpression value) {
-				return fromIntExpr(intInterpreter.guardedValue(guard, value.value));
+			@Override
+      public IRType type() { return IRType.REAL; }
+			@Override
+      public Expression toObj(RealExpression t) { return intInterpreter.toObj(t.value); }
+			@Override
+      public RealExpression fromObj(Expression e) { return new RealExpression(intInterpreter.fromObj(e)); }
+			@Override
+      public Expression defaultObj() { return toObj(zero); }
+			@Override
+      public RealExpression guardedValue(Formula guard, RealExpression value) {
+				return new RealExpression(intInterpreter.guardedValue(guard, value.value));
 			}
-			public RealExpression defaultValue() { return zero; }
-			public Float evaluate(RealExpression value, Evaluator eval) { return value.evaluate(eval); }
-			public boolean singletonEncoding() { return intInterpreter.singletonEncoding(); }
-			RealExpression phi(Collection<? extends RealExpression> phis) {
+			@Override
+      public RealExpression defaultValue() { return zero; }
+			@Override
+      public Float evaluate(RealExpression value, Evaluator eval) { return value.evaluate(eval); }
+			@Override
+      public boolean singletonEncoding() { return intInterpreter.singletonEncoding(); }
+			@Override
+      RealExpression phi(Collection<? extends RealExpression> phis) {
 				final List<IntExpression> ints = new ArrayList<IntExpression>(phis.size());
-				for(RealExpression real : phis) { 
-					ints.add(real.toIntExpr());
+				if (phis.size() == 1) {
+				  return phis.iterator().next();
+				} else {
+				  return new RealExpression(IntExpression.or(ints));
 				}
-				return fromIntExpr(intInterpreter.phi(ints));
 			}
 		};
 	}
@@ -115,7 +125,7 @@ public final class RealExpression  {
 	 */
 	public static RealExpression fromIntExpr(IntExpression intExpr) { 
 		assert intExpr != null;
-		return new RealExpression(intExpr);
+		return new RealExpression(FloatingPoint.intToFloat(intExpr));
 	}
 	
 	/**
@@ -133,7 +143,7 @@ public final class RealExpression  {
 	 * @return { f: Fromula | [[f]] = ([[this]] > [[other]]) } 
 	 */
 	public final Formula gt(RealExpression other){
-		return value.gt(other.value);
+    return FloatingPoint.floatCompare(value, other.value).gt(IntConstant.constant(0));
 	}
 	
 	/**
@@ -142,7 +152,7 @@ public final class RealExpression  {
 	 * @return { f: Fromula | [[f]] = ([[this]] >= [[other]]) } 
 	 */
 	public final Formula gte(RealExpression other){
-		return value.gte(other.value);
+    return FloatingPoint.floatCompare(value, other.value).gte(IntConstant.constant(0));
 	}
 	
 	/**
@@ -151,7 +161,7 @@ public final class RealExpression  {
 	 * @return { f: Fromula | [[f]] = ([[this]] < [[other]]) } 
 	 */
 	public final Formula lt(RealExpression other){
-		return value.lt(other.value);
+    return FloatingPoint.floatCompare(value, other.value).lt(IntConstant.constant(0));
 	}
 	
 	/**
@@ -160,7 +170,7 @@ public final class RealExpression  {
 	 * @return { f: Fromula | [[f]] = ([[this]] <= [[other]]) } 
 	 */
 	public final Formula lte(RealExpression other){
-		return value.lte(other.value);
+    return FloatingPoint.floatCompare(value, other.value).lte(IntConstant.constant(0));
 	}
 	
 	/**
@@ -169,7 +179,7 @@ public final class RealExpression  {
 	 * @return { r: RealExpression | [[r]] = [[this]] + [[other]] }
 	 */
 	public final RealExpression plus(RealExpression other){
-		return new RealExpression(value.plus(other.value));
+		return new RealExpression(FloatingPoint.floatAdd(value, other.value));
 	}
 	
 	/**
@@ -178,7 +188,7 @@ public final class RealExpression  {
 	 * @return { r: RealExpression | [[r]] = [[this]] - [[other]] }
 	 */
 	public final RealExpression minus(RealExpression other){
-		return new RealExpression(value.minus(other.value));
+    return new RealExpression(FloatingPoint.floatMinus(value, other.value));
 	}
 	
 	/**
@@ -187,7 +197,7 @@ public final class RealExpression  {
 	 * @return { r: RealExpression | [[r]] = [[this]] * [[other]] }
 	 */
 	public final RealExpression multiply(RealExpression other){
-		return new RealExpression(value.multiply(other.value));
+    return new RealExpression(FloatingPoint.floatMultiply(value, other.value));
 	}
 	
 	/**
@@ -196,7 +206,7 @@ public final class RealExpression  {
 	 * @return { r: RealExpression | [[r]] = [[this]] \ [[other]] }
 	 */
 	public final RealExpression divide(RealExpression other){
-		return new RealExpression(value.divide(other.value));
+    return new RealExpression(FloatingPoint.floatDivide(value, other.value));
 	}
 	
 	/**
@@ -222,7 +232,7 @@ public final class RealExpression  {
 	 * @return { i: IntExpression | [[i]] = (int) [[this]] }
 	 */
 	public final IntExpression toIntExpr() { 
-		return value;
+		return FloatingPoint.floatToInt(this);
 	}
 	
 	/**
@@ -241,7 +251,12 @@ public final class RealExpression  {
 	 * @return string representation of this real.
 	 * @see java.lang.Object#toString()
 	 */
-	public String toString() { 
+	@Override
+  public String toString() { 
 		return value.toString();
+	}
+	
+	public IntExpression intBits() {
+	  return value;
 	}
 }

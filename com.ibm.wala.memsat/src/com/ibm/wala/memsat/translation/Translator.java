@@ -54,9 +54,11 @@ import com.ibm.wala.memsat.representation.PhiExpression;
 import com.ibm.wala.memsat.representation.RealExpression;
 import com.ibm.wala.memsat.translation.Environment.Frame;
 import com.ibm.wala.memsat.util.Nodes;
-import com.ibm.wala.shrikeBT.BinaryOpInstruction;
-import com.ibm.wala.shrikeBT.ShiftInstruction;
-import com.ibm.wala.shrikeBT.UnaryOpInstruction;
+import com.ibm.wala.memsat.util.Strings;
+import com.ibm.wala.shrike.shrikeBT.BinaryOpInstruction;
+import com.ibm.wala.shrike.shrikeBT.ShiftInstruction;
+import com.ibm.wala.shrike.shrikeBT.UnaryOpInstruction;
+import com.ibm.wala.ssa.DefUse;
 import com.ibm.wala.ssa.SSAAbstractInvokeInstruction;
 import com.ibm.wala.ssa.SSAArrayLengthInstruction;
 import com.ibm.wala.ssa.SSAArrayLoadInstruction;
@@ -209,34 +211,42 @@ public final class Translator implements MethodTranslator {
 			/*
 			System.out.println();
 			System.out.println(indent+"----------all instructions for "+callInfo.cgNode()+"------------");
-			System.out.println(prettyPrint(env.top().callInfo().cgNode().getIR(), spaces*2));
+			System.out.println(Strings.prettyPrint(env.top().callInfo().cgNode().getIR(), spaces*2));
 			System.out.println(indent+"----------end all instructions for "+callInfo.cgNode()+"------------");
 			System.out.println(indent+"----------relevant instructions for "+callInfo.cgNode()+"------------");
-					
-			for(Iterator<? extends IndexedEntry<SSAInstruction>> itr = callInfo.relevantInstructions(); itr.hasNext(); ) { 
-				IndexedEntry<SSAInstruction> inst = itr.next();
-				System.out.println(indent+inst.index() + ":: "+inst.value());
-			}
-			
-			System.out.println(indent+"----------end relevant instructions for "+callInfo.cgNode()+"------------");
 			*/
 			
 			for(Iterator<? extends IndexedEntry<SSAInstruction>> itr = callInfo.relevantInstructions(); itr.hasNext(); ) { 
 				IndexedEntry<SSAInstruction> inst = itr.next();
-//				System.out.println(indent+"TRANSLATING "+inst.index() + ":: "+inst.value());
+				// System.out.println(indent+inst.index() + ":: "+inst.value());
+			}
+			
+			// System.out.println(indent+"----------end relevant instructions for "+callInfo.cgNode()+"------------");
+			
+			
+			for(Iterator<? extends IndexedEntry<SSAInstruction>> itr = callInfo.relevantInstructions(); itr.hasNext(); ) { 
+				IndexedEntry<SSAInstruction> inst = itr.next();
+				//System.out.println(indent+"TRANSLATING "+inst.index() + ":: "+inst.value());
 				this.instIdx = inst.index();
 				inst.value().visit(this);
 			}
 			
-//			System.out.println(indent+"------------------------------------\n");
+			/* System.out.println(indent+"------------------------------------\n");
 			
-//			System.out.println("----------def use------------");
-//			DefUse du = env.top().callInfo().cgNode().getDU();
-//			for(int i = 1; i <= env.top().callInfo().cgNode().getIR().getSymbolTable().getMaxValueNumber(); i++) {
-//				System.out.println(i + " = " + env.localUse(i) + "; definer: " + du.getDef(i));
-//			}
-//			System.out.println("-----------------------------");
-//			System.out.println();
+			System.out.println("----------def use------------");
+			DefUse du = env.top().callInfo().cgNode().getDU();
+			for(int i = 1; i <= env.top().callInfo().cgNode().getIR().getSymbolTable().getMaxValueNumber(); i++) {
+				System.out.println(i + " = " + env.localUse(i) + "; definer: " + du.getDef(i));
+			}
+			System.out.println("-----------------------------");
+			System.out.println();
+	     System.out.println("----------heap use------------");
+			for(int i = 1; i <= env.top().callInfo().fieldSSA().getMaxHeapNumber(); i++) {
+			  System.out.println(i + " = " + env.heapUse(i));
+			}
+	     System.out.println("----------end heap use------------");
+	      System.out.println();
+      */
 			
 			return new MethodTranslation() {
 				

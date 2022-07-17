@@ -30,7 +30,7 @@ import com.ibm.wala.memsat.frontEnd.FieldSSATable;
 import com.ibm.wala.memsat.frontEnd.IRType;
 import com.ibm.wala.memsat.representation.ArrayExpression;
 import com.ibm.wala.memsat.representation.FieldExpression;
-import com.ibm.wala.shrikeBT.ConditionalBranchInstruction;
+import com.ibm.wala.shrike.shrikeBT.ConditionalBranchInstruction;
 import com.ibm.wala.ssa.ISSABasicBlock;
 import com.ibm.wala.ssa.SSAAbstractInvokeInstruction;
 import com.ibm.wala.ssa.SSAArrayLengthInstruction;

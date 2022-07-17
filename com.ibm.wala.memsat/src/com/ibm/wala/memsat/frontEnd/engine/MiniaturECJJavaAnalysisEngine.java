@@ -35,6 +35,7 @@ import com.ibm.wala.classLoader.SourceDirectoryTreeModule;
 import com.ibm.wala.ipa.callgraph.AnalysisOptions;
 import com.ibm.wala.ipa.callgraph.CallGraphBuilder;
 import com.ibm.wala.ipa.callgraph.Entrypoint;
+import com.ibm.wala.ipa.callgraph.propagation.InstanceKey;
 import com.ibm.wala.ipa.callgraph.propagation.PointerAnalysis;
 import com.ibm.wala.ipa.cha.IClassHierarchy;
 import com.ibm.wala.types.ClassLoaderReference;
@@ -52,6 +53,8 @@ public class MiniaturECJJavaAnalysisEngine
 
 	private List<MethodReference> methods;
 
+	private CallGraphBuilder<InstanceKey> builder;
+	
 	public MiniaturECJJavaAnalysisEngine(int unrollDepth, List<MethodReference> methods) {
 		super();
 		this.unrollDepth = unrollDepth;
@@ -85,7 +88,6 @@ public class MiniaturECJJavaAnalysisEngine
 								          throw new RuntimeException("bad file: " + fullPath, e);
 								        }
 								      }
-									
 								};
 							}
 						};
@@ -95,15 +97,23 @@ public class MiniaturECJJavaAnalysisEngine
 		};
 	}
 
-	public void buildAnalysisScope() throws IOException {
+	@Override
+  public void buildAnalysisScope() throws IOException {
 		super.buildAnalysisScope();
 	}
 
-	public CallGraphBuilder buildCallGraph(IClassHierarchy cha, AnalysisOptions options, boolean savePointerAnalysis, IProgressMonitor monitor) throws com.ibm.wala.util.CancelException {
-		return super.buildCallGraph(cha, options, savePointerAnalysis, monitor);
+	@Override
+  public CallGraphBuilder<InstanceKey> buildCallGraph(IClassHierarchy cha, AnalysisOptions options, boolean savePointerAnalysis, IProgressMonitor monitor) throws com.ibm.wala.util.CancelException {
+	  try {
+      return builder = this.defaultCallGraphBuilder();
+    } catch (IllegalArgumentException | IOException e) {
+      assert false : e;
+      return null;
+    }
 	}
 
-	public IClassHierarchy getClassHierarchy() {
+	@Override
+  public IClassHierarchy getClassHierarchy() {
 		if (super.getClassHierarchy() == null) {
 			setClassHierarchy( buildClassHierarchy() );
 		}
@@ -111,11 +121,13 @@ public class MiniaturECJJavaAnalysisEngine
 		return super.getClassHierarchy();
 	}
 
-	public PointerAnalysis getPointerAnalysis() {
-		return super.getPointerAnalysis();
+	@Override
+  public PointerAnalysis<InstanceKey> getPointerAnalysis() {
+		return builder.getPointerAnalysis();
 	}
 
-	public Iterable<Entrypoint> getEntrypoints() {
+	@Override
+  public Iterable<Entrypoint> getEntrypoints() {
 		return new MiniaturJavaEntrypoints(methods, getClassHierarchy());
 	}
 

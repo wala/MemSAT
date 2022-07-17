@@ -19,6 +19,37 @@ public class Little {
 	 * @param args
 	 */
 
+    public void testFloats(float x, float y, float z) {
+    	assert !(x > y && y > z);
+    }
+
+    public void testFloats2(float x, float y, float z) {
+    	assert !(x == y + 1.1f || y == z + 1.1f || x == z + 2.2f);
+    }
+
+    public void testFloatsRound(float x, float y, float z) {
+    	assert x + y + z == z + y + x;
+    }
+
+    public void testIntsRound(int x, int y, int z) {
+    	assert x + y + z == z + y + x;
+    }
+
+    public void testFloatsNot(float x, float y, float z) {
+    	assert !(x > y && y > z && z > x);
+    }
+ 
+    public void testFloatBox() {
+    	FloatCell fb = new FloatCell(4.0f);
+    	float f = fb.value;
+    	assert 5.0f == f - 1.0;
+    }
+
+    public void testFloatBoxNot() {
+    	FloatBox fb = new FloatBox(4.0f);
+    	float f = fb.value;
+    	assert 5.0f == f + 1.0f;
+    }
 
 	public void testFields() {
 		List l = new List(1);
@@ -182,28 +213,45 @@ public class Little {
 		assert j == 5;
 	}
 	
-	public static class Cell {
+	public static class IntCell {
 		static final Object NULL_KEY = new Object();
 		
 		int value;
 		
-		Cell() {
+		IntCell() {
 			value = 1;
 		}
 		
-		Cell(int value){
+		IntCell(int value){
 			this.value = value;
 		}
 		
 		public boolean equals(Object o){
-			return (o instanceof Cell && value == ((Cell) o).value);
+			return (o instanceof IntCell && value == ((IntCell) o).value);
 		}
 		public int hashCode(){
 		    return super.hashCode() + value; 
 		}
 	}
-	
-	private static class SubCell extends Cell {
+
+	public static class FloatCell {
+		static final Object NULL_KEY = new Object();
+		
+		private float value;
+		
+		FloatCell(float value){
+			this.value = value;
+		}
+		
+		public boolean equals(Object o){
+			return (o instanceof FloatCell && value == ((FloatCell) o).value);
+		}
+		public int hashCode(){
+		    return super.hashCode() + (int)(1031*value); 
+		}
+	}
+
+	private static class SubCell extends IntCell {
 		int myVal;
 		SubCell() {
 			myVal = 1;
@@ -299,7 +347,7 @@ public class Little {
 	}
 	
 	public void testCell(){
-		Cell l = new Cell(1);
+		IntCell l = new IntCell(1);
 		assert l.value == 1;
 	}
 	
@@ -397,34 +445,34 @@ public class Little {
 	
 	public void testMyArrayList2(){
 		MyArrayListObj arr = new MyArrayListObj(3);
-		arr.add(new Cell(1));
-		assert (!arr.contains(new Cell(1)));
+		arr.add(new IntCell(1));
+		assert (!arr.contains(new IntCell(1)));
 	}
 	
 	public void testMyArrayList3(){
 		MyArrayListObj arr  = new MyArrayListObj(3);
-		arr.add(new Cell(1));
-		arr.add(new Cell(2));
-		boolean res = arr.contains(new Cell(1));
+		arr.add(new IntCell(1));
+		arr.add(new IntCell(2));
+		boolean res = arr.contains(new IntCell(1));
 		assert res;
 	}
 	
 	public void testMyArrayList4(){
 		MyArrayListObj arr = new MyArrayListObj(3);
-		arr.add(new Cell(1));
-		assert !arr.contains(new Cell(2));
+		arr.add(new IntCell(1));
+		assert !arr.contains(new IntCell(2));
 	}
 	
 	public void testMyArrayList5(){
 		MyArrayListObj arr = new MyArrayListObj(3);
-		arr.add(new Cell(1));
-		assert arr.indexOf(new Cell(1)) == 0;
+		arr.add(new IntCell(1));
+		assert arr.indexOf(new IntCell(1)) == 0;
 	}
 	
 	public void testMyArrayList6(){
 		MyArrayListObj arr = new MyArrayListObj(3);
-		arr.add(new Cell(1));
-		assert arr.indexOf(new Cell(2)) == -1;
+		arr.add(new IntCell(1));
+		assert arr.indexOf(new IntCell(2)) == -1;
 	}
 	
 	public void testMyArrayList7(){
@@ -439,31 +487,31 @@ public class Little {
 	
 
 	public void testIntFields0(){
-		Cell c = new Cell(0);
+		IntCell c = new IntCell(0);
 		assert (c.value == 0);
 	}
 	
 	public void testIntFields1(){
-		Cell c = new Cell(1);
-		Cell c1 = new Cell(2);
+		IntCell c = new IntCell(1);
+		IntCell c1 = new IntCell(2);
 		assert (c.value == 1 && c1.value == 2);
 	}
 	
 	public void testIntFields2(){
-		Cell c = new Cell(1);
-		Cell c1 = new Cell(2);
+		IntCell c = new IntCell(1);
+		IntCell c1 = new IntCell(2);
 		assert c.value == 2 || c1.value == 1;
 	}
 	
 	public void testCell1(){
-		Cell c1 = new Cell(1);
-		Cell c2 = new Cell(2);
+		IntCell c1 = new IntCell(1);
+		IntCell c2 = new IntCell(2);
 		assert (!c1.equals(c2));
 	}
 	
 	public void testCell2(){
-		Cell c1 = new Cell(3);
-		Cell c2 = new Cell(3);
+		IntCell c1 = new IntCell(3);
+		IntCell c2 = new IntCell(3);
 		assert (!c1.equals(c2));
 	}
 	
@@ -479,13 +527,13 @@ public class Little {
 	}
 
 	public void testArrayCopy2(){
-		Cell[] arr1 = new Cell[3];
-		arr1[0] = new Cell(1); arr1[1] = new Cell(2);
-		Cell[] arr2 = new Cell[3];
+		IntCell[] arr1 = new IntCell[3];
+		arr1[0] = new IntCell(1); arr1[1] = new IntCell(2);
+		IntCell[] arr2 = new IntCell[3];
 		for(int i = 0; i < arr1.length; i++){
 			arr2[i] = arr1[i];
 		}
-		assert arr2[0].equals(new Cell(1)) && arr2[1].equals(new Cell(2));
+		assert arr2[0].equals(new IntCell(1)) && arr2[1].equals(new IntCell(2));
 	}
 	
 	public void testArrayAssign(){
@@ -553,12 +601,12 @@ public class Little {
 	}
 	
 	public void testFieldParam(){
-		Cell c = new Cell(0);
+		IntCell c = new IntCell(0);
 		bar(c);
 		assert c.value == 1;
 	}
 	
-	private void bar(Cell c){
+	private void bar(IntCell c){
 		c.value = 1;
 	}
 	
@@ -568,24 +616,24 @@ public class Little {
 	}
 	
 	public void testObjectHashCodeCall(){
-		Cell c = new Cell(1);
+		IntCell c = new IntCell(1);
 		assert c.hashCode() == 0;
 	}
 	
 	public void testObjectHashCodeCall1(){
-		Object o = new Cell();
+		Object o = new IntCell();
 		int k = hash(o);
 		assert k == 1;
 	}
 	
 	public void testObjectHashCodeCall2(){
-		Object k = maskNull(new Cell());
+		Object k = maskNull(new IntCell());
         int hash = hash(k);
         assert hash == 2;
 	}
 	
 	static Object maskNull(Object key) {
-	    return (key == null ? Cell.NULL_KEY : key);
+	    return (key == null ? IntCell.NULL_KEY : key);
 	}
 	
 	private static int hash(Object o){

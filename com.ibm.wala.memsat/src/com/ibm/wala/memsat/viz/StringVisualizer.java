@@ -19,7 +19,7 @@ import com.ibm.wala.memsat.translation.Translation;
 import com.ibm.wala.memsat.translation.TranslationWarning;
 import com.ibm.wala.memsat.translation.concurrent.ConcurrentTranslation;
 import com.ibm.wala.memsat.translation.sequential.SequentialTranslation;
-import com.ibm.wala.util.warnings.Warning;
+import com.ibm.wala.core.util.warnings.Warning;
 
 import kodkod.engine.Evaluator;
 import kodkod.engine.Solution;

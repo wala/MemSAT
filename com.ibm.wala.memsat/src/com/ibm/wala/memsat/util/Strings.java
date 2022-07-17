@@ -38,7 +38,7 @@ import com.ibm.wala.ipa.callgraph.propagation.StaticFieldKey;
 import com.ibm.wala.ipa.callgraph.propagation.rta.CallSite;
 import com.ibm.wala.ipa.modref.ArrayLengthKey;
 import com.ibm.wala.memsat.frontEnd.InlinedInstruction;
-import com.ibm.wala.shrikeCT.InvalidClassFileException;
+import com.ibm.wala.shrike.shrikeCT.InvalidClassFileException;
 import com.ibm.wala.ssa.IR;
 import com.ibm.wala.types.TypeName;
 import com.ibm.wala.util.collections.Pair;

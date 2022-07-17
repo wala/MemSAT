@@ -16,6 +16,7 @@ import com.ibm.wala.ipa.callgraph.AnalysisOptions;
 import com.ibm.wala.ipa.callgraph.AnalysisOptions.ReflectionOptions;
 import com.ibm.wala.ipa.callgraph.CallGraph;
 import com.ibm.wala.ipa.callgraph.Entrypoint;
+import com.ibm.wala.ipa.callgraph.impl.ClassHierarchyMethodTargetSelector;
 import com.ibm.wala.ipa.callgraph.propagation.PropagationCallGraphBuilder;
 import com.ibm.wala.ipa.cha.IClassHierarchy;
 
@@ -40,6 +41,8 @@ public class CallGraphCreation {
 
     options = engine.getDefaultOptions(entrypoints);
     options.setReflectionOptions(ReflectionOptions.NONE);
+    
+    options.setSelector(new ClassHierarchyMethodTargetSelector(cha));
     
     PropagationCallGraphBuilder builder = 
       (PropagationCallGraphBuilder)engine.buildCallGraph(cha, options, true, null);

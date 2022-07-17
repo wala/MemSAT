@@ -41,7 +41,7 @@ import com.ibm.wala.memsat.frontEnd.WalaInformation;
 import com.ibm.wala.memsat.representation.ConstantFactory;
 import com.ibm.wala.memsat.representation.Interpreter;
 import com.ibm.wala.memsat.translation.concurrent.ConcurrentTranslation;
-import com.ibm.wala.shrikeCT.InvalidClassFileException;
+import com.ibm.wala.shrike.shrikeCT.InvalidClassFileException;
 import com.ibm.wala.ssa.SSAAbstractInvokeInstruction;
 import com.ibm.wala.ssa.SSAArrayReferenceInstruction;
 import com.ibm.wala.ssa.SSAFieldAccessInstruction;

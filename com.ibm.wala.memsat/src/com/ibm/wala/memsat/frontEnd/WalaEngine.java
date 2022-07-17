@@ -25,6 +25,7 @@ import org.eclipse.core.runtime.CoreException;
 import com.ibm.wala.cast.java.client.JavaSourceAnalysisEngine;
 import com.ibm.wala.classLoader.JarFileModule;
 import com.ibm.wala.classLoader.SourceDirectoryTreeModule;
+import com.ibm.wala.core.java11.JrtModule;
 import com.ibm.wala.ipa.callgraph.AnalysisScope;
 import com.ibm.wala.memsat.Options;
 import com.ibm.wala.memsat.frontEnd.core.WalaInformationImpl;
@@ -50,8 +51,9 @@ public final class WalaEngine {
 	 */
 	private WalaEngine() {}
 
-	private static void doJavaLibDir(JavaSourceAnalysisEngine engine, String libDir) throws IOException {
-		if (new File(libDir).exists()) {
+	private static boolean doJavaLibDir(JavaSourceAnalysisEngine engine, String libDir) throws IOException {
+		boolean found = false;
+	  if (new File(libDir).exists()) {
 			File[] libJarFiles = new File(libDir).listFiles(
 					new FilenameFilter() {
 						public boolean accept(File dir, String name) {
@@ -62,11 +64,13 @@ public final class WalaEngine {
 				try {
 					JarFileModule m = new JarFileModule(new JarFile(libJarFiles[i]));
 					engine.addSystemModule(m);
+					found = true;
 				} catch (ZipException e) {
 					System.err.println("trouble with " + libJarFiles[i]);
 				}
 			}
 		}
+	  return found;
 	}
 
 	private static void setExclusions(MiniaturAnalysisEngine engine, List<File> relativeNames) {
@@ -94,9 +98,13 @@ public final class WalaEngine {
 	{
 		try {
 			String home = System.getProperty("java.home");
-			doJavaLibDir(engine, home + File.separator + "lib");
-			doJavaLibDir(engine, home + "/../Classes");
-
+			boolean found = doJavaLibDir(engine, home + File.separator + "lib");
+			found |= doJavaLibDir(engine, home + "/../Classes");
+			//if (! found) {
+			  JrtModule libs = new JrtModule("java.base");
+			  engine.addSystemModule(libs);
+			//}
+			
 			for(File relativeName : relativeNames) {
 				engine.addSourceModule(new SourceDirectoryTreeModule(relativeName));
 
