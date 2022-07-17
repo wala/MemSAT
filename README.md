@@ -5,6 +5,6 @@ WALA MemSAT [![Build Status](https://travis-ci.org/wala/MemSAT.svg?branch=master
 
 The MemSAT build process to use is the one that works on Travis CI; it uses Maven, and has two steps:
 
-   * You need to have built the latest WALA by cloning it and doing a 'mvn clean install -DskipTests'. MemSAT relies on WALA projects and Maven expects to find them installed.
+   * You need to have built the latest WALA by cloning it and doing a `./gradlew publishToMavenLocal`. MemSAT relies on WALA projects and Maven expects to find them installed.
 
   * 'mvn clean install' in the top-level directory of the clone of MemSAT
