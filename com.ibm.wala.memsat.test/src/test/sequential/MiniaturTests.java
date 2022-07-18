@@ -87,7 +87,12 @@ public class MiniaturTests {
 
 	@Test
 	public void testFloatsRound(){
-		test(miniatur, SRC_DATA_LITTLE, Little.class, "testFloatsRound", true);
+		test(miniatur, SRC_DATA_LITTLE, Little.class, "testFloatsRound", false);
+	}
+
+	@Test
+	public void testFloatsRound2(){
+		test(miniatur, SRC_DATA_LITTLE, Little.class, "testFloatsRound2", true);
 	}
 
 	@Test

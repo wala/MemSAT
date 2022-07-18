@@ -27,7 +27,11 @@ public class Little {
     	assert !(x == y + 1.1f || y == z + 1.1f || x == z + 2.2f);
     }
 
-    public void testFloatsRound(float x, float y, float z) {
+    public void testFloatsRound(float x, float y) {
+    	assert x * y == y * x;
+    }
+
+    public void testFloatsRound2(float x, float y, float z) {
     	assert x + y + z == z + y + x;
     }
 
