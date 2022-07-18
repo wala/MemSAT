@@ -46,7 +46,7 @@ public class Little {
     }
 
     public void testFloatBoxNot() {
-    	FloatBox fb = new FloatBox(4.0f);
+    	FloatCell fb = new FloatCell(4.0f);
     	float f = fb.value;
     	assert 5.0f == f + 1.0f;
     }
