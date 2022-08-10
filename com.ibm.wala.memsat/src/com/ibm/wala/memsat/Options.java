@@ -19,6 +19,7 @@ import java.util.Set;
 import com.ibm.wala.memsat.concurrent.MemoryModel;
 import com.ibm.wala.types.TypeReference;
 
+import kodkod.engine.config.Options.IntEncoding;
 import kodkod.engine.satlab.SATFactory;
 
 
@@ -75,6 +76,7 @@ public final class Options {
 		this.undefinedType = null;
 		this.kodkodOptions = new kodkod.engine.config.Options();
 		kodkodOptions.setBitwidth(8);
+		kodkodOptions.setIntEncoding(IntEncoding.TWOSCOMPLEMENT);
 		kodkodOptions.setSolver(SATFactory.MiniSat);
 		this.memoryModel = null;
 		this.assertsAreAssumptions = false;

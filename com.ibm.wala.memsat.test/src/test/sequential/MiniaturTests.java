@@ -16,6 +16,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
+import java.util.regex.Pattern;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -24,6 +25,7 @@ import org.junit.Test;
 import com.ibm.wala.memsat.Miniatur;
 import com.ibm.wala.memsat.Options;
 import com.ibm.wala.memsat.Results;
+import com.ibm.wala.memsat.math.FloatingPoint;
 import com.ibm.wala.memsat.translation.sequential.SequentialTranslation;
 import com.ibm.wala.util.CancelException;
 
@@ -32,7 +34,9 @@ import kodkod.ast.Relation;
 import kodkod.engine.Evaluator;
 import kodkod.engine.Solution;
 import kodkod.engine.Solution.Outcome;
+import kodkod.engine.satlab.SATFactory;
 import kodkod.instance.Instance;
+import kodkod.instance.TupleSet;
 
 public class MiniaturTests {
 	private static final File SRC_DATA_LITTLE = new File("source/data/little");
@@ -50,20 +54,38 @@ public class MiniaturTests {
 		return test(miniatur, Collections.singletonList(srcpath), klass, methodname, sat);
 	}
 	
+	static Pattern args = Pattern.compile(".*_arg[0-9]*");
+	
 	static Solution test(Miniatur miniatur, List<File> srcpath, Class<?> klass, String methodname, boolean sat){
 		try {
 			
 			Results<SequentialTranslation> results = miniatur.analyze(method(klass, methodname), srcpath);
 			Solution solution = results.solution();
 			
-//			System.out.println(results.translation().toString());		
+//			System.out.println(results.translation().formula().toString());		
 			System.out.println(solution.toString());		
 			
+			boolean isSAT = solution.outcome().equals(Outcome.SATISFIABLE) || solution.outcome().equals(Outcome.TRIVIALLY_SATISFIABLE);
+
+			if (isSAT) {
+				solution.instance().relationTuples().entrySet().forEach(e -> { 
+					Relation r = e.getKey();
+					TupleSet ts = e.getValue();
+					Evaluator eval = new Evaluator(solution.instance(), results.translation().getOptions());
+					if (args.matcher(r.name()).matches()) {
+						System.out.println("arg " + r + " is " + ts);
+						System.out.println("arg " + r + " is " + eval.evaluate(r));
+						int numericVal = eval.evaluate(r.sum());
+						System.out.println("arg " + r + " is " + numericVal);							
+						System.out.println("arg " + r + " is " + Float.intBitsToFloat(numericVal));
+						System.err.println(eval.evaluate(FloatingPoint.isNaN(r.sum())));
+					}
+				});
+			}
+			
 			if (sat) {
-				assert solution.outcome().equals(Outcome.SATISFIABLE) ||
-				solution.outcome().equals(Outcome.TRIVIALLY_SATISFIABLE);
-			} else {
-				
+				assert isSAT;
+			} else {			
 				assert solution.outcome().equals(Outcome.UNSATISFIABLE) ||
 				solution.outcome().equals(Outcome.TRIVIALLY_UNSATISFIABLE);
 			}	
@@ -76,23 +98,97 @@ public class MiniaturTests {
 	}
 		
 	@Test
+	public void testMatrix(){
+		test(miniatur, SRC_DATA_LITTLE, Little.class, "testMatrix", false);
+	}
+
+	@Test
+	public void testMatrix2(){
+		test(miniatur, SRC_DATA_LITTLE, Little.class, "testMatrix2", true);
+	}
+
+	@Test
+	public void testMatrix3(){
+		miniatur.options().kodkodOptions().setSolver(SATFactory.plingeling());
+		test(miniatur, SRC_DATA_LITTLE, Little.class, "testMatrix3", false);
+	}
+
+	@Test
+	public void testMatrix4(){
+		miniatur.options().kodkodOptions().setSolver(SATFactory.plingeling());
+		test(miniatur, SRC_DATA_LITTLE, Little.class, "testMatrix4", false);
+	}
+
+	@Test
+	public void testFloatMatrix1(){
+		miniatur.options().kodkodOptions().setSolver(SATFactory.plingeling());
+		miniatur.options().kodkodOptions().setBitwidth(32);
+		test(miniatur, SRC_DATA_LITTLE, Little.class, "testFloatMatrix1", true);
+	}
+
+	@Test
+	public void testFloatMatrix2(){
+		miniatur.options().kodkodOptions().setBitwidth(32);
+		test(miniatur, SRC_DATA_LITTLE, Little.class, "testFloatMatrix2", true);
+	}
+
+	@Test
 	public void testFloats(){
+		miniatur.options().kodkodOptions().setBitwidth(32);
 		test(miniatur, SRC_DATA_LITTLE, Little.class, "testFloats", true);
 	}
 
 	@Test
+	public void testIsNan(){
+		miniatur.options().kodkodOptions().setSolver(SATFactory.plingeling());
+		miniatur.options().kodkodOptions().setBitwidth(32);
+		test(miniatur, SRC_DATA_LITTLE, Little.class, "testIsNaN", true);
+	}
+	
+	@Test
+	public void testIsNotNan(){
+		miniatur.options().kodkodOptions().setSolver(SATFactory.plingeling());
+		miniatur.options().kodkodOptions().setBitwidth(32);
+		test(miniatur, SRC_DATA_LITTLE, Little.class, "testIsNotNaN", true);
+	}
+
+	@Test
+	public void testIsNotNan2(){
+		miniatur.options().kodkodOptions().setBitwidth(32);
+		test(miniatur, SRC_DATA_LITTLE, Little.class, "testIsNotNaN2", true);
+	}
+
+	@Test
 	public void testFloats2(){
+		miniatur.options().kodkodOptions().setBitwidth(32);
 		test(miniatur, SRC_DATA_LITTLE, Little.class, "testFloats2", true);
 	}
 
 	@Test
 	public void testFloatsRound(){
+		miniatur.options().kodkodOptions().setSolver(SATFactory.plingeling());
+		miniatur.options().kodkodOptions().setBitwidth(32);
 		test(miniatur, SRC_DATA_LITTLE, Little.class, "testFloatsRound", false);
 	}
 
 	@Test
 	public void testFloatsRound2(){
+		miniatur.options().kodkodOptions().setBitwidth(32);
+		miniatur.options().kodkodOptions().setSolver(SATFactory.plingeling());
 		test(miniatur, SRC_DATA_LITTLE, Little.class, "testFloatsRound2", true);
+	}
+
+	@Test
+	public void testFloatsRound3(){
+		miniatur.options().kodkodOptions().setSolver(SATFactory.plingeling());
+		miniatur.options().kodkodOptions().setBitwidth(32);
+		test(miniatur, SRC_DATA_LITTLE, Little.class, "testFloatsRound3", true);
+	}
+
+	@Test
+	public void testFloatsRound4(){
+		miniatur.options().kodkodOptions().setBitwidth(32);
+		test(miniatur, SRC_DATA_LITTLE, Little.class, "testFloatsRound4", false);
 	}
 
 	@Test
@@ -102,6 +198,7 @@ public class MiniaturTests {
 
 	@Test
 	public void testFloatsNot(){
+		miniatur.options().kodkodOptions().setBitwidth(32);
 		test(miniatur, SRC_DATA_LITTLE, Little.class, "testFloatsNot", false);
 	}
 

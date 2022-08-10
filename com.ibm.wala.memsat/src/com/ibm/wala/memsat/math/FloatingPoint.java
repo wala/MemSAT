@@ -3,6 +3,7 @@ package com.ibm.wala.memsat.math;
 import com.ibm.wala.memsat.representation.RealExpression;
 import com.ibm.wala.util.collections.Pair;
 
+import kodkod.ast.Expression;
 import kodkod.ast.Formula;
 import kodkod.ast.IntConstant;
 import kodkod.ast.IntExpression;
@@ -105,6 +106,18 @@ public class FloatingPoint {
 		return l.and(IntConstant.constant(signMask)).shr(IntConstant.constant(mantissaBits+exponentBits));
 	}
 
+	public static Formula isNaN(IntExpression l) {
+	  return
+	      (l.and(IntConstant.constant(exponentMask)).eq(IntConstant.constant(exponentMask)))
+	        .and(l.and(IntConstant.constant(mantissaMask)).eq(IntConstant.constant(0)).not());
+	}
+
+	public static Formula isInfinite(IntExpression l) {
+    return
+        (l.and(IntConstant.constant(exponentMask)).eq(IntConstant.constant(exponentMask)))
+        .and(l.and(IntConstant.constant(mantissaMask)).eq(IntConstant.constant(0)));
+	}
+
 	private static IntExpression floatAddInternal(IntExpression geq, IntExpression leq) {
 		IntExpression le = exponent(geq);
 		IntExpression re = exponent(leq);
@@ -142,9 +155,7 @@ public class FloatingPoint {
 	}
 	
 	public static IntExpression floatAdd(IntExpression l, IntExpression r) {
-		IntExpression le = exponent(l);
-		IntExpression re = exponent(r);
-		return le.gte(re).thenElse(floatAddInternal(l, r), floatAddInternal(r, l));
+		return l.gte(r).thenElse(floatAddInternal(l, r), floatAddInternal(r, l));
 	}
 
 	public static IntExpression floatMinus(IntExpression l, IntExpression r) {

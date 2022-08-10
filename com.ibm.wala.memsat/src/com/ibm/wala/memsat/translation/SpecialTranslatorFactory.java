@@ -13,6 +13,7 @@
  */
 package com.ibm.wala.memsat.translation;
 
+import static com.ibm.wala.types.TypeReference.JavaLangFloat;
 import static com.ibm.wala.types.TypeReference.JavaLangObject;
 import static com.ibm.wala.types.TypeReference.JavaLangString;
 import static com.ibm.wala.types.TypeReference.JavaLangSystem;
@@ -32,6 +33,7 @@ import java.util.Set;
 import com.ibm.wala.cast.java.ipa.callgraph.JavaSourceAnalysisScope;
 import com.ibm.wala.classLoader.IClass;
 import com.ibm.wala.classLoader.IField;
+import com.ibm.wala.core.util.strings.Atom;
 import com.ibm.wala.ipa.callgraph.propagation.ArrayContentsKey;
 import com.ibm.wala.ipa.callgraph.propagation.InstanceFieldKey;
 import com.ibm.wala.ipa.callgraph.propagation.InstanceKey;
@@ -41,16 +43,17 @@ import com.ibm.wala.memsat.Options;
 import com.ibm.wala.memsat.frontEnd.FieldSSATable;
 import com.ibm.wala.memsat.frontEnd.IRType;
 import com.ibm.wala.memsat.frontEnd.WalaInformation;
+import com.ibm.wala.memsat.math.FloatingPoint;
 import com.ibm.wala.memsat.representation.ArrayExpression;
 import com.ibm.wala.memsat.representation.ExpressionFactory;
 import com.ibm.wala.memsat.representation.FieldExpression;
 import com.ibm.wala.memsat.representation.PhiExpression;
+import com.ibm.wala.memsat.representation.RealExpression;
 import com.ibm.wala.memsat.translation.Environment.Frame;
 import com.ibm.wala.types.Descriptor;
 import com.ibm.wala.types.MethodReference;
 import com.ibm.wala.types.TypeName;
 import com.ibm.wala.types.TypeReference;
-import com.ibm.wala.core.util.strings.Atom;
 
 import kodkod.ast.Expression;
 import kodkod.ast.Formula;
@@ -137,6 +140,10 @@ final class SpecialTranslatorFactory {
 		translators.put(method(JavaLangString,"charAt","(I)C"), javaLangStringCharAt());
 		translators.put(method(JavaLangString,"hashCode","()I"), javaLangStringHashCode());
 
+		// floating point
+		translators.put(method(JavaLangFloat,"isNaN","(F)Z"), isNaN());
+    translators.put(method(JavaLangFloat,"isInfinite","(F)Z"), isInfinite());
+		
 		//nondet
 		final TypeName nonDetName = TypeName.string2TypeName("Ldata/angelic/NonDetChoice");
 		final TypeReference nonDet = TypeReference.findOrCreate(JavaSourceAnalysisScope.SOURCE, nonDetName);
@@ -269,6 +276,29 @@ final class SpecialTranslatorFactory {
 		};
 	}
 	
+	private static MethodTranslator isNaN() {
+	  return new MethodTranslator() {
+
+      @Override
+      public MethodTranslation translate(Formula entryGuard, Environment env, MemoryInstructionHandler memoryHandler) {
+        RealExpression v = env.realUse(1);
+        return result(Formula.TRUE, FloatingPoint.isNaN(v.intBits()), env);
+      }
+	  };
+	}
+
+	 private static MethodTranslator isInfinite() {
+	    return new MethodTranslator() {
+
+	      @Override
+	      public MethodTranslation translate(Formula entryGuard, Environment env, MemoryInstructionHandler memoryHandler) {
+	        RealExpression v = env.realUse(1);
+	        return result(Formula.TRUE, FloatingPoint.isInfinite(v.intBits()), env);
+	      }
+	    };
+	  }
+	  
+
 	/** @return a spec translator for java.lang.String.length */
 	private static MethodTranslator javaLangStringLength() {
 		return new MethodTranslator() {

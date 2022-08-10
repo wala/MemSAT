@@ -78,7 +78,7 @@ public final class ConcurrentTranslator {
 		}
 		//System.out.println(Strings.prettyPrint(just.formula().and(handler.factory.invariants()), 2));
 		return new ConcurrentTranslation(handler.factory.base(), 
-					Nodes.simplify(just.formula().and(handler.factory.invariants()), just.bounds()), just, warnings);
+					Nodes.simplify(just.formula().and(handler.factory.invariants()), just.bounds()), just, warnings, options.kodkodOptions());
 	}
 	
 	/**

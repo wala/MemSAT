@@ -10,11 +10,14 @@
  *****************************************************************************/
 package data.little;
 
-
 public class Little {
 	static int foo;
 	int[] a = new int[3];
 
+	private boolean isSpecial(float x) {
+		return Float.isNaN(x) || Float.isInfinite(x);
+	}
+	
 	/**
 	 * @param args
 	 */
@@ -27,12 +30,37 @@ public class Little {
     	assert !(x == y + 1.1f || y == z + 1.1f || x == z + 2.2f);
     }
 
+    public void testIsNaN(float x) {
+    	assert Float.isNaN(x);
+    }
+    
+    public void testIsNotNaN(float x) {
+    	assert !Float.isNaN(x);
+    }
+    
+    public void testIsNotNaN2(float x) {
+    	assert x<=0f;
+    }
+    
     public void testFloatsRound(float x, float y) {
-    	assert x * y == y * x;
+    	if (!isSpecial(x) && !isSpecial(y))
+    		assert x + y == y + x;
     }
 
     public void testFloatsRound2(float x, float y, float z) {
-    	assert x + y + z == z + y + x;
+    	if (!isSpecial(x) && !isSpecial(y) && !isSpecial(z)) {
+    		assert x + y + z == z + y + x;
+    	}
+    }
+
+    public void testFloatsRound3(float x, float y, float z) {
+    	if (!isSpecial(x) && !isSpecial(y) && !isSpecial(z)) {
+    		assert x - y - z == z - y - x;
+    	}
+    }
+
+    public void testFloatsRound4(float x, float y) {
+    	assert x + y == y + x;
     }
 
     public void testIntsRound(int x, int y, int z) {
@@ -138,6 +166,34 @@ public class Little {
 		assert arr2[0] == 2 && arr1[0] == 2;
 	}
 	
+	public void testMatrix(int x1, int y1, int v1) {
+		if (x1 < 5 && y1 < 5) {
+			int[][] x = makeIntMatrix();
+			x[y1][x1] = v1;
+			assert x[y1][x1] == v1;
+		}
+	}
+
+	private static int[][] makeIntMatrix() {
+		int[][] x = new int[5][];
+		x[0]= new int[5];
+		x[1]= new int[5];
+		x[2]= new int[5];
+		x[3]= new int[5];
+		x[4]= new int[5];
+		return x;
+	}
+
+	private static float[][] makeFloatMatrix() {
+		float[][] x = new float[5][];
+		x[0]= new float[5];
+		x[1]= new float[5];
+		x[2]= new float[5];
+		x[3]= new float[5];
+		x[4]= new float[5];
+		return x;
+	}
+
 	public void testNestedIfs(){
 		int i = 3;
 		int j = 4;
@@ -147,7 +203,105 @@ public class Little {
 		
 	}
 	
-	int foo(int i, int j){
+	private static int sum_yx(int[][] a, int y, int x) {
+		int total = 0;
+		for(int i = y - 1; i <= y + 1; i++) {
+			for(int j = x - 1; j <= x + 1; j++) {
+				total += a[i][j];
+			}
+		}
+		return total;
+	}
+	
+	private static int sum_xy(int[][] a, int y, int x) {
+		int total = 0;
+		for(int j = x - 1; j <= x + 1; j++) {
+			for(int i = y - 1; i <= y + 1; i++) {
+				total += a[i][j];
+			}
+		}
+		return total;
+	}
+
+	private static float sum_yx(float[][] a, int y, int x) {
+		float total = 0f;
+		for(int i = y - 1; i <= y + 1; i++) {
+			for(int j = x - 1; j <= x + 1; j++) {
+				total += a[i][j];
+			}
+		}
+		return total;
+	}
+	
+	private static float sum_xy(float[][] a, int y, int x) {
+		float total = 0f;
+		for(int j = x - 1; j <= x + 1; j++) {
+			for(int i = y - 1; i <= y + 1; i++) {
+				total += a[i][j];
+			}
+		}
+		return total;
+	}
+	
+	public void testMatrix2(int x1, int y1, int v1, int x2, int y2, int v2) {
+		if (x1 < 5 && y1 < 5 && x2 < 5 && y2 < 5 && v1 > 0 && v2 > 0) {
+			int[][] a = makeIntMatrix();
+			a[y1][x1] = v1;
+			a[y2][x2] = v2;
+			int t1 = sum_yx(a, 1, 1);
+			int t2 = sum_yx(a, 2, 2);
+			int t3 = sum_yx(a, 3, 3);
+			assert !(t1 != 0 && t3 != 0 && t1+t3 == t2 && t2 == 9);
+		}
+	}
+	
+	public void testMatrix3(int x1, int y1, int v1, int x2, int y2, int v2) {
+		if (x1 < 5 && y1 < 5 && x2 < 5 && y2 < 5 && v1 > 0 && v2 > 0) {
+			int[][] a = makeIntMatrix();
+			a[y1][x1] = v1;
+			a[y2][x2] = v2;
+			int t1 = sum_yx(a, 1, 1);
+			int t2 = sum_xy(a, 1, 1);
+			assert t1 == t2;
+		}
+	}
+
+	public void testMatrix4(int x1, int y1, int v1, int x2, int y2, int v2, int x3, int y3, int v3) {
+		if (x1 < 5 && y1 < 5 && x2 < 5 && y2 < 5 && x3 < 5 && y3 < 5 && v1 > 0 && v2 > 0 && v3 > 0) {
+			int[][] a = makeIntMatrix();
+			a[y1][x1] = v1;
+			a[y2][x2] = v2;
+			a[y3][x3] = v3;
+			int t1 = sum_yx(a, 1, 1);
+			int t2 = sum_xy(a, 1, 1);
+			assert t1 == t2;
+		}
+	}
+
+	public void testFloatMatrix1(int x1, int y1, float v1, int x2, int y2, float v2, int x3, int y3, float v3) {
+		if (x1 < 5 && y1 < 5 && x2 < 5 && y2 < 5 && x3 < 5 && y3 < 5 && v1 > 0f && v2 > 0f && v3 > 0f) {
+			float[][] a = makeFloatMatrix();
+			a[y1][x1] = v1;
+			a[y2][x2] = v2;
+			a[y3][x3] = v3;
+			float t1 = sum_yx(a, 1, 1);
+			float t2 = sum_xy(a, 1, 1);
+			assert t1 == t2;
+		}
+	}
+
+	public void testFloatMatrix2(int x1, int y1, float v1, int x2, int y2, float v2) {
+		if (x1 < 5 && y1 < 5 && x2 < 5 && y2 < 5 && v1 > 0f && v2 > 0f) {
+			float[][] a = makeFloatMatrix();
+			a[y1][x1] = v1;
+			a[y2][x2] = v2;
+			float t1 = sum_yx(a, 1, 1);
+			float t2 = sum_xy(a, 1, 1);
+			assert t1 == t2;
+		}
+	}
+
+	private int foo(int i, int j) {
 		int k = 0;
 		if (i == 3){
 			k = 9;

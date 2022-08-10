@@ -18,6 +18,7 @@ import com.ibm.wala.memsat.translation.MethodTranslation;
 import com.ibm.wala.memsat.translation.Translation;
 
 import kodkod.ast.Formula;
+import kodkod.engine.config.Options;
 import kodkod.instance.Bounds;
 
 /**
@@ -36,34 +37,46 @@ public final class SequentialTranslation implements Translation<MethodTranslatio
 	private final Bounds bounds;
 	private final ExpressionFactory factory;
 	private final MethodTranslation context;
+  private final Options options;
 	/**
 	 * Constructs a translation from the given objects.
+	 * @param options 
 	 */
-	SequentialTranslation(Formula formula, Bounds bounds, ExpressionFactory factory, MethodTranslation methodTranslation) {
+	SequentialTranslation(Formula formula, Bounds bounds, ExpressionFactory factory, MethodTranslation methodTranslation, Options options) {
 		this.formula=formula;
 		this.bounds=bounds;
 		this.factory=factory;
 		this.context=methodTranslation;
+		this.options = options;
 	}
 	
-	/**
+	
+	@Override
+  public Options getOptions() {
+    return options;
+  }
+
+  /**
 	 * Returns the factory used for allocating relations to 
 	 * unknown values (initial heap state, entry method arguments, etc.)
 	 * and constants.
 	 * @return this.factory
 	 */
-	public  ExpressionFactory factory() { return factory; }
+	@Override
+  public  ExpressionFactory factory() { return factory; }
 	/**
 	 * Returns this.bounds.
 	 * @return this.bounds
 	 */
-	public  Bounds bounds() { return bounds; }
+	@Override
+  public  Bounds bounds() { return bounds; }
 	/**
 	 * Returns the formula constraining the initial and final 
 	 * states of this.method's heap.
 	 * @return this.formula
 	 */
-	public  Formula formula() { return formula; }
+	@Override
+  public  Formula formula() { return formula; }
 	/**
 	 * Returns the translation context for this.formula and this.bounds.  The context
 	 * contains additional information about the results of the translation]
@@ -71,6 +84,7 @@ public final class SequentialTranslation implements Translation<MethodTranslatio
 	 * by a concurrent or a sequential translator. 
 	 * @return translation context for this method.
 	 */
-	public MethodTranslation context() { return context; }
+	@Override
+  public MethodTranslation context() { return context; }
 	
 }

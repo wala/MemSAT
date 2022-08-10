@@ -61,7 +61,7 @@ public final class SequentialTranslator {
 
 		final Formula formula = Nodes.simplify(Formula.and(invariants, assumptions, assertions), bounds);
 
-		return new SequentialTranslation(formula, bounds, factory, transl);
+		return new SequentialTranslation(formula, bounds, factory, transl, options.kodkodOptions());
 	}
 	
 }

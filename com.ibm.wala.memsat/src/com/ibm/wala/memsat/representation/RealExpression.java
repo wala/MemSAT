@@ -16,6 +16,7 @@ package com.ibm.wala.memsat.representation;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import com.ibm.wala.memsat.frontEnd.IRType;
 import com.ibm.wala.memsat.math.FloatingPoint;
@@ -83,7 +84,7 @@ public final class RealExpression  {
       public boolean singletonEncoding() { return intInterpreter.singletonEncoding(); }
 			@Override
       RealExpression phi(Collection<? extends RealExpression> phis) {
-				final List<IntExpression> ints = new ArrayList<IntExpression>(phis.size());
+			  final List<IntExpression> ints = phis.stream().map(phi -> phi.intBits()).collect(Collectors.toList());
 				if (phis.size() == 1) {
 				  return phis.iterator().next();
 				} else {

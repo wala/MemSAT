@@ -22,6 +22,7 @@ import com.ibm.wala.memsat.translation.Translation;
 import com.ibm.wala.memsat.translation.TranslationWarning;
 
 import kodkod.ast.Formula;
+import kodkod.engine.config.Options;
 import kodkod.instance.Bounds;
 
 /**
@@ -39,15 +40,17 @@ public final class ConcurrentTranslation implements Translation<Justification> {
 	private final Formula formula;
 	private final Justification context;
 	private final Set<TranslationWarning> warnings;
-	
+  private final Options options;
+
 	/**
 	 * Constructs a translation from the given objects.
 	 */
-	ConcurrentTranslation(ExpressionFactory factory, Formula formula, Justification justification, Set<TranslationWarning> warnings) {
+	ConcurrentTranslation(ExpressionFactory factory, Formula formula, Justification justification, Set<TranslationWarning> warnings, Options options) {
 		this.factory=factory;
 		this.formula=formula;
 		this.context=justification;
 		this.warnings = Collections.unmodifiableSet(warnings);
+		this.options = options;
 	}
 	
 	/**
@@ -83,5 +86,10 @@ public final class ConcurrentTranslation implements Translation<Justification> {
 	 * @return translation context for this method.
 	 */
 	public Justification context() { return context; }
+
+  @Override
+  public Options getOptions() {
+    return options;
+  }
 
 }

@@ -16,6 +16,7 @@ package com.ibm.wala.memsat.translation;
 import com.ibm.wala.memsat.representation.ExpressionFactory;
 
 import kodkod.ast.Formula;
+import kodkod.engine.config.Options;
 import kodkod.instance.Bounds;
 
 
@@ -58,4 +59,5 @@ public interface Translation<T> {
 	 */
 	public  T context() ;
 
+	public Options getOptions();
 }

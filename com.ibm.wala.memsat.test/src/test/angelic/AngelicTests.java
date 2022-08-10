@@ -145,15 +145,7 @@ public class AngelicTests {
 			Assert.assertEquals(expected, actual);
 			
 			return solution;
-		} catch (SecurityException e) {
-			e.printStackTrace();
-		} catch (CancelException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (OutOfMemoryError e) {
-			e.printStackTrace();
-		} catch (NoSuchMethodException e) {
+		} catch (Throwable e) {
 			e.printStackTrace();
 		}
 		return null;
