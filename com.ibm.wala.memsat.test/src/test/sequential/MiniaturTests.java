@@ -483,6 +483,7 @@ public class MiniaturTests {
 
 	@Test
 	public void testInts() {
+		miniatur.options().kodkodOptions().setBitwidth(32);		
 		Solution sol = test(miniatur, SRC_DATA_LITTLE, Little.class, "testInts", true);
 		Instance instance = sol.instance();
 		Evaluator evaluator = new Evaluator(instance, miniatur.options().kodkodOptions());

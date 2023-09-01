@@ -14,14 +14,5 @@ Export-Package: com.ibm.wala.memsat.tests,
  test.refactoring,
  test.sequential,
  test.transform
-Require-Bundle: com.ibm.wala.memsat.testdata;bundle-version="1.0.0",
- com.ibm.wala.memsat;bundle-version="1.0.0",
- com.ibm.wala.ide.tests;bundle-version="1.1.3",
- com.ibm.wala.core,
- org.eclipse.osgi;bundle-version="3.6.1",
- com.ibm.wala.ide.jdt.test;bundle-version="1.0.0",
- org.junit;bundle-version="4.0.0",
- com.ibm.wala.cast.java;bundle-version="1.3.10",
- org.eclipse.core.runtime;bundle-version="3.12.0"
 Bundle-Activator: com.ibm.wala.memsat.tests.MiniaturTestsPlugin
 Bundle-ActivationPolicy: lazy

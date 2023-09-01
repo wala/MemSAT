@@ -71,7 +71,7 @@ public class MiniaturJDTJavaAnalysisEngine
 						return new JDTSourceModuleTranslator(cha.getScope(), this) {
 							@Override
 							protected JDTJava2CAstTranslator makeCAstTranslator(CompilationUnit astRoot, final IFile sourceFile, String fullPath) {
-								return new JDTJava2CAstTranslator(sourceLoader, astRoot, fullPath, true) { 
+								return new JDTJava2CAstTranslator(sourceLoader.getReference(), astRoot, fullPath, true) { 
 									@Override
 									public CAstEntity translateToCAst() {
 										CAstEntity ast = super.translateToCAst();

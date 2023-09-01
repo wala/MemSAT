@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <launchConfiguration type="org.eclipse.jdt.junit.launchconfig">
+    <booleanAttribute key="org.eclipse.debug.core.ATTR_FORCE_SYSTEM_CONSOLE_ENCODING" value="false"/>
     <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
         <listEntry value="/com.ibm.wala.memsat.test/src/test/sequential/MiniaturTests.java"/>
     </listAttribute>
     <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES">
         <listEntry value="1"/>
     </listAttribute>
+    <mapAttribute key="org.eclipse.debug.core.environmentVariables">
+        <mapEntry key="PATH" value="/Users/dolby/git/lingeling"/>
+    </mapAttribute>
     <mapAttribute key="org.eclipse.debug.core.preferred_launchers">
         <mapEntry key="[run]" value="org.eclipse.jdt.junit.launchconfig"/>
     </mapAttribute>
@@ -23,10 +27,10 @@
     <booleanAttribute key="org.eclipse.jdt.launching.ATTR_USE_CLASSPATH_ONLY_JAR" value="false"/>
     <booleanAttribute key="org.eclipse.jdt.launching.ATTR_USE_START_ON_FIRST_THREAD" value="true"/>
     <stringAttribute key="org.eclipse.jdt.launching.CLASSPATH_PROVIDER" value="org.eclipse.m2e.launchconfig.classpathProvider"/>
-    <stringAttribute key="org.eclipse.jdt.launching.JRE_CONTAINER" value="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/CDC-1.0%Foundation-1.0/"/>
+    <stringAttribute key="org.eclipse.jdt.launching.JRE_CONTAINER" value="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-11/"/>
     <stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="test.sequential.MiniaturTests"/>
     <stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="com.ibm.wala.memsat.test"/>
     <stringAttribute key="org.eclipse.jdt.launching.SOURCE_PATH_PROVIDER" value="org.eclipse.m2e.launchconfig.sourcepathProvider"/>
-    <stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-Xmx2G -ea -Dcom.ibm.miniatur.exclusions=${project_loc:com.ibm.wala.memsat}/data/MiniaturExclusions.txt -Dcom.ibm.wala.tracefile=/tmp/miniatur-wala-trace.txt -Djava.library.path=${project_loc:com.ibm.wala.memsat}/jni/darwin_x86_64"/>
+    <stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-Xmx2G -Dcom.ibm.miniatur.exclusions=${project_loc:com.ibm.wala.memsat}/data/MiniaturExclusions.txt -Dcom.ibm.wala.tracefile=/tmp/miniatur-wala-trace.txt -Djava.library.path=${project_loc:com.ibm.wala.memsat}/jni/darwin_x86_64 -ea"/>
     <stringAttribute key="org.eclipse.jdt.launching.WORKING_DIRECTORY" value="${workspace_loc:com.ibm.wala.memsat.testdata}"/>
 </launchConfiguration>

@@ -97,13 +97,8 @@ public final class WalaEngine {
 	private static void setPolyglotJavaEngineScope(JavaSourceAnalysisEngine engine, List<File> relativeNames) 
 	{
 		try {
-			String home = System.getProperty("java.home");
-			boolean found = doJavaLibDir(engine, home + File.separator + "lib");
-			found |= doJavaLibDir(engine, home + "/../Classes");
-			//if (! found) {
-			  JrtModule libs = new JrtModule("java.base");
-			  engine.addSystemModule(libs);
-			//}
+		  JrtModule libs = new JrtModule("java.base");
+		  engine.addSystemModule(libs);
 			
 			for(File relativeName : relativeNames) {
 				engine.addSourceModule(new SourceDirectoryTreeModule(relativeName));

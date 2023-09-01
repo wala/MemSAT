@@ -10,83 +10,85 @@
  *****************************************************************************/
 package data.little;
 
-public class Little {
-	static int foo;
-	int[] a = new int[3];
+class NullKey {
+    NullKey() {
 
-	private boolean isSpecial(float x) {
-		return Float.isNaN(x) || Float.isInfinite(x);
-	}
-	
+    }
+}
+
+public class Little {
+    static int foo;
+    int[] a = new int[3];
+
 	/**
 	 * @param args
 	 */
 
     public void testFloats(float x, float y, float z) {
-    	assert !(x > y && y > z);
+    	assert !(x > y && y > z) ;
     }
 
     public void testFloats2(float x, float y, float z) {
-    	assert !(x == y + 1.1f || y == z + 1.1f || x == z + 2.2f);
+    	assert !(x == y + 1.1f || y == z + 1.1f || x == z + 2.2f) ;
     }
 
     public void testIsNaN(float x) {
-    	assert Float.isNaN(x);
+    	assert Float.isNaN(x) ;
     }
     
     public void testIsNotNaN(float x) {
-    	assert !Float.isNaN(x);
+    	assert !Float.isNaN(x) ;
     }
     
     public void testIsNotNaN2(float x) {
-    	assert x<=0f;
+    	assert x<=0f ;
     }
     
     public void testFloatsRound(float x, float y) {
     	if (!isSpecial(x) && !isSpecial(y))
-    		assert x + y == y + x;
+    		assert x + y == y + x ;
     }
 
     public void testFloatsRound2(float x, float y, float z) {
     	if (!isSpecial(x) && !isSpecial(y) && !isSpecial(z)) {
-    		assert x + y + z == z + y + x;
+    		assert x + y + z == z + y + x ;
     	}
     }
 
     public void testFloatsRound3(float x, float y, float z) {
     	if (!isSpecial(x) && !isSpecial(y) && !isSpecial(z)) {
-    		assert x - y - z == z - y - x;
+    		assert x - y - z == z - y - x ;
     	}
     }
 
     public void testFloatsRound4(float x, float y) {
-    	assert x + y == y + x;
+    	assert x + y == y + x ;
     }
 
     public void testIntsRound(int x, int y, int z) {
-    	assert x + y + z == z + y + x;
+    	assert x + y + z == z + y + x ;
     }
 
     public void testFloatsNot(float x, float y, float z) {
-    	assert !(x > y && y > z && z > x);
+    	assert !(x > y && y > z && z > x) ;
     }
  
     public void testFloatBox() {
     	FloatCell fb = new FloatCell(4.0f);
     	float f = fb.value;
-    	assert 5.0f == f - 1.0;
+    	assert 5.0f == f - 1.0 ;
     }
 
     public void testFloatBoxNot() {
     	FloatCell fb = new FloatCell(4.0f);
     	float f = fb.value;
-    	assert 5.0f == f + 1.0f;
+    	assert 5.0f == f + 1.0f ;
     }
 
 	public void testFields() {
 		List l = new List(1);
 		l.next = new List(2);
-		assert (l.value == 1);
+		assert l.value == 1 ;
 		
 	}
 	
@@ -94,7 +96,7 @@ public class Little {
 		int[] arr = new int[3];
 		arr[1] = 1;
 		//assert (arr.length == 1) && (arr[1]==1);
-		assert (arr[1] == 1);
+		assert arr[1] == 1 ;
 		//assert (arr.length ==3);
 	}
 	
@@ -102,26 +104,26 @@ public class Little {
 		int[] arr = new int[3];
 		arr[1] = 1;
 		//assert (arr.length == 1) && (arr[1]==1);
-		assert (arr[1] == 2);
+		assert arr[1] == 2 ;
 		//assert (arr.length ==3);
 	}
 	
 	public void testArrayWrite3(){
 		int[] arr = new int[3];
 		arr[1] = 1;
-		assert (arr.length ==3);
+		assert arr.length == 3 ;
 	}
 	
 	public void testArrayWrite4(){
 		int[] arr = new int[3];
 		arr[1] = 1;
-		assert (arr.length == 7);
+		assert arr.length == 7 ;
 	}
 	
 	public void testArrayWrite5(){
 		int[] arr = new int[3];
 		arr[1] = 1;
-	    assert (arr.length == 1) && (arr[1]==1);
+	    assert arr.length == 1 && arr[1]==1 ;
 	}
 	
 	public void testArrayWrite6(){
@@ -129,7 +131,7 @@ public class Little {
 		arr[1] = 1;
 		arr[2] = arr[1];
 		arr[3] = 2;
-		assert (arr[1] == 1 && arr[2] == 1 && arr[3] == 2);
+		assert arr[1] == 1 && arr[2] == 1 && arr[3] == 2 ;
 	}
 	
 	public void testArrayWrite7(){
@@ -137,25 +139,25 @@ public class Little {
 		arr[1] = 1;
 		arr[2] = arr[1];
 		arr[3] = 2;
-		assert (arr[1] == 10 && arr[2] == 2 && arr[3] == 2);
+		assert arr[1] == 10 && arr[2] == 2 && arr[3] == 2 ;
 	}
 	
 	public void testArrayWrite8(){
 		int[] arr = new int[5];
 		arr[0] = 1;
-		assert (arr[0] == 1);
+		assert arr[0] == 1 ;
 	}
 	
 	public void testArrayWrite9(){
 		int[] arr = new int[5];
 		arr[0] = 1;
-		assert arr[0] == 2;
+		assert arr[0] == 2 ;
 	}
 	
 	public void testArrayWrite10(){
 		int[] arr = new int[3];
 		arr[0] = 1;
-		assert arr[1] == 1;
+		assert arr[1] == 1 ;
 	}
 	
 	public void testArrayWrite11(){
@@ -315,7 +317,7 @@ public class Little {
 	
 	public void testStatic() {
 		foo = 7;
-		assert (foo != 7);
+		assert foo != 7;
 	}
 	
 	public void testStaticBoolean(){
@@ -346,15 +348,15 @@ public class Little {
 	
 	public void testArray() {
 		Little l = new Little();
-		assert (l.a[0] != 1);
+		assert l.a[0] != 1;
 	}
 	
 	public void testArray1(int[] b){
-		assert (b[0] != 1);
+		assert b[0] != 1;
 	}
 	
 	public void testInts(int x, int y, int z){
-		assert !(x > y && y > z);
+	    assert !(x > y && y > z);
 	}
 	
 	public void testLoop(){
@@ -370,9 +372,9 @@ public class Little {
 		}
 		assert j == 5;
 	}
-	
+
 	public static class IntCell {
-		static final Object NULL_KEY = new Object();
+		static final NullKey NULL_KEY = new NullKey();
 		
 		int value;
 		
@@ -393,7 +395,7 @@ public class Little {
 	}
 
 	public static class FloatCell {
-		static final Object NULL_KEY = new Object();
+		static final NullKey NULL_KEY = new NullKey();
 		
 		private float value;
 		
@@ -519,13 +521,13 @@ public class Little {
 	public void testListRemoveOther(){
 		List l = new List(1);
 		l.add(2); l.add(3);
-		assert (l.remove(2).last.value == 3);
+		assert l.remove(2).last.value == 3;
 	}
 	
 	public void testListRemoveFirst(){
 		List l = new List(1);
 		l.add(2); l.add(3);
-		assert (l.remove(1).last.value == 3);
+		assert l.remove(1).last.value == 3;
 	}
 
 	public void testSimpleFields(){
@@ -539,7 +541,7 @@ public class Little {
 	public void testListRemoveCounter(){
 		List l = new List(1);
 		l.add(2); l.add(3);
-		assert (l.last.value == 13);
+		assert l.last.value == 13;
 	}
 	
 	
@@ -604,15 +606,14 @@ public class Little {
 	public void testMyArrayList2(){
 		MyArrayListObj arr = new MyArrayListObj(3);
 		arr.add(new IntCell(1));
-		assert (!arr.contains(new IntCell(1)));
+		assert !arr.contains(new IntCell(1));
 	}
 	
 	public void testMyArrayList3(){
 		MyArrayListObj arr  = new MyArrayListObj(3);
 		arr.add(new IntCell(1));
 		arr.add(new IntCell(2));
-		boolean res = arr.contains(new IntCell(1));
-		assert res;
+		assert arr.contains(new IntCell(1));
 	}
 	
 	public void testMyArrayList4(){
@@ -646,13 +647,13 @@ public class Little {
 
 	public void testIntFields0(){
 		IntCell c = new IntCell(0);
-		assert (c.value == 0);
+		assert c.value == 0;
 	}
 	
 	public void testIntFields1(){
 		IntCell c = new IntCell(1);
 		IntCell c1 = new IntCell(2);
-		assert (c.value == 1 && c1.value == 2);
+		assert c.value == 1 && c1.value == 2;
 	}
 	
 	public void testIntFields2(){
@@ -664,13 +665,13 @@ public class Little {
 	public void testCell1(){
 		IntCell c1 = new IntCell(1);
 		IntCell c2 = new IntCell(2);
-		assert (!c1.equals(c2));
+		assert !c1.equals(c2);
 	}
 	
 	public void testCell2(){
 		IntCell c1 = new IntCell(3);
 		IntCell c2 = new IntCell(3);
-		assert (!c1.equals(c2));
+		assert !c1.equals(c2);
 	}
 	
 	
@@ -885,4 +886,7 @@ public class Little {
 		assert e2.next == e1;
 	}
 	
+	private boolean isSpecial(float x) {
+		return Float.isNaN(x) || Float.isInfinite(x);
+	}	
 }

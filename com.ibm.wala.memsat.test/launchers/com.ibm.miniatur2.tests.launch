@@ -6,6 +6,9 @@
     <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES">
         <listEntry value="4"/>
     </listAttribute>
+    <mapAttribute key="org.eclipse.debug.core.environmentVariables">
+        <mapEntry key="PATH" value="/Users/dolby/.opam/default/bin:/Users/dolby/anaconda3/bin:/Users/dolby/anaconda3/condabin:/opt/local/bin:/opt/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/Library/Apple/usr/bin"/>
+    </mapAttribute>
     <stringAttribute key="org.eclipse.debug.ui.ATTR_CAPTURE_IN_FILE" value="/tmp/memsat.out"/>
     <booleanAttribute key="org.eclipse.debug.ui.ATTR_CONSOLE_OUTPUT_ON" value="false"/>
     <stringAttribute key="org.eclipse.jdt.junit.CONTAINER" value="=com.ibm.wala.memsat.test"/>

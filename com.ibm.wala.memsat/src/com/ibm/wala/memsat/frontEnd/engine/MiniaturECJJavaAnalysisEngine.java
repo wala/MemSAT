@@ -32,6 +32,7 @@ import com.ibm.wala.cast.tree.rewrite.AstLoopUnwinder;
 import com.ibm.wala.classLoader.ClassLoaderFactory;
 import com.ibm.wala.classLoader.IClassLoader;
 import com.ibm.wala.classLoader.SourceDirectoryTreeModule;
+import com.ibm.wala.core.java11.JrtModule;
 import com.ibm.wala.ipa.callgraph.AnalysisOptions;
 import com.ibm.wala.ipa.callgraph.CallGraphBuilder;
 import com.ibm.wala.ipa.callgraph.Entrypoint;
@@ -72,7 +73,7 @@ public class MiniaturECJJavaAnalysisEngine
 						return new ECJSourceModuleTranslator(cha.getScope(), this) {
 							@Override
 							protected JDTJava2CAstTranslator makeCAstTranslator(CompilationUnit astRoot, String fullPath) {
-								return new JDTJava2CAstTranslator<Position>(sourceLoader, astRoot, fullPath, true) { 
+								return new JDTJava2CAstTranslator<Position>(sourceLoader.getReference(), astRoot, fullPath, true) { 
 									@Override
 									public CAstEntity translateToCAst() {
 										CAstEntity ast = super.translateToCAst();
