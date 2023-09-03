@@ -65,6 +65,14 @@ public class Little {
     	assert x + y == y + x ;
     }
 
+    public void testFloatsRound5(float x, float y, float z) {
+    	if (!isSpecial(x) && !isSpecial(y) && !isSpecial(z)) {
+    		float value_1 = x + y + z;
+			float value_2 = z + y + x;
+			assert value_1 != value_2;
+    	}
+    }
+
     public void testIntsRound(int x, int y, int z) {
     	assert x + y + z == z + y + x ;
     }
@@ -88,8 +96,19 @@ public class Little {
 	public void testFields() {
 		List l = new List(1);
 		l.next = new List(2);
-		assert l.value == 1 ;
-		
+		assert l.value == 1 ;	
+	}
+
+	public void testFields3(int a) {
+		List l = new List(1);
+		l.next = new List(a);
+		assert l.next.value == 1 ;	
+	}
+
+	public void testFields2() {
+		List l = new List(1);
+		l.next = new List(2);
+		assert l.next.value != 1;
 	}
 	
 	public void testArrayWrite1(){
@@ -196,13 +215,19 @@ public class Little {
 		return x;
 	}
 
-	public void testNestedIfs(){
-		int i = 3;
-		int j = 4;
+	public void testNestedIfs(int i, int j){
 		int k = foo(i,j);
-		
-		assert k == 10;
-		
+		assert k != 10;
+	}
+	
+	public void testNestedIfs2(int i, int j){
+		int k = foo(i,j);
+		assert k != 9;
+	}
+	
+	public void testNestedIfs3(int i, int j){
+		int k = foo(i,j);
+		assert k != 0;
 	}
 	
 	private static int sum_yx(int[][] a, int y, int x) {
@@ -280,7 +305,7 @@ public class Little {
 		}
 	}
 
-	public void testFloatMatrix1(int x1, int y1, float v1, int x2, int y2, float v2, int x3, int y3, float v3) {
+	public void testFloatMatrix1(int x1, int y1, float v1, int x2, int y2, float v2, int x3, int y3, float v3, float a1, float a2) {
 		if (x1 < 5 && y1 < 5 && x2 < 5 && y2 < 5 && x3 < 5 && y3 < 5 && v1 > 0f && v2 > 0f && v3 > 0f) {
 			float[][] a = makeFloatMatrix();
 			a[y1][x1] = v1;
@@ -288,18 +313,18 @@ public class Little {
 			a[y3][x3] = v3;
 			float t1 = sum_yx(a, 1, 1);
 			float t2 = sum_xy(a, 1, 1);
-			assert t1 == t2;
+			assert t1 == t2 || t1 != a1 || t2 != a2;
 		}
 	}
 
-	public void testFloatMatrix2(int x1, int y1, float v1, int x2, int y2, float v2) {
+	public void testFloatMatrix2(int x1, int y1, float v1, int x2, int y2, float v2, float a1, float a2) {
 		if (x1 < 5 && y1 < 5 && x2 < 5 && y2 < 5 && v1 > 0f && v2 > 0f) {
 			float[][] a = makeFloatMatrix();
 			a[y1][x1] = v1;
 			a[y2][x2] = v2;
 			float t1 = sum_yx(a, 1, 1);
 			float t2 = sum_xy(a, 1, 1);
-			assert t1 == t2;
+			assert t1 == t2 || t1 != a1 || t2 != a2;
 		}
 	}
 
@@ -310,7 +335,6 @@ public class Little {
 			if (j != 4){
 				k = k+1;
 			}
-			k = 8;
 		}
 		return k;
 	}

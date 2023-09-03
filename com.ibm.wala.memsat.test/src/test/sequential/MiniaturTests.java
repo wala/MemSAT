@@ -55,6 +55,8 @@ public class MiniaturTests {
 	}
 	
 	static Pattern args = Pattern.compile(".*_arg[0-9]*");
+
+	static Pattern vals = Pattern.compile(".*_value_[0-9]*");
 	
 	static Solution test(Miniatur miniatur, List<File> srcpath, Class<?> klass, String methodname, boolean sat){
 		try {
@@ -72,13 +74,8 @@ public class MiniaturTests {
 					Relation r = e.getKey();
 					TupleSet ts = e.getValue();
 					Evaluator eval = new Evaluator(solution.instance(), results.translation().getOptions());
-					if (args.matcher(r.name()).matches()) {
-						System.out.println("arg " + r + " is " + ts);
-						System.out.println("arg " + r + " is " + eval.evaluate(r));
-						int numericVal = eval.evaluate(r.sum());
-						System.out.println("arg " + r + " is " + numericVal);							
-						System.out.println("arg " + r + " is " + Float.intBitsToFloat(numericVal));
-						System.err.println(eval.evaluate(FloatingPoint.isNaN(r.sum())));
+					if (args.matcher(r.name()).matches() || vals.matcher(r.name()).matches()) {
+						show_value(r, ts, eval);
 					}
 				});
 			}
@@ -95,6 +92,15 @@ public class MiniaturTests {
 			Assert.assertTrue(e.getMessage(), false);
 		}
 		return null;
+	}
+
+	private static void show_value(Relation r, TupleSet ts, Evaluator eval) {
+		System.out.println(r.name() + " is " + ts);
+		System.out.println(r.name() + " is " + eval.evaluate(r));
+		int numericVal = eval.evaluate(r.sum());
+		System.out.println(r.name() + " is " + numericVal);							
+		System.out.println(r.name() + " is " + Float.intBitsToFloat(numericVal));
+		System.err.println(eval.evaluate(FloatingPoint.isNaN(r.sum())));
 	}
 		
 	@Test
@@ -189,6 +195,13 @@ public class MiniaturTests {
 	public void testFloatsRound4(){
 		miniatur.options().kodkodOptions().setBitwidth(32);
 		test(miniatur, SRC_DATA_LITTLE, Little.class, "testFloatsRound4", false);
+	}
+
+	@Test
+	public void testFloatsRound5(){
+		miniatur.options().kodkodOptions().setSolver(SATFactory.plingeling());
+		miniatur.options().kodkodOptions().setBitwidth(32);
+		test(miniatur, SRC_DATA_LITTLE, Little.class, "testFloatsRound5", true);
 	}
 
 	@Test
@@ -341,6 +354,16 @@ public class MiniaturTests {
 	}
 
 	@Test
+	public void testFields2(){
+		test(miniatur, SRC_DATA_LITTLE, Little.class, "testFields2", false);
+	}
+
+	@Test
+	public void testFields3(){
+		test(miniatur, SRC_DATA_LITTLE, Little.class, "testFields3", true);
+	}
+
+	@Test
 	public void testArrayWrite1(){
 		test(miniatur, SRC_DATA_LITTLE, Little.class, "testArrayWrite1", false);
 	}
@@ -444,6 +467,16 @@ public class MiniaturTests {
 	@Test
 	public void testNestedIfs(){
 		test(miniatur, SRC_DATA_LITTLE, Little.class, "testNestedIfs", true);
+	}
+	
+	@Test
+	public void testNestedIfs2(){
+		test(miniatur, SRC_DATA_LITTLE, Little.class, "testNestedIfs2", true);
+	}
+
+	@Test
+	public void testNestedIfs3(){
+		test(miniatur, SRC_DATA_LITTLE, Little.class, "testNestedIfs3", true);
 	}
 
 	@Test
