@@ -24,6 +24,11 @@ public class Little {
 	 * @param args
 	 */
 
+	
+	private boolean isSpecial(float x) {
+		return Float.isNaN(x) || Float.isInfinite(x);
+	}	
+
     public void testFloats(float x, float y, float z) {
     	assert !(x > y && y > z) ;
     }
@@ -55,9 +60,11 @@ public class Little {
     	}
     }
 
-    public void testFloatsRound3(float x, float y, float z) {
+    public void testFloatsRound3(float x, float y, float z, float a1, float a2) {
     	if (!isSpecial(x) && !isSpecial(y) && !isSpecial(z)) {
-    		assert x - y - z == z - y - x ;
+    		float v1 = x - y - z;
+    		float v2 = z - y - x;
+    		assert v1 == v2 || v1 != a1 || v2 != a2 ;
     	}
     }
 
@@ -909,8 +916,4 @@ public class Little {
 		e2.previous = e1;
 		assert e2.next == e1;
 	}
-	
-	private boolean isSpecial(float x) {
-		return Float.isNaN(x) || Float.isInfinite(x);
-	}	
-}
+	}

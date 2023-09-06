@@ -150,16 +150,6 @@
     </dependency>
     <dependency>
       <groupId>com.ibm.wala</groupId>
-      <artifactId>com.ibm.wala.ide</artifactId>
-      <version>1.5.8-SNAPSHOT</version>
-    </dependency>
-    <dependency>
-      <groupId>com.ibm.wala</groupId>
-      <artifactId>com.ibm.wala.ide.jdt</artifactId>
-      <version>1.5.8-SNAPSHOT</version>
-    </dependency>
-    <dependency>
-      <groupId>com.ibm.wala</groupId>
       <artifactId>com.ibm.wala.cast.js</artifactId>
       <version>1.5.8-SNAPSHOT</version>
     </dependency>

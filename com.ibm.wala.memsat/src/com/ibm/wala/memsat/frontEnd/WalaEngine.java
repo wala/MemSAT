@@ -16,11 +16,12 @@ package com.ibm.wala.memsat.frontEnd;
 import java.io.File;
 import java.io.FilenameFilter;
 import java.io.IOException;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+import java.util.Iterator;
 import java.util.List;
 import java.util.jar.JarFile;
 import java.util.zip.ZipException;
-
-import org.eclipse.core.runtime.CoreException;
 
 import com.ibm.wala.cast.java.client.JavaSourceAnalysisEngine;
 import com.ibm.wala.classLoader.JarFileModule;
@@ -31,7 +32,6 @@ import com.ibm.wala.memsat.Options;
 import com.ibm.wala.memsat.frontEnd.core.WalaInformationImpl;
 import com.ibm.wala.memsat.frontEnd.engine.MiniaturAnalysisEngine;
 import com.ibm.wala.memsat.frontEnd.engine.MiniaturECJJavaAnalysisEngine;
-import com.ibm.wala.memsat.frontEnd.engine.MiniaturJDTJavaAnalysisEngine;
 import com.ibm.wala.types.MethodReference;
 import com.ibm.wala.util.collections.Iterator2Collection;
 import com.ibm.wala.util.graph.Graph;
@@ -146,13 +146,13 @@ public final class WalaEngine {
 			engine = e;
 		} else {
 			try {
-				engine = new MiniaturJDTJavaAnalysisEngine(
+			  Class<?> ec = Class.forName("com.ibm.wala.memsat.frontEnd.MiniaturJDTJavaAnalysisEngine");
+				Constructor<?> ctor = ec.getConstructor(String.class, int.class, Iterator.class);
+				engine = (MiniaturAnalysisEngine) ctor.newInstance(
 					options.getEclipseProjectName(),
 					options.loopUnrollDepth(),
 					Iterator2Collection.toList(methods.iterator()));
-			} catch (IllegalArgumentException e) {
-				assert false : e;
-			} catch (CoreException e) {
+			} catch (IllegalArgumentException | InstantiationException | IllegalAccessException | InvocationTargetException | ClassNotFoundException | NoSuchMethodException | SecurityException e) {
 				assert false : e;
 			}
 		}	
